@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en-us" {% if ng_app %}ng-app="{{ ng_app}}"{% endif %}>
+    <head>
+        <meta charset="UTF-8">
+        <title>{%- block title %}{{ title|append(' | Open Educational Resource Schema') }}{% endblock title -%}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        {% block stylesheets -%}
+            {% for sheet in stylesheets %}
+                <link rel="stylesheet" type="text/css" href="/css/{{ sheet }}">
+            {% endfor %}
+        {%- endblock stylesheets %}
+    </head>
+    <body {% if ng_body_controller %}ng-controller="{{ ng_body_controller }}"{% endif %}>
+        {%- block content %}
+
+        {% endblock content -%}
+        {% block javascripts -%}
+            {% for script in scripts %}
+                <script src="/js/{{ script }}"></script>
+            {% endfor %}
+        {%- endblock javascripts %}
+    </body>
+</html>

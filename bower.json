@@ -1,0 +1,25 @@
+{
+  "name": "oerschema",
+  "description": "OER Vocabulary for RDF",
+  "main": "index.html",
+  "authors": [
+    "Alex Boyce <curiosity26@gmail.com>"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jQuery": "~1.12",
+    "angular": "~1.4",
+    "materialize": "*"
+  }
+}
