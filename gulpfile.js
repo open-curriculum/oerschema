@@ -27,7 +27,10 @@ gulp.task('scss', function() {
 });
 
 gulp.task('uglify', function() {
-    gulp.src(['./src/components/jquery/dist/jquery.js', './src/components/angular/angular.js', './src/js/*.js'], {options: {matchBase: true}})
+    gulp.src(['./src/components/jquery/dist/jquery.js',
+            './src/components/angular/angular.js',
+            './src/components/materialize/dist/js/materialize.js',
+            './src/js/*.js'], {options: {matchBase: true}})
         .pipe(concat('bundle.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('./js/'));
