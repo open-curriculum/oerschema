@@ -11,7 +11,7 @@
   "dependencies": {
     "gulp": "*",
     "gulp-swig": "*",
-    "gulp-scss": "*",
+    "gulp-sass": "*",
     "gulp-clean-css": "*",
     "gulp-uglify": "*",
     "gulp-rename": "*",

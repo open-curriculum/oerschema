@@ -3,7 +3,7 @@
 
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/trusty32"
-  config.vm.network "forwarded_port", guest: 80, host: 8080, autocorrect: true
+  config.vm.network "forwarded_port", guest: 80, host: 8180, autocorrect: true
   config.vm.synced_folder ".", "/vagrant"
 
   config.vm.provider "virtualbox" do |vb|

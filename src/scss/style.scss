@@ -1,1 +1,9 @@
 @import "../components/materialize/sass/materialize.scss";
+
+header {
+  min-height: 580px;
+
+  @media #{$medium-and-up} {
+    min-height: 400px;
+  };
+}

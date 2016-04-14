@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var swig = require('gulp-swig');
-var scss = require('gulp-scss');
+var scss = require('gulp-sass');
 var concat = require('gulp-concat');
 var cleancss = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
@@ -19,11 +19,11 @@ var setup = function(swig) {
 
 
 gulp.task('scss', function() {
-    gulp.src('./src/scss/style.scss')
-        .pipe(scss())
+    gulp.src('./src/scss/*.scss')
+        .pipe(scss({includePaths: ['./src/scss/']}))
         .pipe(cleancss())
         .pipe(rename({extname: ".min.css"}))
-        .pipe(gulp.dest('./css/'));
+        .pipe(gulp.dest('css/'));
 });
 
 gulp.task('uglify', function() {
@@ -34,6 +34,11 @@ gulp.task('uglify', function() {
         .pipe(concat('bundle.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('./js/'));
+});
+
+gulp.task('fonts', function () {
+    gulp.src('./src/components/materialize/fonts/**')
+        .pipe(gulp.dest('./fonts'));
 });
 
 gulp.task('template', function() {
@@ -50,4 +55,4 @@ gulp.task('template', function() {
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('default', ['scss', 'uglify', 'template']);
+gulp.task('default', ['scss', 'uglify', 'fonts', 'template']);
