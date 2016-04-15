@@ -1,4 +1,5 @@
 @import "../components/materialize/sass/materialize.scss";
+@import "components/typography";
 
 header {
   min-height: 580px;
@@ -7,3 +8,12 @@ header {
     min-height: 400px;
   };
 }
+
+footer.page-footer {
+  margin-top: 0;
+}
+
+.row.marginless {
+  margin-bottom: 0;
+}
+

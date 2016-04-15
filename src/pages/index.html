@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en-us" >
-    <head>
-        <meta charset="UTF-8">
-        <title>An RDF Vocabulary for Higher Education | Open Educational Resource Schema</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            
-                <link rel="stylesheet" type="text/css" href="/css/style.min.css">
-            
-    </head>
-    <body >
+{% extends '../templates/base.html' %}
+
+{% set title = 'An RDF Vocabulary for Higher Education' %}
+
+{% block content %}
 <header id="home-header" class="lime lighten-1 white-text valign-wrapper">
     <div class="valign container center-align">
         <h1>Open Educational Resource Schema</h1>
@@ -60,20 +53,4 @@
         </div>
     </section>
 </main>
-<footer class="page-footer lime">
-    <div class="container">
-
-    </div>
-    <div class="footer-copyright">
-        <div class="container">
-            <div class="row text-small">
-                &copy; Copyright 2016 OER Group. All Rights Reserved. MIT License.
-            </div>
-        </div>
-    </div>
-</footer>
-        
-                <script src="/js/bundle.min.js"></script>
-            
-    </body>
-</html>
+{% endblock content %}
