@@ -1,5 +1,6 @@
 var gulp = require('gulp');
-var swig = require('gulp-swig');
+var nunjucks = require('nunjucks');
+var gnj = require('gulp-nunjucks');
 var scss = require('gulp-sass');
 var concat = require('gulp-concat');
 var cleancss = require('gulp-clean-css');
@@ -7,16 +8,24 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var fs = require('fs');
 var browserSync = require('browser-sync').create();
+var env = new nunjucks.Environment(new nunjucks.FileSystemLoader('./src/'), {noCache: true});
 
-var setup = function(swig) {
-    swig.setFilter('append', function(input, idx) {
+env.addFilter('append', function(input, idx) {
         return input + '' + idx; // Force string operations
-    });
-
-    swig.setFilter('prepend', function(input, idx) {
+    })
+    .addFilter('prepend', function(input, idx) {
         return idx + '' + input; // Force string operations
-    });
-};
+    })
+    .addFilter('merge', function(input, arr) {
+        var a = input;
+
+        if (!(input instanceof Array)) {
+            a = [input];
+        }
+        
+        return a.concat(arr);
+    })
+;
 
 gulp.task('scss', function() {
     gulp.src('./src/scss/*.scss')
@@ -50,12 +59,8 @@ gulp.task('template', function() {
     };
 
     gulp.src('src/pages/**/*.html')
-        .pipe(swig({
-            setup: setup,
-            data: data,
-            defaults: {
-                cache: false
-            }
+        .pipe(gnj.compile(data, {
+            env: env
         }))
         .pipe(gulp.dest('./'))
     ;
@@ -79,7 +84,7 @@ gulp.task('browserSyncServer', function () {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('./src/scss/*.scss', ['scss']);
+    gulp.watch('./src/scss/**/*.scss', ['scss']);
     gulp.watch('./src/js/*.js', ['js']);
     gulp.watch(['./src/templates/**/*.html', './src/pages/**/*.html'], ['template']);
 });

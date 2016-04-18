@@ -1,16 +1,20 @@
 @import "../components/materialize/sass/materialize.scss";
 @import "components/typography";
+@import "components/grid";
 
-header {
-  min-height: 580px;
-
-  @media #{$medium-and-up} {
-    min-height: 400px;
-  };
+body {
+  @extend body;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
 }
 
-footer.page-footer {
-  margin-top: 0;
+header {
+  background: url("/images/node-graph.svg") center left no-repeat scroll;
+  @media #{$medium-and-up} {
+    background-position-x: right;
+    min-height: 300px;
+  };
 }
 
 .row.marginless {

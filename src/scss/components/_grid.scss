@@ -1,0 +1,7 @@
+@each $padding in (5, 10, 15, 20) {
+  @each $side in top, right, bottom, left {
+    .pad-#{$side}-#{$padding} {
+      padding-#{$side}: #{$padding}px;
+    }
+  }
+}

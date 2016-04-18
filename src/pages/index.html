@@ -1,56 +1,79 @@
-{% extends '../templates/base.html' %}
+{% extends "templates/base.html" %}
 
 {% set title = 'An RDF Vocabulary for Higher Education' %}
+{% set action = 'index' %}
 
-{% block content %}
-<header id="home-header" class="lime lighten-1 white-text valign-wrapper">
-    <div class="valign container center-align">
-        <h1>Open Educational Resource Schema</h1>
-        <p>Enhancing discoverability and usability</p>
-    </div>
-</header>
-<nav class="orange">
-    <div class="nav-wrapper">
-        <ul class="right">
-            <li><a href="/">Home</a></li>
-            <li><a href="#">Schema</a></li>
-            <li><a href="#">Documentation</a></li>
-        </ul>
-    </div>
-</nav>
-<main>
-    <article class="container">
-        <div class="row">
-            <div class="col s12 l4 valign-wrapper center">
-                <div class="valign center-block">
-                    <p><i class="material-icons medium">search</i></p>
-                    <h2 class="h4">Be Found Easily</h2>
-                    <p class="flow-text">Amplify your content and how it relates to students.</p>
-                </div>
-            </div>
-            <div class="col s12 l4 valign-wrapper center">
-                <div class="valign center-block">
-                    <p><i class="material-icons medium">swap_horiz</i></p>
-                    <h2 class="h4">Connect Resources</h2>
-                    <p class="flow-text">Reference parts of other resources across the web.</p>
-                </div>
-            </div>
-            <div class="col s12 l4 valign-wrapper center">
-                <div class="valign center-block">
-                    <p><i class="material-icons medium">loop</i></p>
-                    <h2 class="h4">Remix Content</h2>
-                    <p class="flow-text">Embed other web resources into your own content.</p>
-                </div>
-            </div>
+{% block content -%}
+    <header id="home-header" class="blue-grey lighten-2 white-text valign-wrapper">
+        <div class="valign container">
+            <h1 class="h3">Open Educational Resource Schema</h1>
+            <p class="flow-text">Optimize discoverability and usability of educational content</p>
         </div>
-    </article>
-    <section class="brown lighten-3 white-text">
-        <div class="container">
-            <div class="row marginless">
-                <h2 class="h4">Structuring Open Educational Resources</h2>
-                <p class="font-thin">Stuff and things. And more changes. And things. I think the cache is off now.</p>
+    </header>
+    <main>
+        <article class="container">
+            <div class="row">
+                <div class="col s12 l4 valign-wrapper">
+                    <div class="valign center-block">
+                        <div class="row">
+                            <div class="col s8">
+                                <h2 class="h4">Find</h2>
+                            </div>
+                            <div class="col s4 right">
+                                <div class="pad-top-10">
+                                    <i class="material-icons medium blue-grey-text text-lighten-2">search</i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="flow-text">Amplify your content and how it relates to students.</p>
+                    </div>
+                </div>
+                <div class="col s12 l4 valign-wrapper">
+                    <div class="valign center-block">
+                        <div class="row">
+                            <div class="col s8">
+                                <h2 class="h4">Connect</h2>
+                            </div>
+                            <div class="col s4 right">
+                                <div class="pad-top-10">
+                                    <i class="material-icons medium blue-grey-text text-lighten-2">swap_horiz</i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="flow-text">Reference parts of other resources across the web.</p>
+                    </div>
+                </div>
+                <div class="col s12 l4 valign-wrapper">
+                    <div class="valign center-block">
+                        <div class="row">
+                            <div class="col s8">
+                                <h2 class="h4">Remix</h2>
+                            </div>
+                            <div class="col s4 right">
+                                <div class="pad-top-10">
+                                    <i class="material-icons medium blue-grey-text text-lighten-2">loop</i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="flow-text">Embed other web resources into your own content.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
-</main>
-{% endblock content %}
+        </article>
+        <section class="red lighten-1 white-text">
+            <div class="container">
+                <div class="row pad-top-10 pad-bottom-10 font-light">
+                    <h2 class="h4">Connecting the Dots</h2>
+                    <p>Instructional Designers and computers don't see content in the same way. Where designers see lessons, modules and assessments, computers see headings, paragraphs and sections. Computers can't see how educational content is different from any other content on the web.<strong> Until now.</strong></p>
+                    <p>Using RDF technology, developed by Google, we have developed the OER Schema; a vocabulary of terms that define and relate the integral parts shared by OER content across the web. Now, computers can see the lessons, modules and assessments in a way that relates to how Instructional Designers think about OER.</p>
+                </div>
+            </div>
+        </section>
+        <section class="container">
+            <div class="row">
+                <h2 class="h4">Enhance Existing Content</h2>
+                <p>The most brilliant part about RDF technology is its simplicity. An Instructional Designer doesn't need to do anything differently when it comes to creating course content. Instead, the LMS or CMS software can apply the OER Schema vocabulary within the HTML markup for the Designer. For most LMS and CMS Software, incorporating the OER Schema vocabulary applies to all content, past, present and future, immediately.</p>
+            </div>
+        </section>
+    </main>
+{%- endblock content %}

@@ -10,13 +10,14 @@
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
     "gulp": "*",
-    "gulp-swig": "*",
+    "gulp-nunjucks": "*",
     "gulp-sass": "*",
     "gulp-clean-css": "*",
     "gulp-uglify": "*",
     "gulp-rename": "*",
     "gulp-concat": "*",
     "gulp-debug": "*",
-    "browser-sync": "*"
+    "browser-sync": "*",
+    "nunjucks": "*"
   }
 }
