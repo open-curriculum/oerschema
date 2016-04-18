@@ -8,7 +8,8 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var fs = require('fs');
 var browserSync = require('browser-sync').create();
-var env = new nunjucks.Environment(new nunjucks.FileSystemLoader('./src/'), {noCache: true});
+var yaml = require('yamljs');
+var env = new nunjucks.Environment(new nunjucks.FileSystemLoader('./src/views'), {noCache: true});
 
 env.addFilter('append', function(input, idx) {
         return input + '' + idx; // Force string operations
@@ -55,13 +56,15 @@ gulp.task('fonts', function () {
 gulp.task('template', function() {
     var data = {
         stylesheets: fs.readdirSync('css/'),
-        scripts: fs.readdirSync('js/')
+        scripts: fs.readdirSync('js/'),
+        schema: yaml.load('src/config/schema.yml')
     };
 
-    gulp.src('src/pages/**/*.html')
+    gulp.src('src/views/pages/**/*.njk')
         .pipe(gnj.compile(data, {
             env: env
         }))
+        .pipe(rename({extname: ".html"}))
         .pipe(gulp.dest('./'))
     ;
 });
@@ -86,7 +89,7 @@ gulp.task('browserSyncServer', function () {
 gulp.task('watch', function() {
     gulp.watch('./src/scss/**/*.scss', ['scss']);
     gulp.watch('./src/js/*.js', ['js']);
-    gulp.watch(['./src/templates/**/*.html', './src/pages/**/*.html'], ['template']);
+    gulp.watch(['./src/views/**/*.njk', './src/config/**/*.yml'], ['template']);
 });
 
 gulp.task('default', ['scss', 'js', 'fonts', 'template']);

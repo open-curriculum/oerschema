@@ -18,6 +18,7 @@
     "gulp-concat": "*",
     "gulp-debug": "*",
     "browser-sync": "*",
-    "nunjucks": "*"
+    "nunjucks": "*",
+    "yamljs": "*"
   }
 }

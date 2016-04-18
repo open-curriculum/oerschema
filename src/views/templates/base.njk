@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us" {% if ng_app %}ng-app="{{ ng_app}}"{% endif %}>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" {% if ng_app %}ng-app="{{ ng_app}}"{% endif %}>
     <head>
         <meta charset="UTF-8">
         <title>{%- block title %}{{ title|append(' | Open Educational Resource Schema') }}{% endblock title -%}</title>
@@ -13,10 +13,10 @@
     </head>
     <body {% if ng_body_controller %}ng-controller="{{ ng_body_controller }}"{% endif %}>
         {% block nav -%}
-            {% include "templates/nav.html" %}
+            {% include "templates/nav.njk" %}
         {% endblock nav -%}
         {%- block content %}{% endblock content -%}
-        {% include 'templates/footer.html' %}
+        {% include 'templates/footer.njk' %}
         {% block javascripts -%}
             {% for script in scripts %}
                 <script src="/js/{{ script }}"></script>
