@@ -1,0 +1,25 @@
+{% extends "templates/base.njk" %}
+{% import "macros/schema.njk" as macros %}
+
+{% set obj = schema.classes[objName] %}
+
+{% block content %}
+    <div class="schema-content container" vocab="http://oerschema.org/" typeof="rdfs:Class" resource="http://oerschema.org/{{ obj.label }}">
+        <h1 property="rdfs:label">{{ obj.label }}</h1>
+        {% if property.alternateType %}
+            <link property="alternateType" href="{{ property.alternateType }}">
+        {% endif %}
+        {% if property.alternateName %}
+            <meta property="alternateName" content="{{ property.alternateName}}">
+        {% endif %}
+        <nav class="blue-grey lighter-2">
+            <div class="breadcrumbs">
+                <div class="col s12">
+                    {{ macros.schema_class_breadcrumbs(obj, schema) }}
+                </div>
+            </div>
+        </nav>
+        <p property="rdfs:comment">{{ obj.comment }}</p>
+        {{ macros.schema_class_table(obj, schema) }}
+    </div>
+{% endblock %}

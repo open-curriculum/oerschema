@@ -1,0 +1,46 @@
+{% extends "templates/base.njk" %}
+{% import "macros/schema.njk" as macros %}
+
+{% set obj = schema.properties[objName] %}
+
+{% block content %}
+    <div class="schema-content container" vocab="http://oerschema.org/" typeof="rdfs:Property" resource="http://oerschema.org/{{ obj.label }}">
+        <h1 property="rdfs:label">{{ obj.label }}</h1>
+        {% if property.alternateType %}
+            <link property="alternateType" href="{{ property.alternateType }}">
+        {% endif %}
+        {% if property.alternateName %}
+            <meta property="alternateName" content="{{ property.alternateName}}">
+        {% endif %}
+        <div class="breadcrumbs">
+            {{ macros.schema_property_breadcrumbs(obj, schema) }}
+        </div>
+        <p property="rdfs:comment">{{ obj.comment }}</p>
+        {% if property.range %}
+            <table class="schema-table range-table">
+                <thead>
+                    <th>Values expected to be these</th>
+                </thead>
+                <tbody>
+                    {%- for class in property.range %}
+                        <link property="rangeIncludes" href="{{ class }}">
+                        <a href="http://oerschema.org/{{ class }}">{{ class }}</a>
+                    {%- endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+        {% if property.domain %}
+            <table class="schema-table domain-table">
+                <thead>
+                    <th>Used on these types</th>
+                </thead>
+                <tbody>
+                    {%- for class in property.domain %}
+                        <link property="domainIncludes" href="{{ class }}">
+                        <a href="http://oerschema.org/{{ class }}">{{ class }}</a>
+                    {%- endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}

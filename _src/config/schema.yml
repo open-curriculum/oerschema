@@ -1,7 +1,9 @@
 # All classes and properties are also subClasses of themselves
 # All classes have the rdfs:type of rdfs:Class
 classes:
+
   Thing:
+    label: "Thing"
     comment: "The most generic type of item"
     path: "Thing"
     baseVocab: "http://schema.org/"
@@ -11,15 +13,17 @@ classes:
       - "description"
       - "image"
       - "mainEntityOfPage"
+      - "sameAs"
+      - "uri"
 
   Intangible:
-    path: "Thing/Intangible"
+    label: "Intangible"
     baseVocab: "http://schema.org/"
     subClassOf:
       - "Thing"
 
   Class:
-    path: "Thing/Intangible/Class"
+    label: "Class"
     baseVocab: "http://schema.org/"
     subClassOf:
       - "Intangible"
@@ -27,7 +31,7 @@ classes:
       - "supersededBy"
 
   Property:
-    path: "Thing/Intangible/Property"
+    label: "Property"
     baseVocab: "http://schema.org/"
     subClassOf:
       - "Intangible"
@@ -38,7 +42,7 @@ classes:
       - "inverseOf"
 
   Enumeration:
-    path: "Thing/Intangible/Enumeration"
+    label: "Enumeration"
     baseVocab: "http://schema.org/"
     subClassOf:
       - "Intangible"
@@ -46,14 +50,14 @@ classes:
       - "supersededBy"
 
   ItemList:
-    path: "Thing/Intangible/ItemList"
+    label: "ItemList"
     baseVocab: "http://schema.org/"
     subClassOf:
       - "Intangible"
     properties: []
 
   EntryPoint:
-    path: "Thing/Intangible/EntryPoint"
+    label: "EntryPoint"
     baseVocab: "http://schema.org/"
     comment: ""
     subClassOf:
@@ -61,72 +65,72 @@ classes:
     properties: []
 
   DataType:
+    label: "DataType"
     comment: ""
-    path: "Thing/Intangible/Class/DataType"
     baseVocab: "http://schema.org/"
     subClassOf:
       - "Class"
       - "rdfs:datatype"
 
   Person:
+    label: "Person"
     comment: ""
-    path: "Thing/Person"
     baseVocab: "http://schema.org/"
     subClassOf:
       - "Thing"
     properties: []
 
   Organization:
+    label: "Organization"
     comment: ""
-    path: "Thing/Organization"
     baseVocab: "http://schema.org/"
     subClassOf:
       - "Thing"
     properties: []
 
   Place:
+    label: "Place"
     comment: ""
-    path: "Thing/Place"
     baseVocab: "http://schema.org/"
     subClassOf:
       - "Thing"
     properties: []
 
   StructuredValue:
+    label: "StructuredValue"
     comment: ""
-    path: "Thing/Intangible/StructuredValue"
     baseVocab: "http://schema.org/"
     subClassOf:
       - "Intangible"
     properties: []
 
   ContactPoint:
+    label: "ContactPoint"
     comment: ""
-    path: "Thing/Intangible/StructuredValue/ContactPoint"
     baseVocab: "http://schema.org/"
     subClassOf:
       - "StructuredValue"
     properties: []
 
   CreativeWork:
+    label: "CreativeWork"
     comment: ""
-    path: "Thing/CreativeWork"
     baseVocab: "http://schema.org/"
     subClassOf:
       - "Thing"
     properties: []
 
   MediaObject:
+    label: "MediaObject"
     comment: ""
-    path: "Thing/CreativeWork/MediaObject"
     baseVocab: "http://schema.org/"
     subClassOf:
       - "CreativeWork"
     properties: []
 
   ImageObject:
+    label: "ImageObject"
     comment: ""
-    path: "Thing/CreativeWork/MediaObject/ImageObject"
     baseVocab: "http://schema.org/"
     subClassOf:
       - "MediaObject"
@@ -134,6 +138,7 @@ classes:
     properties: []
 
   Action:
+    label: "Action"
     comment: ""
     subClassOf:
       - "Thing"
@@ -152,79 +157,85 @@ classes:
       - "target"
 
   ActionStatusType:
+    label: "ActionStatusType"
     comment: ""
     subClassOf:
       - "Enumeration"
       - "http://schema.org/ActionStatusType"
 
   Boolean:
+    label: "Boolean"
     comment: ""
-    path: "DataType/Boolean"
     subClassOf:
       - "DataType"
       - "http://schema.org/Boolean"
 
   Date:
-    path: "DataType/Date"
+    label: "Date"
     subClassOf:
       - "DataType"
       - "http://schema.org/Date"
 
   DateTime:
-    path: "DataType/DateTime"
+    label: "DateTime"
     subClassOf:
       - "DataType"
       - "http://schema.org/DateTime"
 
   Integer:
-    path: "DataType/Integer"
+    label: "Integer"
     subClassOf:
       - "Number"
       - "http://schema.org/Integer"
 
   Number:
-    path: "DataType/Number"
+    label: "Number"
     subClassOf:
       - "DataType"
-      - "https://schema.org/Number"
+      - "http://schema.org/Number"
 
   Text:
-    path: "DataType/Text"
+    label: "Text"
     subClassOf:
       - "DataType"
-      - "https://schema.org/Text"
+      - "http://schema.org/Text"
 
   Time:
-    path: "DataType/Time"
+    label: "Time"
     subClassOf:
       - "DataType"
-      - "https://schema.org/Time"
+      - "http://schema.org/Time"
 
   URL:
-    path: "DataType/Text/URL"
+    label: "URL"
     subClassOf:
       - "Text"
-      - "https://schema.org/URL"
+      - "http://schema.org/URL"
 
   Yes:
+    label: "Yes"
     subClassOf:
       - "Boolean"
 
   No:
+    label: "No"
     subClassOf:
       - "Boolean"
 
-  True:
+  "True":
+    label: "True"
     subClassOf:
       - "Boolean"
 
-  False:
+  "False":
+    label: "False"
     subClassOf:
       - "Boolean"
 
 # All properties have the RDF type of rdfs:Property and http://oerschema.org/Property
 properties:
   name:
+    label: "name"
     comment: "The name of the item."
     range:
       - "Text"
@@ -233,6 +244,7 @@ properties:
       - "http://schema.org/Thing"
 
   additionalName:
+    label: "additionalName"
     comment: "An alias for the item."
     range:
       - "Text"
@@ -241,6 +253,7 @@ properties:
       - "http://schema.org/Thing"
 
   additionalType:
+    label: "additionalType"
     comment: "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax."
     range:
       - "Class"
@@ -249,6 +262,7 @@ properties:
       - "http://schema.org/Thing"
 
   description:
+    label: "description"
     comment: "A short description of the item."
     range:
       - "Text"
@@ -257,6 +271,7 @@ properties:
       - "http://schema.org/Thing"
 
   image:
+    label: "image"
     comment: "An image of the item."
     range:
       - "URL"
@@ -266,6 +281,7 @@ properties:
       - "http://schema.org/Thing"
 
   mainEntityOfPage:
+    label: "mainEntityOfPage"
     comment: ""
     range:
       - "URL"
@@ -275,6 +291,7 @@ properties:
       - "http://schema.org/Thing"
 
   sameAs:
+    label: "sameAs"
     comment: ""
     range:
       - "URL"
@@ -282,8 +299,10 @@ properties:
       - "Thing"
       - "http://schema.org/Thing"
 
-  url:
+  uri:
+    label: "uri"
     comment: ""
+    alternateType: "http://schema.org/url"
     range:
       - "URL"
     domain:
@@ -291,6 +310,7 @@ properties:
       - "http://schema.org/Thing"
 
   potentialAction:
+    label: "potentialAction"
     comment: ""
     range:
       - "Action"
@@ -299,6 +319,7 @@ properties:
       - "http://schema.org/Thing"
 
   actionStatus:
+    label: "actionStatus"
     comment: ""
     range:
       - "ActionStatusType"
@@ -307,6 +328,7 @@ properties:
       - "http://schema.org/Action"
 
   agent:
+    label: "agent"
     comment: ""
     range:
       - "Organization"
@@ -316,6 +338,7 @@ properties:
       - "http://schema.org/Action"
 
   endTime:
+    label: "endTime"
     comment: ""
     range:
       - "DateTime"
@@ -324,6 +347,7 @@ properties:
       - "http://schema.org/Action"
 
   startTime:
+    label: "startTime"
     comment: ""
     range:
       - "DateTime"
@@ -331,6 +355,7 @@ properties:
       - "http://schema.org/Action"
 
   object:
+    label: "object"
     comment: ""
     range:
       - "Thing"
@@ -339,6 +364,7 @@ properties:
       - "http://schema.org/Action"
 
   result:
+    label: "result"
     comment: ""
     range:
       - "Thing"
@@ -347,6 +373,7 @@ properties:
       - "http://schema.org/Action"
 
   error:
+    label: "error"
     comment: ""
     range:
       - "Thing"
@@ -355,6 +382,7 @@ properties:
       - "http://schema.org/Action"
 
   instrument:
+    label: "instrument"
     comment: ""
     range:
       - "Thing"
@@ -363,6 +391,7 @@ properties:
       - "http://schema.org/Action"
 
   location:
+    label: "location"
     comment: ""
     range:
       - "Place"
@@ -373,6 +402,7 @@ properties:
       - "http://schema.org/Action"
 
   participant:
+    label: "participant"
     comment: ""
     range:
       - "Organization"
@@ -382,6 +412,7 @@ properties:
       - "http://schema.org/Action"
 
   result:
+    label: "result"
     comment: ""
     range:
       - "Thing"
@@ -390,6 +421,7 @@ properties:
       - "http://schema.org/Action"
 
   rangeIncludes:
+    label: "rangeIncludes"
     comment: "Relates a property to a class that constitutes (one of) the expected type(s) for values of the property."
     range:
       - "Class"
@@ -398,6 +430,7 @@ properties:
       - "http://schema.org/Thing"
 
   domainIncludes:
+    label: "domainIncludes"
     comment: "Relates a property to a class that is (one of) the type(s) the property is expected to be used on."
     range:
       - "Class"
@@ -406,6 +439,7 @@ properties:
       - "http://schema.org/Property"
 
   supersededBy:
+    label: "supersededBy"
     comment: ""
     range:
       - "Class"
@@ -420,6 +454,7 @@ properties:
       - "http://schema.org/Enumeration"
 
   inverseOf:
+    label: "inverseOf"
     comment: "Relates a property to a property that is its inverse. Inverse properties relate the same pairs of items to each other, but in reversed direction. For example, the 'alumni' and 'alumniOf' properties are inverseOf each other. Some properties don't have explicit inverses; in these situations RDFa and JSON-LD syntax for reverse properties can be used."
     range:
       - "Property"
