@@ -1,6 +1,6 @@
 {% macro schema_class_table(class, schema, inTable=false) %}
     {%- if not inTable %}
-        <table class="class-table schema-table">
+        <table class="class-table schema-table striped">
             <thead>
                 <tr>
                     <th>Property</th>
@@ -10,43 +10,42 @@
             </thead>
     {%- endif %}
         <tbody class="subclass">
-            <tr>
-                <th colspan="3">
-                    <link property="rdfs:subClassOf" href="http://oerschema.org/{{ class.label }}">
-                    {%- if class.baseVocab %}
-                        <link property="rdfs:subClassOf" href="{{ class.baseVocab }}{{ class.label }}">
-                    {%- endif %}
-                    Properties of <a href="/{{ class.label }}">{{ class.label }}</a>
-                </th>
-            </tr>
-        </tbody>
+        <tr>
+            <th colspan="3">
+                <link property="rdfs:subClassOf" href="http://oerschema.org/{{ class.label }}">
+                {%- if class.baseVocab %}
+                    <link property="rdfs:subClassOf" href="{{ class.baseVocab }}{{ class.label }}">
+                {%- endif %}
+                Properties of <a href="/{{ class.label }}">{{ class.label }}</a>
+            </th>
+        </tr>
         {%- if class.properties %}
-            <tbody class="properties">
-                {%- for name in class.properties %}
-                    {% set property = schema.properties[name] %}
-                    <tr typeof="rdfs:Property" resource="http://oerschema.org/{{ name }}/">
-                        <td class="property-label" property="rdfs:label"><a href="/{{ name }}">{{ name }}</a></td>
-                        <td class="property-range">
-                            {%- for range in property.range %}
-                                <link property="rangeIncludes" href="http://oerschema.org/{{ range }}">
-                                {%- if class.baseVocab %}
-                                    <link property="rangeIncludes" href="{{ class.baseVocab }}{{ range }}">
-                                {%- endif %}
-                                <a href="/{{ range }}/">{{ range }}</a> {{ "or" if not loop.last }}
-                            {%- endfor %}
-                        </td>
-                        <td class="property-comment" property="rdfs:comment">{{ property.comment }}</td>
-                    </tr>
-                {%- endfor %}
-            </tbody>
+            {%- for name in class.properties %}
+                {% set property = schema.properties[name] %}
+                <tr typeof="rdfs:Property" resource="http://oerschema.org/{{ name }}/">
+                    <td class="property-label" property="rdfs:label"><a href="/{{ name }}">{{ name }}</a></td>
+                    <td class="property-range">
+                        {%- for range in property.range %}
+                            <link property="rangeIncludes" href="http://oerschema.org/{{ range }}">
+                            {%- if class.baseVocab %}
+                                <link property="rangeIncludes" href="{{ class.baseVocab }}{{ range }}">
+                            {%- endif %}
+                            <a href="/{{ range }}/">{{ range }}</a> {{ "or" if not loop.last }}
+                        {%- endfor %}
+                    </td>
+                    <td class="property-comment" property="rdfs:comment">{{ property.comment }}</td>
+                </tr>
+            {%- endfor %}
         {%- endif %}
+        </tbody>
         {%- if class.subClassOf %}
+
             {%- for subClass in class.subClassOf %}
                 {% set sc = schema.classes[subClass|trim] %}
                 {%- if not subClass|match('/^[^:]+:/') %}
                     {{ schema_class_table(sc, schema, inTable=true) }}
                 {%- else %}
-                    <tbody class="subclass">
+                    <tbody>
                         <tr>
                             <th colspan="3">
                                 <link property="rdfs:subClassOf" href="{{ subClass }}">
@@ -81,4 +80,40 @@
 {% macro schema_property_breadcrumbs(property, schema) %}
     {{ schema_class_breadcrumbs(schema.classes['Property'], schema) }}
     <a href="/{{ property.label }}" class="breadcrumb">{{ property.label }}</a>
+{% endmacro %}
+
+{% macro schema_class_dependencies(className, schema) %}
+    {% set list = [] %}
+    {% for name, obj in schema.classes %}
+        {% if className in obj.subClassOf|merge([]) %}
+            {% set list = list|merge([name])|sort %}
+        {% endif %}
+    {% endfor %}
+    <ul>
+        {% for item in list %}
+            <li><a href="/{{ item }}">{{ item }}</a></li>
+        {% else %}
+            <li><em>No dependencies for this class</em></li>
+        {% endfor %}
+    </ul>
+{% endmacro %}
+
+{% macro schema_class_tree(schema, seed="root", list=[]) %}
+    {%- for name, obj in schema.classes %}
+        {% if seed == "root" and obj.subClassOf == null %}
+            {% set list = list|merge([name])|sort %}
+        {% elif seed in obj.subClassOf|merge([]) %}
+            {% set list = list|merge([name])|sort %}
+        {% endif %}
+    {%- endfor %}
+    {%- if not list|empty %}
+        <ul class="schema-tree">
+            {%- for item in list %}
+                <li>
+                    <a href="/{{ item }}">{{ item }}</a>
+                    {{ schema_class_tree(schema, seed=item) }}
+                </li>
+            {%- endfor %}
+        </ul>
+    {%- endif %}
 {% endmacro %}

@@ -9,7 +9,7 @@ var rename = require('gulp-rename');
 var fs = require('fs');
 var browserSync = require('browser-sync').create();
 var yaml = require('yamljs');
-var env = new nunjucks.Environment(new nunjucks.FileSystemLoader('./_src/views'), {noCache: true});
+var env = new nunjucks.Environment(new nunjucks.FileSystemLoader('./_src/views', {noCache: true}), {dev: true});
 
 env.addFilter('append', function(input, idx) {
         return input + '' + idx; // Force string operations
@@ -37,6 +37,12 @@ env.addFilter('append', function(input, idx) {
     })
     .addFilter('keys', function(obj) {
         return obj ? Object.keys(obj) : [];
+    })
+    .addFilter('empty', function(arr) {
+        return !!arr && !!arr.length ? arr.length == 0 : true;;
+    })
+    .addFilter('length', function(arr) {
+        return !!arr && !!arr.length ? arr.length : 0;
     })
 ;
 

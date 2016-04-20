@@ -12,14 +12,14 @@
         {% if property.alternateName %}
             <meta property="alternateName" content="{{ property.alternateName}}">
         {% endif %}
-        <nav class="blue-grey lighter-2">
-            <div class="breadcrumbs">
-                <div class="col s12">
-                    {{ macros.schema_class_breadcrumbs(obj, schema) }}
-                </div>
+        <div class="breadcrumbs">
+            <div class="col s12">
+                {{ macros.schema_class_breadcrumbs(obj, schema) }}
             </div>
-        </nav>
+        </div>
         <p property="rdfs:comment">{{ obj.comment }}</p>
         {{ macros.schema_class_table(obj, schema) }}
+        <h2 class="h4">Dependent Classes</h2>
+        {{ macros.schema_class_dependencies(objName, schema) }}
     </div>
 {% endblock %}

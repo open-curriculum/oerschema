@@ -1,0 +1,12 @@
+{% extends 'templates/base.njk' %}
+{% from 'macros/schema.njk' import schema_class_tree %}
+
+{% set title = "Schema" %}
+{% set action = 'schema' %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ title }}</h1>
+        {{ schema_class_tree(schema) }}
+    </div>
+{% endblock %}

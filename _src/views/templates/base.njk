@@ -15,7 +15,9 @@
         {% block nav -%}
             {% include "templates/nav.njk" %}
         {% endblock nav -%}
-        {%- block content %}{% endblock content -%}
+        <main>
+            {%- block content %}{% endblock content -%}
+        </main>
         {% include 'templates/footer.njk' %}
         {% block javascripts -%}
             {% for script in scripts %}

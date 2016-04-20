@@ -1,12 +1,30 @@
-@import "../components/materialize/sass/materialize.scss";
+@import "../components/materialize/sass/materialize";
 @import "components/typography";
 @import "components/grid";
+
+$primary-color: color("red", "base");
+$secondary-color: color("blue-grey", "base");
+$link-color: color("red", "darken-1");
+$footer-bg-color: $secondary-color;
 
 body {
   @extend body;
   display: flex;
   flex-direction: column;
   font-size: 14px;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+
+  a {
+    color: $link-color;
+
+    &:hover {
+      color: darken($link-color, 20%);
+    }
+  }
 }
 
 header {
@@ -17,7 +35,56 @@ header {
   };
 }
 
+.breadcrumb {
+  @extend .breadcrumb;
+  color: color("blue-grey", "lighten-3");
+
+  &:hover {
+    color: color("blue-grey", "lighten-1");
+  }
+
+  &:before {
+    @extend .breadcrumb:before;
+    color: color("blue-grey", "lighten-2");
+    font-size: 20px;
+  }
+
+  &:last-child {
+    color: color("blue-grey", "lighten-1");
+  }
+}
+
+nav {
+  @extend nav;
+  background-color: $primary-color;
+}
+
+footer.page-footer {
+  @extend footer.page-footer;
+  background: $footer-bg-color;
+}
+
 .row.marginless {
   margin-bottom: 0;
 }
 
+table > tbody > tr > th {
+  border-bottom: 1px solid $table-border-color;
+}
+
+table > tbody {
+  border-bottom: 1px solid $table-border-color;
+}
+
+ul.schema-tree {
+
+  li {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  & ul.schema-tree {
+    padding-left: 2em;
+    border-left: 1px solid $table-border-color;
+  }
+}
