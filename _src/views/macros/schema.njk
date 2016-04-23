@@ -25,7 +25,7 @@
                 <tr typeof="rdfs:Property" resource="http://oerschema.org/{{ name }}/">
                     <td class="property-label" property="rdfs:label"><a href="/{{ name }}">{{ name }}</a></td>
                     <td class="property-range">
-                        {%- for range in property.range %}
+                        {%- for range in property.range|sort %}
                             <link property="rangeIncludes" href="http://oerschema.org/{{ range }}">
                             {%- if class.baseVocab %}
                                 <link property="rangeIncludes" href="{{ class.baseVocab }}{{ range }}">
@@ -93,7 +93,7 @@
         {% for item in list %}
             <li><a href="/{{ item }}">{{ item }}</a></li>
         {% else %}
-            <li><em>No dependencies for this class</em></li>
+            <li><em>This is the most specific of this type.</em></li>
         {% endfor %}
     </ul>
 {% endmacro %}
@@ -116,4 +116,79 @@
             {%- endfor %}
         </ul>
     {%- endif %}
+{% endmacro %}
+
+{% macro schema_class_for_props(className, schema) %}
+    {% set list = [] %}
+    {%- for name, property in schema.properties %}
+        {% if className in property.range|merge([]) %}
+            {% set list = list|merge([name])|sort %}
+        {% endif %}
+    {%- endfor %}
+    <table class="schema-table properties-table striped">
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>On Types</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%- for item in list %}
+                {% set property = schema.properties[item] %}
+                <tr>
+                    <td>
+                        <a href="/{{ item }}">{{ item }}</a>
+                    </td>
+                    <td>
+                        {%- for class in property.domain|sort %}
+                            {%- if not class|match('/.+:.*.') %}
+                                <a href="/{{ class }}">{{ class }}</a><br>
+                            {%- endif %}
+                        {%- endfor %}
+                    </td>
+                    <td>
+                        {{ property.comment|safe }}
+                    </td>
+                </tr>
+            {%- else %}
+                <tr>
+                    <td class="center-align" colspan="3"><em>This type hasn't been used on any properties, yet.</em></td>
+                </tr>
+            {%- endfor %}
+        </tbody>
+    </table>
+{% endmacro %}
+
+{% macro schema_code_samples(className) %}
+    <div class="row">
+        <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s3"><a href="#default" class="active">Without Markup</a></li>
+                <li class="tab col s3"><a href="#rdfa">HTML5+RDFa</a></li>
+                <li class="tab col s3"><a href="#micro">Microdata</a></li>
+                <li class="tab col s3"><a href="#jsonld">JSON+LD</a></li>
+            </ul>
+        </div>
+        <div id="default" class="col s12">
+            {%- code "html" %}
+                {%- include "samples/" + className + "/default.html" ignore missing -%}
+            {%- endcode %}
+        </div>
+        <div id="rdfa" class="col s12">
+            {%- code "html" %}
+                {%- include "samples/" + className + "/rdfa.html" ignore missing -%}
+            {%- endcode %}
+        </div>
+        <div id="micro" class="col s12">
+            {%- code "html" %}
+                {%- include "samples/" + className + "/microdata.html" ignore missing -%}
+            {%- endcode %}
+        </div>
+        <div id="jsonld" class="col s12">
+            {%- code "html" %}
+                {%- include "samples/" + className + "/jsonld.html" ignore missing -%}
+            {%- endcode %}
+        </div>
+    </div>
 {% endmacro %}

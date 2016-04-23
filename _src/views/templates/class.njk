@@ -1,7 +1,9 @@
 {% extends "templates/base.njk" %}
 {% import "macros/schema.njk" as macros %}
 
+{% set action = 'schema' %}
 {% set obj = schema.classes[objName] %}
+{% set title = objName %}
 
 {% block content %}
     <div class="schema-content container" vocab="http://oerschema.org/" typeof="rdfs:Class" resource="http://oerschema.org/{{ obj.label }}">
@@ -19,7 +21,11 @@
         </div>
         <p property="rdfs:comment">{{ obj.comment }}</p>
         {{ macros.schema_class_table(obj, schema) }}
-        <h2 class="h4">Dependent Classes</h2>
+        <h2 class="h5">"{{ obj.label}}" is the value type for Properties:</h2>
+        {{ macros.schema_class_for_props(obj.label, schema) }}
+        <h2 class="h5">Usage Examples</h2>
+        {{ macros.schema_code_samples(objName) }}
+        <h2 class="h5">More specific Types</h2>
         {{ macros.schema_class_dependencies(objName, schema) }}
     </div>
 {% endblock %}

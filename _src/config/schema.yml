@@ -4,7 +4,7 @@ classes:
 
   Thing:
     label: "Thing"
-    comment: "The most generic type of item"
+    comment: "The most generic type of items."
     path: "Thing"
     baseVocab: "http://schema.org/"
     properties:
@@ -18,6 +18,7 @@ classes:
 
   Intangible:
     label: "Intangible"
+    comment: "A utility class that serves as the umbrella for a number of 'intangible' things such as quantities, structured values, etc."
     baseVocab: "http://schema.org/"
     subClassOf:
       - "Thing"
@@ -51,7 +52,27 @@ classes:
 
   ItemList:
     label: "ItemList"
+    comment: "A list of items of any sort—for example, Top 10 Movies About Weathermen, or Top 100 Party Songs. Not to be confused with HTML lists, which are often used only for formatting."
     baseVocab: "http://schema.org/"
+    subClassOf:
+      - "Intangible"
+    properties:
+      - "itemListElement"
+      - "itemListOrder"
+      - "numberOfItems"
+
+  ListItem:
+    label: "ListItem"
+    comment: ""
+    baseVocab: "http://schema.org/"
+    subClassOf:
+      - "Intangible"
+    properties: []
+
+  ItemListOrderType:
+    label: "ItemListOrderType"
+    comment: ""
+    baseVocab: []
     subClassOf:
       - "Intangible"
     properties: []
@@ -112,6 +133,14 @@ classes:
       - "StructuredValue"
     properties: []
 
+  PostalAddress:
+    label: "PostalAddress"
+    comment: ""
+    baseVocab: "http://schema.org/"
+    subClassOf:
+      - "ContactPoint"
+    properties: []
+
   CreativeWork:
     label: "CreativeWork"
     comment: ""
@@ -139,7 +168,7 @@ classes:
 
   Action:
     label: "Action"
-    comment: ""
+    comment: "An action performed by a direct agent and indirect participants upon a direct object. Optionally happens at a location with the help of an inanimate instrument. The execution of the action may produce a result. Specific action sub-type documentation specifies the exact expectation of each argument/role."
     subClassOf:
       - "Thing"
       - "http://schema.org/Action"
@@ -237,210 +266,243 @@ properties:
   name:
     label: "name"
     comment: "The name of the item."
+    baseVocab: "http://schema.org/"
     range:
       - "Text"
     domain:
       - "Thing"
-      - "http://schema.org/Thing"
 
   additionalName:
     label: "additionalName"
     comment: "An alias for the item."
+    baseVocab: "http://schema.org/"
     range:
       - "Text"
     domain:
       - "Thing"
-      - "http://schema.org/Thing"
 
   additionalType:
     label: "additionalType"
     comment: "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax."
+    baseVocab: "http://schema.org/"
     range:
       - "Class"
     domain:
       - "Thing"
-      - "http://schema.org/Thing"
 
   description:
     label: "description"
     comment: "A short description of the item."
+    baseVocab: "http://schema.org/"
     range:
       - "Text"
     domain:
       - "Thing"
-      - "http://schema.org/Thing"
 
   image:
     label: "image"
     comment: "An image of the item."
+    baseVocab: "http://schema.org/"
     range:
       - "URL"
       - "CreativeWork"
     domain:
       - "Thing"
-      - "http://schema.org/Thing"
 
   mainEntityOfPage:
     label: "mainEntityOfPage"
-    comment: ""
+    comment: "Indicates a page (or other CreativeWork) for which this thing is the main entity being described."
+    baseVocab: "http://schema.org/"
+    inverseOf: "mainEntity"
     range:
       - "URL"
       - "CreativeWork"
     domain:
       - "Thing"
-      - "http://schema.org/Thing"
 
   sameAs:
     label: "sameAs"
-    comment: ""
+    comment: "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Freebase page, or official website."
+    baseVocab: "http://schema.org/"
     range:
       - "URL"
     domain:
       - "Thing"
-      - "http://schema.org/Thing"
 
   uri:
     label: "uri"
-    comment: ""
+    comment: "URL of the item."
+    baseVocab: "http://schema.org/"
     alternateType: "http://schema.org/url"
     range:
       - "URL"
     domain:
       - "Thing"
-      - "http://schema.org/Thing"
 
   potentialAction:
     label: "potentialAction"
-    comment: ""
+    comment: "Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."
+    baseVocab: "http://schema.org/"
     range:
       - "Action"
     domain:
       - "Thing"
-      - "http://schema.org/Thing"
 
   actionStatus:
     label: "actionStatus"
-    comment: ""
+    comment: "Indicates the current disposition of the Action."
+    baseVocab: "http://schema.org/"
     range:
       - "ActionStatusType"
     domain:
       - "Action"
-      - "http://schema.org/Action"
 
   agent:
     label: "agent"
-    comment: ""
+    comment: "The direct performer or driver of the action (animate or inanimate). e.g. *John* wrote a book."
+    baseVocab: "http://schema.org/"
     range:
       - "Organization"
       - "Person"
     domain:
       - "Action"
-      - "http://schema.org/Action"
 
   endTime:
     label: "endTime"
-    comment: ""
+    comment: "The endTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to end. For actions that span a period of time, when the action was performed. e.g. John wrote a book from January to *December*. Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions."
+    baseVocab: "http://schema.org/"
     range:
       - "DateTime"
     domain:
       - "Action"
-      - "http://schema.org/Action"
 
   startTime:
     label: "startTime"
-    comment: ""
+    comment: "The startTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to start. For actions that span a period of time, when the action was performed. e.g. John wrote a book from *January* to December. Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions."
+    baseVocab: "http://schema.org/"
     range:
       - "DateTime"
     domain:
-      - "http://schema.org/Action"
+      - "Action"
 
   object:
     label: "object"
-    comment: ""
+    baseVocab: "http://schema.org/"
+    comment: "The object upon the action is carried out, whose state is kept intact or changed. Also known as the semantic roles patient, affected or undergoer (which change their state) or theme (which doesn't). e.g. John read *a book*."
     range:
       - "Thing"
     domain:
       - "Action"
-      - "http://schema.org/Action"
-
-  result:
-    label: "result"
-    comment: ""
-    range:
-      - "Thing"
-    domain:
-      - "Action"
-      - "http://schema.org/Action"
 
   error:
     label: "error"
-    comment: ""
+    comment: "For failed actions, more information on the cause of the failure."
+    baseVocab: "http://schema.org/"
     range:
       - "Thing"
     domain:
       - "Action"
-      - "http://schema.org/Action"
 
   instrument:
     label: "instrument"
-    comment: ""
+    comment: "The object that helped the agent perform the action. e.g. John wrote a book with *a pen*."
+    baseVocab: "http://schema.org/"
     range:
       - "Thing"
     domain:
       - "Action"
-      - "http://schema.org/Action"
 
   location:
     label: "location"
-    comment: ""
+    comment: "The location of for example where the event is happening, an organization is located, or where an action takes place."
+    baseVocab: "http://schema.org/"
     range:
       - "Place"
       - "PostalAddress"
       - "Text"
     domain:
       - "Action"
-      - "http://schema.org/Action"
 
   participant:
     label: "participant"
-    comment: ""
+    comment: "Other co-agents that participated in the action indirectly. e.g. John wrote a book with *Steve*."
+    baseVocab: "http://schema.org/"
     range:
       - "Organization"
       - "Person"
     domain:
       - "Action"
-      - "http://schema.org/Action"
 
   result:
     label: "result"
-    comment: ""
+    comment: "The result produced in the action. e.g. John wrote *a book*."
+    baseVocab: "http://schema.org/"
     range:
       - "Thing"
     domain:
       - "Action"
-      - "http://schema.org/Action"
+
+  target:
+    label: "target"
+    comment: "Indicates a target EntryPoint for an Action."
+    baseVocab: "http://schema.org/"
+    range:
+      - "EntryPoint"
+    domain:
+      - "Action"
+
+  itemListElement:
+    label: "itemListElement"
+    comment: "For itemListElement values, you can use simple strings (e.g. 'Peter', 'Paul', 'Mary'), existing entities, or use ListItem.<br><br>Text values are best if the elements in the list are plain strings. Existing entities are best for a simple, unordered list of existing things in your data. ListItem is used with ordered lists when you want to provide additional context about the element in that list or when the same item might be in different places in different lists.<br><br>Note: The order of elements in your mark-up is not sufficient for indicating the order or elements. Use ListItem with a 'position' property in such cases."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Thing"
+      - "Text"
+      - "ListItem"
+    domain:
+      - "ItemList"
+
+  itemListOrder:
+    label: "itemListOrder"
+    comment: "Type of ordering (e.g. Ascending, Descending, Unordered)."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Text"
+      - "ItemListOrderType"
+    domain:
+      - "ItemList"
+
+  numberOfItems:
+    label: "numberOfItems"
+    comment: "The number of items in an ItemList. Note that some descriptions might not fully describe all items in a list (e.g., multi-page pagination); in such cases, the numberOfItems would be for the entire list."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Integer"
+    domain:
+      - "ItemList"
 
   rangeIncludes:
     label: "rangeIncludes"
     comment: "Relates a property to a class that constitutes (one of) the expected type(s) for values of the property."
+    baseVocab: "http://schema.org/"
     range:
       - "Class"
     domain:
       - "Thing"
-      - "http://schema.org/Thing"
 
   domainIncludes:
     label: "domainIncludes"
     comment: "Relates a property to a class that is (one of) the type(s) the property is expected to be used on."
+    baseVocab: "http://schema.org/"
     range:
       - "Class"
     domain:
       - "Property"
-      - "http://schema.org/Property"
 
   supersededBy:
     label: "supersededBy"
     comment: ""
+    baseVocab: "http://schema.org/"
     range:
       - "Class"
       - "Property"
@@ -449,15 +511,12 @@ properties:
       - "Class"
       - "Property"
       - "Enumeration"
-      - "http://schema.org/Class"
-      - "http://schema.org/Property"
-      - "http://schema.org/Enumeration"
 
   inverseOf:
     label: "inverseOf"
     comment: "Relates a property to a property that is its inverse. Inverse properties relate the same pairs of items to each other, but in reversed direction. For example, the 'alumni' and 'alumniOf' properties are inverseOf each other. Some properties don't have explicit inverses; in these situations RDFa and JSON-LD syntax for reverse properties can be used."
+    baseVocab: "http://schema.org/"
     range:
       - "Property"
     domain:
       - "Property"
-      - "http://schema.org/Property"

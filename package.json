@@ -2,6 +2,7 @@
   "name": "oerschema",
   "version": "1.0.0",
   "description": "OER Vocabulary for RDF",
+  "private": true,
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,8 +18,11 @@
     "gulp-rename": "*",
     "gulp-concat": "*",
     "gulp-debug": "*",
+    "gulp-plumber": "*",
     "browser-sync": "*",
     "nunjucks": "*",
-    "yamljs": "*"
+    "yamljs": "*",
+    "highlight.js": "*",
+    "nunjucks-highlight.js": "*"
   }
 }

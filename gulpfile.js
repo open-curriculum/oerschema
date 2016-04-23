@@ -6,12 +6,54 @@ var concat = require('gulp-concat');
 var cleancss = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
+var plumber = require('gulp-plumber');
 var fs = require('fs');
 var browserSync = require('browser-sync').create();
 var yaml = require('yamljs');
+var hljs = require('highlight.js');
 var env = new nunjucks.Environment(new nunjucks.FileSystemLoader('./_src/views', {noCache: true}), {dev: true});
+var NunjucksCodeHighlight = function NunjucksCodeHighlight(nunjucks, hljs) {
+    this.tags = ['code'];
 
-env.addFilter('append', function(input, idx) {
+    this.parse = function(parser, nodes) {
+        // get the tag token
+        var tok = parser.nextToken();
+
+        // parse the args and move after the block end. passing true
+        // as the second arg is required if there are no parentheses
+        var args = parser.parseSignature(null, true);
+        parser.advanceAfterBlockEnd(tok.value);
+
+        // parse the body and possibly the error block, which is optional
+        var body = parser.parseUntilBlocks('endcode');
+
+        parser.advanceAfterBlockEnd();
+
+        // See above for notes about CallExtension
+        return new nodes.CallExtension(this, 'run', args, [body]);
+    };
+
+    this.run = function(context) {
+        var body = arguments[arguments.length - 1];
+        var htmlResult = '';
+        var format = arguments.length == 3 ? arguments[1] : 'html';
+        try {
+            var result = hljs.highlightAuto(body().toString(), [format]);
+            htmlResult += '<pre><code class="hljs ' + format + '">';
+            htmlResult += result.value;
+            htmlResult += '</code></pre>';
+            htmlResult = new nunjucks.runtime.SafeString(htmlResult);
+        } catch (error) {
+            htmlResult = undefined;
+            throw new Error('Error rendering highlighted code');
+        }
+        return htmlResult;
+    };
+};
+var highlight = new NunjucksCodeHighlight(nunjucks, hljs);
+
+env.addExtension('NunjucksCodeHighlight', highlight)
+    .addFilter('append', function(input, idx) {
         return input + '' + idx; // Force string operations
     })
     .addFilter('prepend', function(input, idx) {
@@ -41,14 +83,16 @@ env.addFilter('append', function(input, idx) {
     .addFilter('empty', function(arr) {
         return !!arr && !!arr.length ? arr.length == 0 : true;;
     })
-    .addFilter('length', function(arr) {
-        return !!arr && !!arr.length ? arr.length : 0;
-    })
+    .addFilter('fileExists', function(path, cb) {
+        fs.access(path, function(err) {
+            cb(!err);
+        });
+    }, true)
 ;
 
 gulp.task('scss', function() {
-    gulp.src('./_src/scss/*.scss')
-        .pipe(scss({includePaths: ['./_src/scss/']}))
+    gulp.src('./_src/scss/style.scss')
+        .pipe(scss({includePaths: ['_src/scss/']}).on('error', scss.logError))
         .pipe(cleancss())
         .pipe(rename({extname: ".min.css"}))
         .pipe(gulp.dest('_assets/css/'))
@@ -82,8 +126,7 @@ gulp.task('buildSchema', function() {
 
             fs.writeFile('_src/views/pages/' + c + '/index.njk',
                 "{% extends 'templates/class.njk' %}\n" +
-                "{% set objName = '" + c + "' %}" +
-                "{% set title = '" + c + "' %}"
+                "{% set objName = '" + c + "' %}"
             );
         });
     }
@@ -96,8 +139,7 @@ gulp.task('buildSchema', function() {
 
             fs.writeFile('_src/views/pages/' + p + '/index.njk',
                 "{% extends 'templates/property.njk' %}\n" +
-                "{% set objName = '" + p + "' %}\n" +
-                "{% set title = '" + p + "' %}"
+                "{% set objName = '" + p + "' %}"
             );
         });
     }
@@ -150,5 +192,6 @@ gulp.task('watch', function() {
     gulp.watch(['./_src/views/**/*.njk', './_src/config/**/*.yml'], ['template']);
 });
 
+gulp.task('build', ['buildSchema']);
 gulp.task('default', ['scss', 'js', 'fonts', 'template']);
-gulp.task('server', ['buildSchema', 'default', 'browserSyncServer', 'watch']);
+gulp.task('server', ['default', 'browserSyncServer', 'watch']);

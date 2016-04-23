@@ -1,0 +1,13 @@
+<span vocab="http://oerschema.org/" typeof="Action">
+    <span resource="#agent1" typeof="Person">
+        <span property="name">John</span>
+    </span>
+    <span property="name">listened</span> to <span property="object">Pink</span> with
+    <span resource="#participant1" typeof="Person"><span property="name">Steve</span></span> at
+    <span property="location">Anna's apartment</span> on his
+    <span resource="#instrument1" typeof="Thing"><span property="name">iPod</span></span>.
+    <!-- Connect complex property types to the Action -->
+    <link property="agent" href="#agent1">
+    <link property="participant" href="#participant1">
+    <link property="instrument" href="#instrument1">
+</span>

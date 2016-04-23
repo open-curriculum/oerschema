@@ -1,11 +1,13 @@
 {% extends "templates/base.njk" %}
 {% import "macros/schema.njk" as macros %}
 
-{% set obj = schema.properties[objName] %}
+{% set action = 'schema' %}
+{% set property = schema.properties[objName] %}
+{% set title = objName %}
 
 {% block content %}
-    <div class="schema-content container" vocab="http://oerschema.org/" typeof="rdfs:Property" resource="http://oerschema.org/{{ obj.label }}">
-        <h1 property="rdfs:label">{{ obj.label }}</h1>
+    <div class="schema-content container" vocab="http://oerschema.org/" typeof="rdfs:Property" resource="http://oerschema.org/{{ property.label }}">
+        <h1 property="rdfs:label">{{ property.label }}</h1>
         <link property="rdfs:subClassOf" href="http://oerschema.org/Property">
         {% if property.alternateType %}
             <link property="alternateType" href="{{ property.alternateType }}">
@@ -14,31 +16,46 @@
             <meta property="alternateName" content="{{ property.alternateName}}">
         {% endif %}
         <div class="breadcrumbs">
-            {{ macros.schema_property_breadcrumbs(obj, schema) }}
+            {{ macros.schema_property_breadcrumbs(property, schema) }}
         </div>
-        <p property="rdfs:comment">{{ obj.comment }}</p>
+        <p property="rdfs:comment">{{ property.comment|safe }}</p>
         {% if property.range %}
-            <table class="schema-table range-table">
+            <table class="schema-table range-table striped">
                 <thead>
                     <th>Values expected to be these</th>
                 </thead>
                 <tbody>
-                    {%- for class in property.range %}
-                        <link property="rangeIncludes" href="{{ class }}">
-                        <a href="http://oerschema.org/{{ class }}">{{ class }}</a>
+                    {%- for range in property.range %}
+                        <tr>
+                            <td>
+                                <link property="rangeIncludes" href="{{ range }}">
+                                <a href="http://oerschema.org/{{ range }}">{{ range }}</a>
+                            </td>
+                        </tr>
                     {%- endfor %}
                 </tbody>
             </table>
         {% endif %}
         {% if property.domain %}
-            <table class="schema-table domain-table">
+            <table class="schema-table domain-table striped">
                 <thead>
                     <th>Used on these types</th>
                 </thead>
                 <tbody>
-                    {%- for class in property.domain %}
-                        <link property="domainIncludes" href="{{ class }}">
-                        <a href="http://oerschema.org/{{ class }}">{{ class }}</a>
+                    {%- for class in property.domain|sort %}
+                        {% if class|match('/.+:.*.') %}
+                            <link property="domainIncludes" href="{{ class }}">
+                        {% else %}
+                            <tr>
+                                <td>
+                                    <link property="domainIncludes" href="{{ class }}">
+                                    {% if property.baseVocab %}
+                                        <link property="domainIncludes" href="{{ property.baseVocab }}{{ class }}">
+                                    {% endif %}
+                                    <a href="http://oerschema.org/{{ class }}">{{ class }}</a>
+                                </td>
+                            </tr>
+                        {% endif %}
                     {%- endfor %}
                 </tbody>
             </table>
