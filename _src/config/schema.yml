@@ -2,6 +2,56 @@
 # All classes have the rdfs:type of rdfs:Class
 classes:
 
+  Resource:
+    label: "Resource"
+    comment: "A general component that all open educational resources are based from."
+    alternateType:
+      - "http://schema.org/Thing"
+    properties:
+      - "name"
+      - "description"
+
+  Course:
+    label: "Course"
+    comment: "An instructional course"
+    subClassOf:
+      - "Resource"
+    properties:
+      - "courseNumber"
+      - "primaryInstructor"
+      - "instructor"
+      - "courseLength"
+      - "prerequisite"
+      - "institution"
+      - "department"
+      - "program"
+      - "syllabus"
+      - "classStanding"
+      - "deliveryMode"
+      - "enrollmentSize"
+      - "learningObjective"
+
+  Syllabus:
+    label: "Syllabus"
+    comment: ""
+    subClassOf:
+      - "Resource"
+    properties: []
+
+  ClassStanding:
+    label: "ClassStanding"
+    comment: ""
+    subClassOf:
+      - "Resource"
+    properties: []
+
+  LearningObjective:
+    label: "LearningObjective"
+    commnet: ""
+    subClassOf:
+      - "Resource"
+    properties: []
+
   Thing:
     label: "Thing"
     comment: "The most generic type of items."
@@ -520,3 +570,107 @@ properties:
       - "Property"
     domain:
       - "Property"
+
+  courseNumber:
+    label: "courseNumber"
+    comment: ""
+    range:
+      - "Number"
+    domain:
+      - "Coure"
+
+  primaryInstructor:
+    label: "primaryInstructor"
+    comment: ""
+    range:
+      - "Person"
+    domain:
+      - "Resource"
+
+  instructor:
+    label: "instructor"
+    comment: ""
+    range:
+      - "Person"
+    domain:
+      - "Resource"
+
+  courseLength:
+    label: "courseLength"
+    comment: ""
+    range:
+      - "Text"
+    domain:
+      - "Course"
+
+  prerequisites:
+    label: "prerequisites"
+    comment: ""
+    range:
+      - "Course"
+    domain:
+      - "Course"
+
+  institution:
+    label: "insitution"
+    comment: ""
+    range:
+      - "Organization"
+    domain:
+      - "Resource"
+
+  department:
+    label: "department"
+    comment: ""
+    range:
+      - "Organization"
+    domain:
+      - "Resource"
+
+  program:
+    label: "program"
+    comment: ""
+    range:
+      - "Organization"
+    domain:
+      - "Resource"
+
+  syllabus:
+    label: "syllabus"
+    comment: ""
+    range:
+      - "Syllabus"
+    domain:
+      - "Resource"
+
+  classStanding:
+    label: "classStanding"
+    comment: ""
+    range:
+      - "ClassStanding"
+    domain:
+      - "Resource"
+
+  deliveryMode:
+    label: "deliveryMode"
+    comment: ""
+    range:
+      - "Text"
+    domain:
+      - "Resource"
+
+  enrollmentSize:
+    label: "enrollment"
+    comment: ""
+    range:
+      - "Number"
+    domain:
+      - "Resource"
+
+  learningObjective:
+    label: "learningObjective"
+    comment: ""
+    range:
+      - "LearningObjective"
+    domain:
+      - "Resource"
