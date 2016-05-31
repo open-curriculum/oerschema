@@ -119,12 +119,12 @@ gulp.task('buildSchema', function() {
     var schema = yaml.load('_src/config/schema.yml');
 
     function createClassTemplate(c) {
-        fs.access('_src/views/pages/' + c, function(err) {
+        fs.access('./_src/views/pages/' + c, function(err) {
             if (err) {
-                fs.mkdirSync('_src/views/pages/' + c);
+                fs.mkdirSync('./_src/views/pages/' + c);
             }
 
-            fs.writeFile('_src/views/pages/' + c + '/index.njk',
+            fs.writeFile('./_src/views/pages/' + c + '/index.njk',
                 "{% extends 'templates/class.njk' %}\n" +
                 "{% set objName = '" + c + "' %}"
             );
@@ -132,12 +132,12 @@ gulp.task('buildSchema', function() {
     }
 
     function createPropertyTemplate(p) {
-        fs.access('_src/views/pages/' + p, function(err) {
+        fs.access('./_src/views/pages/' + p, function(err) {
             if (err) {
-                fs.mkdirSync('_src/views/pages/' + p);
+                fs.mkdirSync('./_src/views/pages/' + p);
             }
 
-            fs.writeFile('_src/views/pages/' + p + '/index.njk',
+            fs.writeFile('./_src/views/pages/' + p + '/index.njk',
                 "{% extends 'templates/property.njk' %}\n" +
                 "{% set objName = '" + p + "' %}"
             );

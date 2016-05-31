@@ -66,15 +66,22 @@
     {%- endif %}
 {% endmacro %}
 
-{% macro schema_class_breadcrumbs(class, schema) %}
+{% macro schema_class_breadcrumbs(class, schema, rendered=[]) %}
+    {%- if rendered|length == 0 %}
+        {% set rendered = [class.label] %}
+    {%- endif %}
     {%- if class.subClassOf %}
         {%- for subClass in class.subClassOf %}
-            {%- if subClass in schema.classes|keys %}
-                {{ schema_class_breadcrumbs(schema.classes[subClass], schema) }}
+            {%- if subClass in schema.classes|keys and not subClass in rendered %}
+                {% set rendered = rendered|merge([subClass]) %}
+                {{ schema_class_breadcrumbs(schema.classes[subClass], schema, rendered) }}
             {%- endif %}
         {%- endfor %}
+    {%- elif rendered|length > 0 -%}
+        {%- for sc in rendered|reverse %}
+            <a href="/{{ sc }}" class="breadcrumb">{{ sc }}</a>
+        {%- endfor %}
     {%- endif %}
-    <a href="/{{ class.label }}" class="breadcrumb">{{ class.label }}</a>
 {% endmacro %}
 
 {% macro schema_property_breadcrumbs(property, schema) %}
@@ -100,7 +107,7 @@
 
 {% macro schema_class_tree(schema, seed="root", list=[]) %}
     {%- for name, obj in schema.classes %}
-        {% if seed == "root" and obj.subClassOf == null %}
+        {% if seed == "root" and obj.root == true %}
             {% set list = list|merge([name])|sort %}
         {% elif seed in obj.subClassOf|merge([]) %}
             {% set list = list|merge([name])|sort %}

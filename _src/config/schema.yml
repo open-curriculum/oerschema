@@ -5,11 +5,14 @@ classes:
   Resource:
     label: "Resource"
     comment: "A general component that all open educational resources are based from."
+    root: true
     alternateType:
       - "http://schema.org/Thing"
+    subClassOf:
+      - "Thing"
     properties:
-      - "name"
-      - "description"
+      - "parentOf"
+      - "childOf"
 
   Course:
     label: "Course"
@@ -26,13 +29,13 @@ classes:
       - "department"
       - "program"
       - "syllabus"
-      - "classStanding"
+      - "currentStanding"
       - "deliveryMode"
       - "enrollmentSize"
       - "learningObjective"
 
-  Syllabus:
-    label: "Syllabus"
+  CourseSyllabus:
+    label: "CourseSyllabus"
     comment: ""
     subClassOf:
       - "Resource"
@@ -50,6 +53,37 @@ classes:
     commnet: ""
     subClassOf:
       - "Resource"
+    properties:
+      - "prerequisites"
+
+  LearningComponent:
+    label: "LearningComponent"
+    comment: "A basic content component whose purpose is to instill an educational value or lesson."
+    subClassOf:
+      - "Resource"
+    properties:
+      - "objective"
+      - "forCourse"
+
+  Lesson:
+    label: "Lesson"
+    comment: ""
+    subClassOf:
+      - "LearningComponent"
+    properties: []
+
+  Unit:
+    label: "Unit"
+    comment: ""
+    subClassOf:
+      - "LearningComponent"
+    properties: []
+
+  Module:
+    label: "Module"
+    comment: ""
+    subClassOf:
+      - "LearningComponent"
     properties: []
 
   Thing:
@@ -220,7 +254,7 @@ classes:
     label: "Action"
     comment: "An action performed by a direct agent and indirect participants upon a direct object. Optionally happens at a location with the help of an inanimate instrument. The execution of the action may produce a result. Specific action sub-type documentation specifies the exact expectation of each argument/role."
     subClassOf:
-      - "Thing"
+      - "Resource"
       - "http://schema.org/Action"
     properties:
       - "actionStatus"
@@ -603,13 +637,15 @@ properties:
     domain:
       - "Course"
 
-  prerequisites:
-    label: "prerequisites"
-    comment: ""
+  prerequisite:
+    label: "prerequisite"
+    comment: "A requirement to be completed before this resource can be performed."
     range:
       - "Course"
+      - "LearningObjective"
+      - "LearningComponent"
     domain:
-      - "Course"
+      - "Resource"
 
   institution:
     label: "insitution"
@@ -639,12 +675,12 @@ properties:
     label: "syllabus"
     comment: ""
     range:
-      - "Syllabus"
+      - "CourseSyllabus"
     domain:
       - "Resource"
 
-  classStanding:
-    label: "classStanding"
+  currentStanding:
+    label: "currentStanding"
     comment: ""
     range:
       - "ClassStanding"
@@ -667,10 +703,34 @@ properties:
     domain:
       - "Resource"
 
-  learningObjective:
-    label: "learningObjective"
-    comment: ""
+  objective:
+    label: "objective"
+    comment: "A learning objective gained as a result of the resource."
     range:
       - "LearningObjective"
     domain:
       - "Resource"
+
+  forCourse:
+    label: "forCourse"
+    comment: "The Course in which the resource is meant for."
+    range:
+      - "Resource"
+    domain:
+      - "LearningComponent"
+
+  parentOf:
+    label: "parentOf"
+    comment: "A parent in relation to a child resource."
+    range:
+      - "Resource"
+    domain:
+      - "Resource"
+
+  childOf:
+      label: "childOf"
+      comment: "A child in relation to a parent resource."
+      range:
+        - "Resource"
+      domain:
+        - "Resource"
