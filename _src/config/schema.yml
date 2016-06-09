@@ -64,6 +64,7 @@ classes:
     properties:
       - "objective"
       - "forCourse"
+      - "mainContent"
 
   Lesson:
     label: "Lesson"
@@ -734,3 +735,11 @@ properties:
         - "Resource"
       domain:
         - "Resource"
+
+  mainContent:
+      label: "mainContent"
+      comment: "The main content relating to the item."
+      range:
+        - "Text"
+      domain:
+        - "LearningComponent"
