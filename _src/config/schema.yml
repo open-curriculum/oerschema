@@ -50,7 +50,7 @@ classes:
 
   LearningObjective:
     label: "LearningObjective"
-    commnet: ""
+    commnet: "Rationale for assigning tasks and learning sequences"
     subClassOf:
       - "Resource"
     properties:
