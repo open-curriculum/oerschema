@@ -1,0 +1,891 @@
+# All classes and properties are also subClasses of themselves
+# All classes have the rdfs:type of rdfs:Class
+classes:
+
+  Resource:
+    label: "Resource"
+    comment: "A general component that all open educational resources are based from."
+    schema: "root"
+    alternateType:
+      - "http://schema.org/Thing"
+    subClassOf:
+      - "Thing"
+    properties:
+      - "parentOf"
+      - "childOf"
+      - "objective"
+
+  Course:
+    label: "Course"
+    comment: "An instructional course"
+    subClassOf:
+      - "Resource"
+    properties:
+      - "courseIdentifier"
+      - "primaryInstructor"
+      - "instructor"
+      - "duration"
+      - "prerequisite"
+      - "institution"
+      - "department"
+      - "program"
+      - "syllabus"
+      - "currentStanding"
+      - "deliveryFormat"
+      - "enrollmentSize"
+
+  CourseSyllabus:
+    label: "CourseSyllabus"
+    comment: ""
+    subClassOf:
+      - "Resource"
+    properties:
+      - "forCourse"
+
+  ClassStanding:
+    label: "ClassStanding"
+    comment: ""
+    subClassOf:
+      - "Intangible"
+    properties: []
+
+  LearningObjective:
+    label: "LearningObjective"
+    commnet: "Rationale for assigning tasks and learning sequences"
+    subClassOf:
+      - "Resource"
+    properties:
+      - "prerequisite"
+
+  LearningComponent:
+    label: "LearningComponent"
+    comment: "A basic content component whose purpose is to instill an educational value or lesson."
+    subClassOf:
+      - "Resource"
+      - "http://schema.org/CreativeWork"
+    properties:
+      - "forCourse"
+      - "mainContent"
+
+  Lesson:
+    label: "Lesson"
+    comment: ""
+    subClassOf:
+      - "LearningComponent"
+    properties: []
+
+  Unit:
+    label: "Unit"
+    comment: ""
+    subClassOf:
+      - "LearningComponent"
+    properties: []
+
+  Module:
+    label: "Module"
+    comment: ""
+    subClassOf:
+      - "LearningComponent"
+    properties: []
+
+  SupportingMaterial:
+    label: "SupportingMaterial"
+    comment: "Material that teaches the learning objectives of the course."
+    subClassOf:
+      - "LearningComponent"
+    properties:
+     - "deliveryFormat"
+
+  Format:
+    label: "Format"
+    comment: "The format of the resource."
+    subClassOf:
+      - "Intangible"
+    properties: []
+
+  FaceToFaceFormat:
+    label: "FaceToFaceFormat"
+    comment: "An in-person format where participants are physically present."
+    subClassOf:
+      - "Format"
+    properties: []
+
+  GradeFormat:
+    label: "GradeFormat"
+    comment: "The grading format used in activities and assessments."
+    alternateType: "http://oerschema.org/DataType"
+    subClassOf:
+      - "Intangible"
+    properties: []
+
+  PointGradeFormat:
+    label: "PointGradeFormat"
+    comment: "A grading format using numerical points"
+    alternateType: "http://oerschema.org/Number"
+    subClassOf:
+      - "GradeFormat"
+    properties: []
+
+  LetterGradeFormat:
+    label: "LetterGradeFormat"
+    comment: "A grading format using a letter value."
+    alternateType: "http://oerschema.org/Text"
+    subClassOf:
+      - "GradeFormat"
+    properties: []
+
+  PercentGradeFormat:
+    label: "PercentGradeFormat"
+    comment: "A grading format using a percentage value."
+    alternateType: "http://oerschema.org/Integer"
+    subClassOf:
+      - "GradeFormat"
+    properties: []
+
+  CompletionGradeFormat:
+    label: "CompletionGradeFormat"
+    comment: "A boolean grading format determining if the activity had been completed."
+    alternateType: "http://oerschema.org/Text"
+    subClassOf:
+      - "GradeFormat"
+    properties: []
+
+  Thing:
+    label: "Thing"
+    comment: "The most generic type of items."
+    subClassOf:
+      - "http://schema.org/Thing"
+    properties:
+      - "name"
+      - "additionalType"
+      - "description"
+      - "image"
+      - "mainEntityOfPage"
+      - "sameAs"
+      - "uri"
+
+  Intangible:
+    label: "Intangible"
+    comment: "A utility class that serves as the umbrella for a number of 'intangible' things such as quantities, structured values, etc."
+    schema: "intangible"
+    subClassOf:
+      - "Thing"
+      - "http://schema.org/Intangible"
+
+  Class:
+    label: "Class"
+    subClassOf:
+      - "Intangible"
+      - "http://schema.org/Class"
+    properties:
+      - "supersededBy"
+
+  Property:
+    label: "Property"
+    subClassOf:
+      - "Intangible"
+      - "http://schema.org/Intangible"
+    properties:
+      - "rangeIncludes"
+      - "domainIncludes"
+      - "supersededBy"
+      - "inverseOf"
+
+  Enumeration:
+    label: "Enumeration"
+    subClassOf:
+      - "Intangible"
+      - "http://schema.org/Enumeration"
+    properties:
+      - "supersededBy"
+
+  ItemList:
+    label: "ItemList"
+    comment: "A list of items of any sort—for example, Top 10 Movies About Weathermen, or Top 100 Party Songs. Not to be confused with HTML lists, which are often used only for formatting."
+    subClassOf:
+      - "Intangible"
+      - "http://schema.org/ItemList"
+    properties:
+      - "itemListElement"
+      - "itemListOrder"
+      - "numberOfItems"
+
+  ListItem:
+    label: "ListItem"
+    comment: "An item within a list"
+    subClassOf:
+      - "Intangible"
+      - "http://schema.org/ListItem"
+    properties: []
+
+  ItemListOrderType:
+    label: "ItemListOrderType"
+    comment: ""
+    subClassOf:
+      - "Intangible"
+      - "http://schema.org/ItemListOrderType"
+    properties: []
+
+  EntryPoint:
+    label: "EntryPoint"
+    comment: ""
+    subClassOf:
+      - "Intangible"
+      - "http://schema.org/EntryPoint"
+    properties: []
+
+  DataType:
+    label: "DataType"
+    comment: "A general type for data values."
+    subClassOf:
+      - "Class"
+      - "http://schema.org/DataType"
+      - "rdfs:datatype"
+
+  Person:
+    label: "Person"
+    comment: ""
+    subClassOf:
+      - "Thing"
+      - "http://schema.org/Person"
+    properties: []
+
+  Organization:
+    label: "Organization"
+    comment: ""
+    subClassOf:
+      - "Thing"
+      - "http://schema.org/Organization"
+    properties: []
+
+  Place:
+    label: "Place"
+    comment: ""
+    subClassOf:
+      - "Thing"
+      - "http://schema.org/Place"
+    properties: []
+
+  StructuredValue:
+    label: "StructuredValue"
+    comment: ""
+    subClassOf:
+      - "Intangible"
+      - "http://schema.org/StructuredValue"
+    properties: []
+
+  ContactPoint:
+    label: "ContactPoint"
+    comment: ""
+    subClassOf:
+      - "StructuredValue"
+      - "http://schema.org/ContactPoint"
+    properties: []
+
+  PostalAddress:
+    label: "PostalAddress"
+    comment: ""
+    subClassOf:
+      - "ContactPoint"
+      - "http://schema.org/PostalAddress"
+    properties: []
+
+  CreativeWork:
+    label: "CreativeWork"
+    comment: ""
+    subClassOf:
+      - "Thing"
+      - "http://schema.org/CreativeWork"
+    properties: []
+
+  MediaObject:
+    label: "MediaObject"
+    comment: "A media object such as a video or interactive object."
+    subClassOf:
+      - "CreativeWork"
+      - "http://schema.org/MediaObject"
+    properties: []
+
+  ImageObject:
+    label: "ImageObject"
+    comment: "An image"
+    subClassOf:
+      - "MediaObject"
+      - "http://schema.org/ImageObject"
+    properties: []
+
+  Action:
+    label: "Action"
+    comment: "An action performed by a direct agent and indirect participants upon a direct object. Optionally happens at a location with the help of an inanimate instrument. The execution of the action may produce a result. Specific action sub-type documentation specifies the exact expectation of each argument/role."
+    subClassOf:
+      - "Resource"
+      - "http://schema.org/Action"
+    properties:
+      - "actionStatus"
+      - "agent"
+      - "error"
+      - "instrument"
+      - "location"
+      - "startTime"
+      - "endTime"
+      - "object"
+      - "participant"
+      - "result"
+      - "target"
+
+  ActionStatusType:
+    label: "ActionStatusType"
+    comment: ""
+    subClassOf:
+      - "Enumeration"
+      - "http://schema.org/ActionStatusType"
+
+  Activity:
+    label: "Activity"
+    comment: "An activity performed by students taking a course."
+    subClassOf:
+      - "Action"
+    properties:
+      - "forCourse"
+      - "duration"
+      - "material"
+      - "assessedBy"
+      - "gradingFormat"
+
+  Assessment:
+      label: "Assessment"
+      comment: "An assessment of a student's activity."
+      subClassOf:
+        - "Action"
+      properties:
+        - "forCourse"
+        - "duration"
+        - "material"
+        - "assessing"
+        - "gradingFormat"
+
+  Boolean:
+    label: "Boolean"
+    comment: "A truthy value"
+    subClassOf:
+      - "DataType"
+      - "http://schema.org/Boolean"
+
+  Date:
+    label: "Date"
+    comment: "A year, month, day value"
+    subClassOf:
+      - "DataType"
+      - "http://schema.org/Date"
+
+  DateTime:
+    label: "DateTime"
+    comment: "A value with year, month, day, hour, minute, seconds (optional) and timezone (optional)."
+    subClassOf:
+      - "DataType"
+      - "http://schema.org/DateTime"
+
+  Integer:
+    label: "Integer"
+    comment: "A numeric value of 0 or greater."
+    subClassOf:
+      - "Number"
+      - "http://schema.org/Integer"
+
+  Number:
+    label: "Number"
+    comment: "A general numeric value."
+    subClassOf:
+      - "DataType"
+      - "http://schema.org/Number"
+
+  Text:
+    label: "Text"
+    subClassOf:
+      - "DataType"
+      - "http://schema.org/Text"
+
+  Time:
+    label: "Time"
+    comment: "A value including hour, minute, seconds (optional) and timezone (optional)."
+    subClassOf:
+      - "DataType"
+      - "http://schema.org/Time"
+
+  URL:
+    label: "URL"
+    comment: "A web address"
+    subClassOf:
+      - "Text"
+      - "http://schema.org/URL"
+
+  Yes:
+    label: "Yes"
+    comment: "A truthy value of Yes."
+    subClassOf:
+      - "Boolean"
+
+  No:
+    label: "No"
+    comment: "A truthy value of No."
+    subClassOf:
+      - "Boolean"
+
+  "True":
+    label: "True"
+    comment: "A truthy value of True."
+    subClassOf:
+      - "Boolean"
+      - "http://schema.org/True"
+
+  "False":
+    label: "False"
+    comment: "A truthy value of False."
+    subClassOf:
+      - "Boolean"
+      - "http://schema.org/False"
+
+# All properties have the RDF type of rdfs:Property and http://oerschema.org/Property
+properties:
+  name:
+    label: "name"
+    comment: "The name of the item."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Text"
+    domain:
+      - "Thing"
+
+  additionalName:
+    label: "additionalName"
+    comment: "An alias for the item."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Text"
+    domain:
+      - "Thing"
+
+  additionalType:
+    label: "additionalType"
+    comment: "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Class"
+    domain:
+      - "Thing"
+
+  description:
+    label: "description"
+    comment: "A short description of the item."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Text"
+    domain:
+      - "Thing"
+
+  image:
+    label: "image"
+    comment: "An image of the item."
+    baseVocab: "http://schema.org/"
+    range:
+      - "URL"
+      - "CreativeWork"
+    domain:
+      - "Thing"
+
+  mainEntityOfPage:
+    label: "mainEntityOfPage"
+    comment: "Indicates a page (or other CreativeWork) for which this thing is the main entity being described."
+    baseVocab: "http://schema.org/"
+    inverseOf: "mainEntity"
+    range:
+      - "URL"
+      - "CreativeWork"
+    domain:
+      - "Thing"
+
+  sameAs:
+    label: "sameAs"
+    comment: "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Freebase page, or official website."
+    baseVocab: "http://schema.org/"
+    range:
+      - "URL"
+    domain:
+      - "Thing"
+
+  uri:
+    label: "uri"
+    comment: "URL of the item."
+    baseVocab: "http://schema.org/"
+    alternateType: "http://schema.org/url"
+    range:
+      - "URL"
+    domain:
+      - "Thing"
+
+  potentialAction:
+    label: "potentialAction"
+    comment: "Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Action"
+    domain:
+      - "Thing"
+
+  actionStatus:
+    label: "actionStatus"
+    comment: "Indicates the current disposition of the Action."
+    baseVocab: "http://schema.org/"
+    range:
+      - "ActionStatusType"
+    domain:
+      - "Action"
+
+  agent:
+    label: "agent"
+    comment: "The direct performer or driver of the action (animate or inanimate). e.g. *John* wrote a book."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Organization"
+      - "Person"
+    domain:
+      - "Action"
+
+  endTime:
+    label: "endTime"
+    comment: "The endTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to end. For actions that span a period of time, when the action was performed. e.g. John wrote a book from January to *December*. Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions."
+    baseVocab: "http://schema.org/"
+    range:
+      - "DateTime"
+    domain:
+      - "Action"
+
+  startTime:
+    label: "startTime"
+    comment: "The startTime of something. For a reserved event or service (e.g. FoodEstablishmentReservation), the time that it is expected to start. For actions that span a period of time, when the action was performed. e.g. John wrote a book from *January* to December. Note that Event uses startDate/endDate instead of startTime/endTime, even when describing dates with times. This situation may be clarified in future revisions."
+    baseVocab: "http://schema.org/"
+    range:
+      - "DateTime"
+    domain:
+      - "Action"
+
+  object:
+    label: "object"
+    baseVocab: "http://schema.org/"
+    comment: "The object upon the action is carried out, whose state is kept intact or changed. Also known as the semantic roles patient, affected or undergoer (which change their state) or theme (which doesn't). e.g. John read *a book*."
+    range:
+      - "Thing"
+    domain:
+      - "Action"
+
+  error:
+    label: "error"
+    comment: "For failed actions, more information on the cause of the failure."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Thing"
+    domain:
+      - "Action"
+
+  instrument:
+    label: "instrument"
+    comment: "The object that helped the agent perform the action. e.g. John wrote a book with *a pen*."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Thing"
+    domain:
+      - "Action"
+
+  location:
+    label: "location"
+    comment: "The location of for example where the event is happening, an organization is located, or where an action takes place."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Place"
+      - "PostalAddress"
+      - "Text"
+    domain:
+      - "Action"
+
+  participant:
+    label: "participant"
+    comment: "Other co-agents that participated in the action indirectly. e.g. John wrote a book with *Steve*."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Organization"
+      - "Person"
+    domain:
+      - "Action"
+
+  result:
+    label: "result"
+    comment: "The result produced in the action. e.g. John wrote *a book*."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Thing"
+    domain:
+      - "Action"
+
+  target:
+    label: "target"
+    comment: "Indicates a target EntryPoint for an Action."
+    baseVocab: "http://schema.org/"
+    range:
+      - "EntryPoint"
+    domain:
+      - "Action"
+
+  itemListElement:
+    label: "itemListElement"
+    comment: "For itemListElement values, you can use simple strings (e.g. 'Peter', 'Paul', 'Mary'), existing entities, or use ListItem.<br><br>Text values are best if the elements in the list are plain strings. Existing entities are best for a simple, unordered list of existing things in your data. ListItem is used with ordered lists when you want to provide additional context about the element in that list or when the same item might be in different places in different lists.<br><br>Note: The order of elements in your mark-up is not sufficient for indicating the order or elements. Use ListItem with a 'position' property in such cases."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Thing"
+      - "Text"
+      - "ListItem"
+    domain:
+      - "ItemList"
+
+  itemListOrder:
+    label: "itemListOrder"
+    comment: "Type of ordering (e.g. Ascending, Descending, Unordered)."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Text"
+      - "ItemListOrderType"
+    domain:
+      - "ItemList"
+
+  numberOfItems:
+    label: "numberOfItems"
+    comment: "The number of items in an ItemList. Note that some descriptions might not fully describe all items in a list (e.g., multi-page pagination); in such cases, the numberOfItems would be for the entire list."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Integer"
+    domain:
+      - "ItemList"
+
+  rangeIncludes:
+    label: "rangeIncludes"
+    comment: "Relates a property to a class that constitutes (one of) the expected type(s) for values of the property."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Class"
+    domain:
+      - "Thing"
+
+  domainIncludes:
+    label: "domainIncludes"
+    comment: "Relates a property to a class that is (one of) the type(s) the property is expected to be used on."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Class"
+    domain:
+      - "Property"
+
+  supersededBy:
+    label: "supersededBy"
+    comment: ""
+    baseVocab: "http://schema.org/"
+    range:
+      - "Class"
+      - "Property"
+      - "Enumeration"
+    domain:
+      - "Class"
+      - "Property"
+      - "Enumeration"
+
+  inverseOf:
+    label: "inverseOf"
+    comment: "Relates a property to a property that is its inverse. Inverse properties relate the same pairs of items to each other, but in reversed direction. For example, the 'alumni' and 'alumniOf' properties are inverseOf each other. Some properties don't have explicit inverses; in these situations RDFa and JSON-LD syntax for reverse properties can be used."
+    baseVocab: "http://schema.org/"
+    range:
+      - "Property"
+    domain:
+      - "Property"
+
+  courseIdentifier:
+    label: "courseIdentifier"
+    comment: "The identifier of the course, i.e. MATH-100"
+    range:
+      - "Text"
+    domain:
+      - "Coure"
+
+  primaryInstructor:
+    label: "primaryInstructor"
+    comment: ""
+    range:
+      - "Person"
+    domain:
+      - "Resource"
+
+  instructor:
+    label: "instructor"
+    comment: ""
+    range:
+      - "Person"
+    domain:
+      - "Resource"
+
+  prerequisite:
+    label: "prerequisite"
+    comment: "A requirement to be completed before this resource can be performed."
+    range:
+      - "Course"
+      - "LearningObjective"
+      - "LearningComponent"
+    domain:
+      - "Resource"
+
+  institution:
+    label: "insitution"
+    comment: ""
+    range:
+      - "Organization"
+    domain:
+      - "Resource"
+
+  department:
+    label: "department"
+    comment: ""
+    range:
+      - "Organization"
+    domain:
+      - "Resource"
+
+  program:
+    label: "program"
+    comment: ""
+    range:
+      - "Organization"
+    domain:
+      - "Resource"
+
+  syllabus:
+    label: "syllabus"
+    comment: ""
+    range:
+      - "CourseSyllabus"
+    domain:
+      - "Resource"
+
+  currentStanding:
+    label: "currentStanding"
+    comment: ""
+    range:
+      - "ClassStanding"
+    domain:
+      - "Resource"
+
+  deliveryMode:
+    label: "deliveryMode"
+    comment: ""
+    range:
+      - "Text"
+    domain:
+      - "Resource"
+
+  enrollmentSize:
+    label: "enrollment"
+    comment: ""
+    range:
+      - "Number"
+    domain:
+      - "Resource"
+
+  objective:
+    label: "objective"
+    comment: "A learning objective gained as a result of the resource."
+    range:
+      - "LearningObjective"
+    domain:
+      - "Resource"
+
+  forCourse:
+    label: "forCourse"
+    comment: "The Course in which the resource is meant for."
+    range:
+      - "Course"
+    domain:
+      - "LearningComponent"
+
+  parentOf:
+    label: "parentOf"
+    comment: "A parent in relation to a child resource."
+    range:
+      - "Resource"
+    domain:
+      - "Resource"
+
+  childOf:
+      label: "childOf"
+      comment: "A child in relation to a parent resource."
+      range:
+        - "Resource"
+      domain:
+        - "Resource"
+
+  mainContent:
+      label: "mainContent"
+      comment: "The main content relating to the item."
+      range:
+        - "Text"
+      domain:
+        - "LearningComponent"
+
+  deliveryFormat:
+    label: "deliveryFormat"
+    comment: "The format used to deliver the resource."
+    range:
+      - "Format"
+      - "Text"
+    domain:
+      - "SupportingMaterial"
+      - "Course"
+
+  duration:
+    label: "duration"
+    comment: "The duration of the resource."
+    range:
+      - "Number"
+      - "Enumeration"
+      - "Text"
+    domain:
+      - "Activity"
+      - "Assessment"
+
+  material:
+    label: "material"
+    comment: "The supporting material assiociated with a resource."
+    range:
+      - "Supporting Material"
+    domain:
+      - "Resource"
+
+  assessing:
+    label: "assessing"
+    comment: "The activity the assessment is assessing."
+    range:
+      - "Activity"
+    domain:
+      - "Assessment"
+
+  assessedBy:
+    label: "assessedBy"
+    comment: "The assessment for this activity."
+    range:
+      - "Assessment"
+    domain:
+      - "Activity"
+
+  gradingFormat:
+    label: "gradingFormat"
+    comment: "The grading format for this resource"
+    range:
+      - "GradeFormat"
+      - "Text"
+    domain:
+      - "Activity"
+      - "Assessment"

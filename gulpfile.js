@@ -11,7 +11,7 @@ var fs = require('fs');
 var browserSync = require('browser-sync').create();
 var yaml = require('yamljs');
 var hljs = require('highlight.js');
-var env = new nunjucks.Environment(new nunjucks.FileSystemLoader('./_src/views', {noCache: true}), {dev: true});
+var env = new nunjucks.Environment(new nunjucks.FileSystemLoader('./src/views', {noCache: true}), {dev: true});
 var NunjucksCodeHighlight = function NunjucksCodeHighlight(nunjucks, hljs) {
     this.tags = ['code'];
 
@@ -91,40 +91,45 @@ env.addExtension('NunjucksCodeHighlight', highlight)
 ;
 
 gulp.task('scss', function() {
-    gulp.src('./_src/scss/style.scss')
-        .pipe(scss({includePaths: ['_src/scss/']}).on('error', scss.logError))
+    gulp.src('./src/scss/style.scss')
+        .pipe(scss({includePaths: ['src/scss/']}).on('error', scss.logError))
         .pipe(cleancss())
         .pipe(rename({extname: ".min.css"}))
-        .pipe(gulp.dest('_assets/css/'))
+        .pipe(gulp.dest('dist/_assets/css/'))
     ;
 });
 
 gulp.task('js', function() {
-    gulp.src(['./_src/components/jquery/dist/jquery.js',
-            './_src/components/angular/angular.js',
-            './_src/components/materialize/dist/js/materialize.js',
-            './_src/js/*.js'], {options: {matchBase: true}})
+    gulp.src(['./src/components/jquery/dist/jquery.js',
+            './src/components/angular/angular.js',
+            './src/components/materialize/dist/js/materialize.js',
+            './src/js/*.js'], {options: {matchBase: true}})
         .pipe(concat('bundle.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('_assets/js/'))
+        .pipe(gulp.dest('dist/_assets/js/'))
     ;
 });
 
 gulp.task('fonts', function () {
-    gulp.src('_src/components/materialize/fonts/**')
-        .pipe(gulp.dest('_assets/fonts'));
+    gulp.src('src/components/materialize/fonts/**')
+        .pipe(gulp.dest('dist/_assets/fonts'));
+});
+
+gulp.task('images', function () {
+    gulp.src('src/images/**')
+        .pipe(gulp.dest('dist/_assets/images'));
 });
 
 gulp.task('buildSchema', function() {
-    var schema = yaml.load('_src/config/schema.yml');
+    var schema = yaml.load('src/config/schema.yml');
 
     function createClassTemplate(c) {
-        fs.access('./_src/views/pages/' + c, function(err) {
+        fs.access('./src/views/pages/' + c, function(err) {
             if (err) {
-                fs.mkdirSync('./_src/views/pages/' + c);
+                fs.mkdirSync('./src/views/pages/' + c);
             }
 
-            fs.writeFile('./_src/views/pages/' + c + '/index.njk',
+            fs.writeFile('./src/views/pages/' + c + '/index.njk',
                 "{% extends 'templates/class.njk' %}\n" +
                 "{% set objName = '" + c + "' %}"
             );
@@ -132,12 +137,12 @@ gulp.task('buildSchema', function() {
     }
 
     function createPropertyTemplate(p) {
-        fs.access('./_src/views/pages/' + p, function(err) {
+        fs.access('./src/views/pages/' + p, function(err) {
             if (err) {
-                fs.mkdirSync('./_src/views/pages/' + p);
+                fs.mkdirSync('./src/views/pages/' + p);
             }
 
-            fs.writeFile('./_src/views/pages/' + p + '/index.njk',
+            fs.writeFile('./src/views/pages/' + p + '/index.njk',
                 "{% extends 'templates/property.njk' %}\n" +
                 "{% set objName = '" + p + "' %}"
             );
@@ -155,43 +160,39 @@ gulp.task('buildSchema', function() {
 
 gulp.task('template', function() {
     var data = {
-        stylesheets: fs.readdirSync('_assets/css/'),
-        scripts: fs.readdirSync('_assets/js/'),
-        schema: yaml.load('_src/config/schema.yml')
+        stylesheets: fs.readdirSync('dist/_assets/css/'),
+        scripts: fs.readdirSync('dist/_assets/js/'),
+        schema: yaml.load('src/config/schema.yml')
     };
 
-    gulp.src('_src/views/pages/**/*.njk')
+    gulp.src('./src/views/pages/**/*.njk')
         .pipe(gnj.compile(data, {
             env: env
         }))
         .pipe(rename({extname: ".html"}))
-        .pipe(gulp.dest('./'))
+        .pipe(gulp.dest('./dist'))
+        //.pipe(browserSync.stream())
     ;
 });
 
 gulp.task('browserSyncServer', function () {
-    browserSync.init({files: [
-            '_assets/css/**/*.css',
-            '_assets/js/**/*.js',
-            '_assets/images/**/*',
-            '_assets/fonts/**/*',
-            '**/*.html'
+    browserSync.init({
+        files: [
+            'dist/**'
         ],
-        server: "./",
+        server: "./dist",
         port: 3000,
-        open: "local",
-        options: {
-            ignored: '_src/*'
-        }
+        open: "local"
     });
 });
 
 gulp.task('watch', function() {
-    gulp.watch('./_src/scss/**/*.scss', ['scss']);
-    gulp.watch('./_src/js/*.js', ['js']);
-    gulp.watch(['./_src/views/**/*.njk', './_src/config/**/*.yml'], ['template']);
+    gulp.watch('./src/scss/**/*.scss', ['scss']);
+    gulp.watch('./src/js/*.js', ['js']);
+    gulp.watch('./src/config/**/*.yml', ['buildSchema']);
+    gulp.watch('./src/views/**/*.njk', ['template']);
 });
 
 gulp.task('build', ['buildSchema']);
-gulp.task('default', ['scss', 'js', 'fonts', 'template']);
+gulp.task('default', ['scss', 'js', 'fonts', 'images', 'template']);
 gulp.task('server', ['default', 'browserSyncServer', 'watch']);
