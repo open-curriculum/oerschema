@@ -14,6 +14,8 @@ classes:
       - "parentOf"
       - "childOf"
       - "objective"
+      - "forCourse"
+      - "mainContent"
 
   Course:
     label: "Course"
@@ -57,42 +59,36 @@ classes:
     properties:
       - "prerequisite"
 
-  LearningComponent:
-    label: "LearningComponent"
-    comment: "A basic content component whose purpose is to instill an educational value or lesson."
-    subClassOf:
-      - "Resource"
-      - "http://schema.org/CreativeWork"
-    properties:
-      - "forCourse"
-      - "mainContent"
-
   Lesson:
     label: "Lesson"
     comment: ""
     subClassOf:
-      - "LearningComponent"
+      - "Resource"
+      - "http://schema.org/CreativeWork"
     properties: []
 
   Unit:
     label: "Unit"
     comment: ""
     subClassOf:
-      - "LearningComponent"
+      - "Resource"
+      - "http://schema.org/CreativeWork"
     properties: []
 
   Module:
     label: "Module"
     comment: ""
     subClassOf:
-      - "LearningComponent"
+      - "Resource"
+      - "http://schema.org/CreativeWork"
     properties: []
 
   SupportingMaterial:
     label: "SupportingMaterial"
     comment: "Material that teaches the learning objectives of the course."
     subClassOf:
-      - "LearningComponent"
+      - "Resource"
+      - "http://schema.org/CreativeWork"
     properties:
      - "deliveryFormat"
 
@@ -809,7 +805,7 @@ properties:
     range:
       - "Course"
     domain:
-      - "LearningComponent"
+      - "Resource"
 
   parentOf:
     label: "parentOf"
@@ -833,7 +829,7 @@ properties:
       range:
         - "Text"
       domain:
-        - "LearningComponent"
+        - "Resource"
 
   deliveryFormat:
     label: "deliveryFormat"

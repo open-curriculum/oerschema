@@ -171,7 +171,6 @@ gulp.task('template', function() {
         }))
         .pipe(rename({extname: ".html"}))
         .pipe(gulp.dest('./dist'))
-        //.pipe(browserSync.stream())
     ;
 });
 
@@ -193,6 +192,6 @@ gulp.task('watch', function() {
     gulp.watch('./src/views/**/*.njk', ['template']);
 });
 
-gulp.task('build', ['buildSchema']);
-gulp.task('default', ['scss', 'js', 'fonts', 'images', 'template']);
+gulp.task('build', ['buildSchema','scss', 'js', 'fonts', 'images', 'template']);
+gulp.task('default', ['build']);
 gulp.task('server', ['default', 'browserSyncServer', 'watch']);
