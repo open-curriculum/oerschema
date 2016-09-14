@@ -6,12 +6,17 @@ set -o errexit -o nounset
 git config user.email "nobody@nobody.org"
 git config user.name "Travis CI"
 
-# set the remote
+# Get into the dist
 
+cd dist
+
+# Init
+git init
+
+# Set Remote
 git remote add upstream "https://$GITHUB_TOKEN@github.com/open-curriculum/oerschema.git"
 
 # Add, Commit and Push
-
-git add -A dist
+git add -all
 git commit -m "Auto push from Travis"
-git push upstream `git subtree split --prefix dist master`:gh-pages --force
+git push upstream gh-pages --force
