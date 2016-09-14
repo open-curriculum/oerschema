@@ -2,16 +2,16 @@
 
 set -o errexit -o nounset
 
-# config
-git config user.email "nobody@nobody.org"
-git config user.name "Travis CI"
-
 # Get into the dist
 
 cd dist
 
 # Init
 git init
+
+# config
+git config user.email "nobody@nobody.org"
+git config user.name "Travis CI"
 
 # Set Remote
 git remote add upstream "https://$GITHUB_TOKEN@github.com/open-curriculum/oerschema.git"
