@@ -159,15 +159,9 @@ gulp.task('buildSchema', function() {
 });
 
 gulp.task('template', function() {
-    console.log(fs.readdirSync(__dirname + '/dist/assets/css/'));
-
     var data = {
-        stylesheets: fs.readdirSync(__dirname + '/dist/assets/css/').filter(function(item) {
-            return /\.css$/.test(item);
-        }),
-        scripts: fs.readdirSync(__dirname + '/dist/assets/js/').filter(function(item) {
-            return /\.js$/.test(item);
-        }),
+        stylesheets: ['style.min.css'],
+        scripts: ['bundle.min.js'],
         schema: yaml.load('./src/config/schema.yml')
     };
 
