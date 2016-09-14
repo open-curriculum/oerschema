@@ -17,6 +17,6 @@ git init
 git remote add upstream "https://$GITHUB_TOKEN@github.com/open-curriculum/oerschema.git"
 
 # Add, Commit and Push
-git add -all
+git add --all
 git commit -m "Auto push from Travis"
 git push upstream gh-pages --force
