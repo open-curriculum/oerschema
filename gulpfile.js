@@ -95,7 +95,7 @@ gulp.task('scss', function() {
         .pipe(scss({includePaths: ['src/scss/']}).on('error', scss.logError))
         .pipe(cleancss())
         .pipe(rename({extname: ".min.css"}))
-        .pipe(gulp.dest('dist/_assets/css/'))
+        .pipe(gulp.dest('dist/assets/css/'))
     ;
 });
 
@@ -106,18 +106,18 @@ gulp.task('js', function() {
             './src/js/*.js'], {options: {matchBase: true}})
         .pipe(concat('bundle.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('dist/_assets/js/'))
+        .pipe(gulp.dest('dist/assets/js/'))
     ;
 });
 
 gulp.task('fonts', function () {
     gulp.src('src/components/materialize/fonts/**')
-        .pipe(gulp.dest('dist/_assets/fonts'));
+        .pipe(gulp.dest('dist/assets/fonts'));
 });
 
 gulp.task('images', function () {
     gulp.src('src/images/**')
-        .pipe(gulp.dest('dist/_assets/images'));
+        .pipe(gulp.dest('dist/assets/images'));
 });
 
 gulp.task('buildSchema', function() {
@@ -160,8 +160,8 @@ gulp.task('buildSchema', function() {
 
 gulp.task('template', function() {
     var data = {
-        stylesheets: fs.readdirSync('dist/_assets/css/'),
-        scripts: fs.readdirSync('dist/_assets/js/'),
+        stylesheets: fs.readdirSync('dist/assets/css/'),
+        scripts: fs.readdirSync('dist/assets/js/'),
         schema: yaml.load('src/config/schema.yml')
     };
 
