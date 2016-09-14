@@ -95,7 +95,7 @@ gulp.task('scss', function() {
         .pipe(scss({includePaths: ['src/scss/']}).on('error', scss.logError))
         .pipe(cleancss())
         .pipe(rename({extname: ".min.css"}))
-        .pipe(gulp.dest('dist/assets/css/'))
+        .pipe(gulp.dest('./dist/assets/css/'))
     ;
 });
 
@@ -106,13 +106,13 @@ gulp.task('js', function() {
             './src/js/*.js'], {options: {matchBase: true}})
         .pipe(concat('bundle.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('dist/assets/js/'))
+        .pipe(gulp.dest('./dist/assets/js/'))
     ;
 });
 
 gulp.task('fonts', function () {
-    gulp.src('src/components/materialize/fonts/**')
-        .pipe(gulp.dest('dist/assets/fonts'));
+    gulp.src('./src/components/materialize/fonts/**')
+        .pipe(gulp.dest('./dist/assets/fonts'));
 });
 
 gulp.task('images', function () {
@@ -121,7 +121,7 @@ gulp.task('images', function () {
 });
 
 gulp.task('buildSchema', function() {
-    var schema = yaml.load('src/config/schema.yml');
+    var schema = yaml.load('./src/config/schema.yml');
 
     function createClassTemplate(c) {
         fs.access('./src/views/pages/' + c, function(err) {
@@ -160,14 +160,16 @@ gulp.task('buildSchema', function() {
 
 gulp.task('template', function() {
     var data = {
-        stylesheets: fs.readdirSync('dist/assets/css/').filter(function(item) {
+        stylesheets: fs.readdirSync('./dist/assets/css/').filter(function(item) {
             return /\.css$/.test(item);
         }),
-        scripts: fs.readdirSync('dist/assets/js/').filter(function(item) {
+        scripts: fs.readdirSync('./dist/assets/js/').filter(function(item) {
             return /\.js$/.test(item);
         }),
-        schema: yaml.load('src/config/schema.yml')
+        schema: yaml.load('./src/config/schema.yml')
     };
+
+    console.log(data);
 
     gulp.src('./src/views/pages/**/*.njk')
         .pipe(gnj.compile(data, {
