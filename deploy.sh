@@ -1,8 +1,14 @@
 #!/bin/sh
 
+set -o errexit -o nounset
+
 # config
-git config --global user.email "nobody@nobody.org"
-git config --global user.name "Travis CI"
+git config user.email "nobody@nobody.org"
+git config user.name "Travis CI"
+
+# set the remote
+
+git remote add upstream "https://$GITHUB_TOKEN@github.com/open-curriculum/oerschema.git"
 
 git add dist
 git commit -m "Auto push from Travis"
