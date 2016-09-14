@@ -12,4 +12,4 @@ git remote add upstream "https://$GITHUB_TOKEN@github.com/open-curriculum/oersch
 
 git add dist
 git commit -m "Auto push from Travis"
-git subtree push --prefix dist origin gh-pages
+git subtree push --prefix dist upstream gh-pages
