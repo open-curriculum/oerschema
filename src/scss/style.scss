@@ -28,6 +28,7 @@ main {
   }
 }
 
+/* Remove until I can locate the bg image
 header {
   background: url("/images/node-graph.svg") center left no-repeat scroll;
   @media #{$medium-and-up} {
@@ -35,6 +36,7 @@ header {
     min-height: 300px;
   };
 }
+*/
 
 .breadcrumb {
   @extend .breadcrumb;
