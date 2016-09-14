@@ -160,8 +160,12 @@ gulp.task('buildSchema', function() {
 
 gulp.task('template', function() {
     var data = {
-        stylesheets: fs.readdirSync('dist/assets/css/'),
-        scripts: fs.readdirSync('dist/assets/js/'),
+        stylesheets: fs.readdirSync('dist/assets/css/').filter(function(item) {
+            return /\.css$/.test(item);
+        }),
+        scripts: fs.readdirSync('dist/assets/js/').filter(function(item) {
+            return /\.js$/.test(item);
+        }),
         schema: yaml.load('src/config/schema.yml')
     };
 
