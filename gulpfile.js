@@ -159,7 +159,7 @@ gulp.task('buildSchema', function() {
 });
 
 gulp.task('template', function() {
-    console.log(__dirname);
+    console.log(fs.readdirSync(__dirname + '/dist/assets/css/'));
     var data = {
         stylesheets: fs.readdirSync(__dirname + '/dist/assets/css/').filter(function(item) {
             return /\.css$/.test(item);
