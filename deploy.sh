@@ -19,4 +19,4 @@ git remote add upstream "https://$GITHUB_TOKEN@github.com/open-curriculum/oersch
 # Add, Commit and Push
 git add --all
 git commit -m "Auto push from Travis"
-git push upstream gh-pages --force
+git push -u upstream gh-pages --force
