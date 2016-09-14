@@ -11,4 +11,4 @@ git config user.name "Travis CI"
 git remote add upstream "https://$GITHUB_TOKEN@github.com/open-curriculum/oerschema.git"
 
 # update the dist folder
-git subtree pull --prefix dist upstream gh-pages
+git subtree pull -m "Pulling most recent" --prefix dist upstream gh-pages

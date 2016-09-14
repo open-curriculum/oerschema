@@ -10,4 +10,4 @@ git config user.name "Travis CI"
 
 git add dist
 git commit -m "Auto push from Travis"
-git subtree push --prefix dist upstream gh-pages
+git subtree push -m "Pushing updated" --prefix dist upstream gh-pages
