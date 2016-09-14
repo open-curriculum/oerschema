@@ -7,7 +7,7 @@
         {% block stylesheets -%}
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
             {% for sheet in stylesheets %}
-                <link rel="stylesheet" type="text/css" href="/_assets/css/{{ sheet }}">
+                <link rel="stylesheet" type="text/css" href="/assets/css/{{ sheet }}">
             {% endfor %}
         {%- endblock stylesheets %}
     </head>
@@ -21,7 +21,7 @@
         {% include 'templates/footer.njk' %}
         {% block javascripts -%}
             {% for script in scripts %}
-                <script src="/_assets/js/{{ script }}"></script>
+                <script src="/assets/js/{{ script }}"></script>
             {% endfor %}
         {%- endblock javascripts %}
     </body>
