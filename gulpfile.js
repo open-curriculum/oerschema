@@ -91,22 +91,22 @@ env.addExtension('NunjucksCodeHighlight', highlight)
 ;
 
 gulp.task('scss', function() {
-    gulp.src('./src/scss/style.scss')
-        .pipe(scss({includePaths: ['src/scss/']}).on('error', scss.logError))
+    gulp.src(__dirname + '/src/scss/style.scss')
+        .pipe(scss({includePaths: [__dirname + '/src/scss/']}).on('error', scss.logError))
         .pipe(cleancss())
         .pipe(rename({extname: ".min.css"}))
-        .pipe(gulp.dest('./dist/assets/css/'))
+        .pipe(gulp.dest(__dirname + '/dist/assets/css/'))
     ;
 });
 
 gulp.task('js', function() {
-    gulp.src(['./src/components/jquery/dist/jquery.js',
-            './src/components/angular/angular.js',
-            './src/components/materialize/dist/js/materialize.js',
-            './src/js/*.js'], {options: {matchBase: true}})
+    gulp.src([__dirname + '/src/components/jquery/dist/jquery.js',
+        __dirname + '/src/components/angular/angular.js',
+        __dirname + '/src/components/materialize/dist/js/materialize.js',
+        __dirname + '/src/js/*.js'], {options: {matchBase: true}})
         .pipe(concat('bundle.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('./dist/assets/js/'))
+        .pipe(gulp.dest(__dirname + '/dist/assets/js/'))
     ;
 });
 
@@ -160,6 +160,7 @@ gulp.task('buildSchema', function() {
 
 gulp.task('template', function() {
     console.log(fs.readdirSync(__dirname + '/dist/assets/css/'));
+
     var data = {
         stylesheets: fs.readdirSync(__dirname + '/dist/assets/css/').filter(function(item) {
             return /\.css$/.test(item);
@@ -169,8 +170,6 @@ gulp.task('template', function() {
         }),
         schema: yaml.load('./src/config/schema.yml')
     };
-
-    console.log(data);
 
     gulp.src('./src/views/pages/**/*.njk')
         .pipe(gnj.compile(data, {
@@ -199,6 +198,6 @@ gulp.task('watch', function() {
     gulp.watch('./src/views/**/*.njk', ['template']);
 });
 
-gulp.task('build', ['buildSchema','scss', 'js', 'fonts', 'images', 'template']);
-gulp.task('default', ['build']);
+gulp.task('assets', ['scss', 'js', 'fonts', 'images']);
+gulp.task('default', ['assets', 'buildSchema', 'template']);
 gulp.task('server', ['default', 'browserSyncServer', 'watch']);
