@@ -1,11 +1,9 @@
-sudo: required
 language: node_js
 node_js:
   - "6.1"
 install:
   - "npm install"
 script:
-  - ./build.sh
   - gulp
   - ./deploy.sh
 env:
