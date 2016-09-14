@@ -3,9 +3,9 @@ node_js:
   - "6.1"
 install:
   - "npm install"
-before_script:
-  - gulp
 script:
+  - ./build.sh
+  - gulp
   - ./deploy.sh
 env:
   global:
