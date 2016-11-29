@@ -7,6 +7,7 @@
 
 {% block content %}
     <div class="schema-content container" vocab="http://oerschema.org/" typeof="rdfs:Property" resource="http://oerschema.org/{{ property.label }}">
+        <span class="right blue-grey-text text-lighten-1">v{{ schema.version }}</span>
         <h1 property="rdfs:label">{{ property.label }}</h1>
         <link property="rdfs:subClassOf" href="http://oerschema.org/Property">
         {% if property.alternateType %}

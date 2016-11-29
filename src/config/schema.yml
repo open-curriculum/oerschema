@@ -1,15 +1,13 @@
 # All classes and properties are also subClasses of themselves
 # All classes have the rdfs:type of rdfs:Class
+version: 0.2.0
 classes:
-
   Resource:
     label: "Resource"
     comment: "A general component that all open educational resources are based from."
     schema: "root"
-    alternateType:
-      - "http://schema.org/Thing"
     subClassOf:
-      - "Thing"
+      - "http://schema.org/Thing"
     properties:
       - "parentOf"
       - "childOf"
@@ -51,46 +49,172 @@ classes:
       - "Intangible"
     properties: []
 
-  LearningObjective:
-    label: "LearningObjective"
-    commnet: "Rationale for assigning tasks and learning sequences"
+  LearningComponent:
+    label: "LearningComponent"
+    comment: "A generic compenent as a base to learning content"
     subClassOf:
       - "Resource"
+      - "http://schema.org/CreativeWork"
     properties:
-      - "prerequisite"
+      - "forCourse"
+      - "duration"
+
+  InstructionalPattern:
+    label: "InstructionalPattern"
+    comment: "An assembly of learning components arranged to deliver a learning experience"
+    subClassOf:
+      - "LearningComponent"
+    properties: []
 
   Lesson:
     label: "Lesson"
     comment: ""
     subClassOf:
-      - "Resource"
-      - "http://schema.org/CreativeWork"
+      - "InstructionalPattern"
     properties: []
 
   Unit:
     label: "Unit"
     comment: ""
     subClassOf:
-      - "Resource"
-      - "http://schema.org/CreativeWork"
+      - "InstructionalPattern"
     properties: []
 
   Module:
     label: "Module"
     comment: ""
     subClassOf:
-      - "Resource"
-      - "http://schema.org/CreativeWork"
+      - "InstructionalPattern"
     properties: []
+
+  LearningObjective:
+    label: "LearningObjective"
+    commnet: "Rationale for assigning tasks and learning sequences"
+    subClassOf:
+      - "InstructionalPattern"
+    properties:
+      - "prerequisite"
 
   SupportingMaterial:
     label: "SupportingMaterial"
     comment: "Material that teaches the learning objectives of the course."
     subClassOf:
-      - "Resource"
-      - "http://schema.org/CreativeWork"
+      - "InstructionalPattern"
     properties:
      - "deliveryFormat"
+
+  Assessment:
+    label: "Assessment"
+    comment: "An assessment of a student's activity."
+    subClassOf:
+      - "InstructionalPattern"
+      - "http://schema.org/Action"
+    properties:
+      - "material"
+      - "assessing"
+      - "gradingFormat"
+
+  Quiz:
+    label: "Quiz"
+    comment: "A quiz assessment"
+    subClassOf:
+      - "Assessment"
+    properties: []
+
+  Submission:
+    label: "Submission"
+    comment: "An assessment on material provided by a Student"
+    subClassOf:
+      - "Assessment"
+    properties: []
+
+  Activity:
+    label: "Activity"
+    comment: "An activity performed by students taking a course."
+    subClassOf:
+      - "InstructionalPattern"
+      - "http://schema.org/Action"
+    properties:
+      - "material"
+      - "assessedBy"
+      - "gradingFormat"
+
+  WritingActivity:
+    label: "WritingActivity"
+    comment: "An Activity which involves writing something."
+    subClassOf:
+      - "Activity"
+    properties: []
+
+  ReadingActivity:
+    label: "ReadingActivity"
+    comment: "An Activity which involves reading something."
+    subClassOf:
+      - "Activity"
+    properties: []
+
+  MakingActivity:
+    label: "MakingActivity"
+    comment: "An Activity which involves creating a something."
+    subClassOf:
+      - "Activity"
+    properties: []
+
+  ResearchingActivity:
+    label: "ResearchingActivity"
+    comment: "An Activity which involves researching a topic."
+    subClassOf:
+      - "Activity"
+    properties: []
+
+  ListeningActivity:
+    label: "ListeningActivity"
+    comment: "An Activity which involves listening to something."
+    subClassOf:
+      - "Activity"
+    properties: []
+
+  WatchingActivity:
+    label: "WatchingActivity"
+    comment: "An Activity which involves watching something."
+    subClassOf:
+      - "Activity"
+    properties: []
+
+  ReflectingActivity:
+    label: "RefectingActivity"
+    comment: "An Activity which involves reflecting on something."
+    subClassOf:
+      - "Activity"
+    properties: []
+
+  DiscussingActivity:
+    label: "DiscussingActivity"
+    comment: "An Activity which involves discussing something with a person or group."
+    subClassOf:
+      - "Activity"
+    properties: []
+
+  ObservingActivity:
+    label: "ObservingActivity"
+    comment: "An Activity which involves making an observation of something."
+    subClassOf:
+      - "Activity"
+    properties: []
+
+  PresentatingActivity:
+    label: "PresentingActivity"
+    comment: "An Activity which involves giving a presentation to an audience."
+    subClassOf:
+      - "Activity"
+    properties: []
+
+  AssessingActivity:
+    label: "AssessingActivity"
+    comment: "An Activity which involves making an assessment. This differs from an Assessment in that an Instructor would perform an Assessment and a Student would perform an AssessingActivity"
+    subClassOf:
+      - "Activity"
+    properties: []
 
   Format:
     label: "Format"
@@ -309,56 +433,6 @@ classes:
       - "MediaObject"
       - "http://schema.org/ImageObject"
     properties: []
-
-  Action:
-    label: "Action"
-    comment: "An action performed by a direct agent and indirect participants upon a direct object. Optionally happens at a location with the help of an inanimate instrument. The execution of the action may produce a result. Specific action sub-type documentation specifies the exact expectation of each argument/role."
-    subClassOf:
-      - "Resource"
-      - "http://schema.org/Action"
-    properties:
-      - "actionStatus"
-      - "agent"
-      - "error"
-      - "instrument"
-      - "location"
-      - "startTime"
-      - "endTime"
-      - "object"
-      - "participant"
-      - "result"
-      - "target"
-
-  ActionStatusType:
-    label: "ActionStatusType"
-    comment: ""
-    subClassOf:
-      - "Enumeration"
-      - "http://schema.org/ActionStatusType"
-
-  Activity:
-    label: "Activity"
-    comment: "An activity performed by students taking a course."
-    subClassOf:
-      - "Action"
-    properties:
-      - "forCourse"
-      - "duration"
-      - "material"
-      - "assessedBy"
-      - "gradingFormat"
-
-  Assessment:
-      label: "Assessment"
-      comment: "An assessment of a student's activity."
-      subClassOf:
-        - "Action"
-      properties:
-        - "forCourse"
-        - "duration"
-        - "material"
-        - "assessing"
-        - "gradingFormat"
 
   Boolean:
     label: "Boolean"
