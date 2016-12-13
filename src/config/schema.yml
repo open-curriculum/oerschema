@@ -481,7 +481,7 @@ classes:
     subClassOf:
       - "ActionType"
 
-  Presentating:
+  Presenting:
     label: "Presenting"
     comment: "Presenting is involved with the resource"
     subClassOf:
