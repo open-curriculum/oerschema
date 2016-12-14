@@ -125,7 +125,7 @@ gulp.task('resetSchema', function() {
     return del([
         './src/views/pages/**',
         '!./src/views/pages',
-        '!./src/views/pages/docs',
+        '!./src/views/pages/docs/**',
         '!./src/views/pages/index.njk'
     ]);
 });

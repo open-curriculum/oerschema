@@ -12,7 +12,7 @@ gulp assets
 gulp buildSchema
 gulp template
 cd _dist
-find . -regextype posix-extended -not -iregex '^(\.+$|\.\/(assets|\..*).*)' -exec rm -R {} || : \; 2>&1 #clean the directory to remove no longer used files
+find . -regextype posix-extended -not -iregex '^(\.+$|\.\/(assets|\..*).*)' -exec rm -R {} \; 2>&1 #clean the directory to remove no longer used files
 yes | cp -R ../dist/* . # copy over the new, correct build
 
 # Add, Commit and Push
