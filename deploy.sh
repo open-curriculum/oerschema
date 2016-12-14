@@ -9,9 +9,10 @@ git clone "https://$GITHUB_TOKEN@github.com/open-curriculum/oerschema.git" -b gh
 
 # Run Gulp
 gulp
-rm -R _dist/* #clean the directory to remove no longer used files
-cp -R dist/* _dist # copy over the new, correct build
-cd _dist # enter the directory to begin the commit
+cd _dist/
+ls | grep -v .git | parallel rm -R #clean the directory to remove no longer used files
+cp -R ../dist/* . # copy over the new, correct build
+ls -l
 
 # Add, Commit and Push
 git add --all
