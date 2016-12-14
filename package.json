@@ -10,19 +10,20 @@
   "author": "Alex Boyce <curiosity26@gmail.com>",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
+    "browser-sync": "*",
+    "del": "^2.2.2",
     "gulp": "*",
-    "gulp-nunjucks": "*",
-    "gulp-sass": "*",
     "gulp-clean-css": "*",
-    "gulp-uglify": "*",
-    "gulp-rename": "*",
     "gulp-concat": "*",
     "gulp-debug": "*",
+    "gulp-nunjucks": "*",
     "gulp-plumber": "*",
-    "browser-sync": "*",
-    "nunjucks": "*",
-    "yamljs": "*",
+    "gulp-rename": "*",
+    "gulp-sass": "*",
+    "gulp-uglify": "*",
     "highlight.js": "*",
-    "nunjucks-highlight.js": "*"
+    "nunjucks": "*",
+    "nunjucks-highlight.js": "*",
+    "yamljs": "*"
   }
 }

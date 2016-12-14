@@ -1,6 +1,6 @@
 # All classes and properties are also subClasses of themselves
 # All classes have the rdfs:type of rdfs:Class
-version: 0.3.1
+version: 0.3.2
 classes:
   Resource:
     label: "Resource"
@@ -487,9 +487,9 @@ classes:
     subClassOf:
       - "ActionType"
 
-  Assessing:
-    label: "Assessing"
-    comment: "Assessing is involved with the resource"
+  Assess:
+    label: "Assess"
+    comment: "Assess is involved with the resource"
     subClassOf:
       - "ActionType"
 

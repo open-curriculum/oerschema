@@ -11,6 +11,7 @@ var fs = require('fs');
 var browserSync = require('browser-sync').create();
 var yaml = require('yamljs');
 var hljs = require('highlight.js');
+var del = require('del');
 var env = new nunjucks.Environment(new nunjucks.FileSystemLoader('./src/views', {noCache: true}), {dev: true});
 var NunjucksCodeHighlight = function NunjucksCodeHighlight(nunjucks, hljs) {
     this.tags = ['code'];
@@ -120,7 +121,14 @@ gulp.task('images', function () {
         .pipe(gulp.dest('dist/assets/images'));
 });
 
-gulp.task('buildSchema', function() {
+gulp.task('resetSchema', function() {
+    return del([
+        './src/views/pages/**/*',
+        '!./src/views/pages/index.njk'
+    ]);
+});
+
+gulp.task('buildSchema', ['resetSchema'], function() {
     var schema = yaml.load('./src/config/schema.yml');
 
     function createClassTemplate(c) {
@@ -149,6 +157,8 @@ gulp.task('buildSchema', function() {
         });
     }
 
+
+
     for (var c in schema.classes) {
         createClassTemplate.bind(c).call(c, c);
     }
@@ -156,6 +166,8 @@ gulp.task('buildSchema', function() {
     for (var p in schema.properties) {
         createPropertyTemplate.bind(p).call(p, p);
     }
+
+    return true;
 });
 
 gulp.task('template', function() {
@@ -165,13 +177,14 @@ gulp.task('template', function() {
         schema: yaml.load('./src/config/schema.yml')
     };
 
-    gulp.src('./src/views/pages/**/*.njk')
+    return gulp.src('./src/views/pages/**/*.njk')
         .pipe(gnj.compile(data, {
             env: env
         }))
         .pipe(rename({extname: ".html"}))
         .pipe(gulp.dest('./dist'))
     ;
+
 });
 
 gulp.task('browserSyncServer', function () {
