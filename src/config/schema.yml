@@ -1,6 +1,6 @@
 # All classes and properties are also subClasses of themselves
 # All classes have the rdfs:type of rdfs:Class
-version: 0.3.0
+version: 0.3.1
 classes:
   Resource:
     label: "Resource"
@@ -822,7 +822,7 @@ properties:
       - "LearningComponent"
 
   doTask:
-    label: "forTask"
+    label: "doTask"
     comment: "Which tasks are to be completed for a LearningComponent"
     range:
       - "Task"
