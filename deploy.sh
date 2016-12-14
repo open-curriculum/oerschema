@@ -7,14 +7,11 @@ git config --global user.name "Travis CI"
 
 git clone "https://$GITHUB_TOKEN@github.com/open-curriculum/oerschema.git" -b gh-pages _dist
 
-# Get into the dist
-cd _dist
-cp -R ../dist/* .
-
 # Run Gulp
-cd ../
 gulp
-cd _dist
+rm -R _dist/* #clean the directory to remove no longer used files
+cp -R dist/* _dist # copy over the new, correct build
+cd _dist # enter the directory to begin the commit
 
 # Add, Commit and Push
 git add --all
