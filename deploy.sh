@@ -17,5 +17,8 @@ yes | cp -R ../dist/* . # copy over the new, correct build
 
 # Add, Commit and Push
 git add --all
-git commit -m "Auto push from Travis"
-git push --force
+if [ git commit -m "Auto push from Travis" ]; then
+    git push --force
+else
+    echo "Nothing to commit";
+fi
