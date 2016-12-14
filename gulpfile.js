@@ -123,7 +123,9 @@ gulp.task('images', function () {
 
 gulp.task('resetSchema', function() {
     return del([
-        './src/views/pages/**/*',
+        './src/views/pages/**',
+        '!./src/views/pages',
+        '!./src/views/pages/docs',
         '!./src/views/pages/index.njk'
     ]);
 });
@@ -145,6 +147,7 @@ gulp.task('buildSchema', ['resetSchema'], function() {
     }
 
     function createPropertyTemplate(p) {
+        del(['./src/views/pages/' + p]);
         fs.access('./src/views/pages/' + p, function(err) {
             if (err) {
                 fs.mkdirSync('./src/views/pages/' + p);

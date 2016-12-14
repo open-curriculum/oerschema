@@ -32,3 +32,6 @@ node_modules
 .sass-cache
 dist/
 !dist/assets
+src/views/pages
+!src/views/pages/docs
+!src/views/pages/index.njk
