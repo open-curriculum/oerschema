@@ -11,6 +11,11 @@ git clone "https://$GITHUB_TOKEN@github.com/open-curriculum/oerschema.git" -b gh
 cd _dist
 cp -R ../dist/* .
 
+# Run Gulp
+cd ../
+gulp
+cd _dist
+
 # Add, Commit and Push
 git add --all
 git commit -m "Auto push from Travis"
