@@ -16,8 +16,11 @@ find . -maxdepth 1 -regextype posix-extended -not -iregex '^(\.+$|\.\/(assets|CN
 yes | cp -R ../dist/* . # copy over the new, correct build
 
 # Add, Commit and Push
-git add --all
-if [ git commit -m "Auto push from Travis" ]; then
+git add --all -v
+status=$(git status | head -n2 | tail -n1);
+
+if [ "$status" !=  "Your branch is up-to-date with 'origin/gh-pages'." ]; then
+    git commit -m "Auto push from Travis"
     git push --force
 else
     echo "Nothing to commit";
