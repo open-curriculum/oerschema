@@ -92,7 +92,7 @@ env.addExtension('NunjucksCodeHighlight', highlight)
 ;
 
 gulp.task('scss', function() {
-    gulp.src(__dirname + '/src/scss/style.scss')
+    return gulp.src(__dirname + '/src/scss/style.scss')
         .pipe(scss({includePaths: [__dirname + '/src/scss/']}).on('error', scss.logError))
         .pipe(cleancss())
         .pipe(rename({extname: ".min.css"}))
@@ -101,7 +101,7 @@ gulp.task('scss', function() {
 });
 
 gulp.task('js', function() {
-    gulp.src([__dirname + '/src/components/jquery/dist/jquery.js',
+    return gulp.src([__dirname + '/src/components/jquery/dist/jquery.js',
         __dirname + '/src/components/angular/angular.js',
         __dirname + '/src/components/materialize/dist/js/materialize.js',
         __dirname + '/src/js/*.js'], {options: {matchBase: true}})
@@ -112,12 +112,12 @@ gulp.task('js', function() {
 });
 
 gulp.task('fonts', function () {
-    gulp.src('./src/components/materialize/fonts/**')
+    return gulp.src('./src/components/materialize/fonts/**')
         .pipe(gulp.dest('./dist/assets/fonts'));
 });
 
 gulp.task('images', function () {
-    gulp.src('src/images/**')
+    return gulp.src('src/images/**')
         .pipe(gulp.dest('dist/assets/images'));
 });
 
@@ -199,6 +199,8 @@ gulp.task('browserSyncServer', function () {
         port: 3000,
         open: "local"
     });
+
+    return true;
 });
 
 gulp.task('watch', function() {

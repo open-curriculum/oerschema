@@ -8,12 +8,6 @@
     <div class="container">
         <span class="right blue-grey-text text-lighten-1">v{{ schema.version }}</span>
         <h1>{{ title }}</h1>
-        <div class="card-panel red-text text-darken-1 row">
-            <div class="col s2 center-align"><i class="material-icons medium">announcement</i></div>
-            <div class="col s10 flow-text">
-                OER Schema is currently under heavy development. Please check back often to see changes and additions.
-            </div>
-        </div>
         {{ schema_class_tree(schema, seed="root", list=[]) }}
 
         {{ schema_class_tree(schema, seed="intangible", list=[]) }}
