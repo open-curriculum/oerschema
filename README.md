@@ -3,4 +3,4 @@
 
 A RDF vocabulary for OER content on the web.
 
-![OER Schema](https://raw.githubusercontent.com/open-curriculum/oerschema-logo/master/png/oerschema-logo-horizontal-300w@2x.png)
+<a href="https://raw.githubusercontent.com/open-curriculum/oerschema-logo/master/png/oerschema-logo-horizontal-300w@2x.png" target="_blank"><img src="https://raw.githubusercontent.com/open-curriculum/oerschema-logo/master/png/oerschema-logo-horizontal-300w@2x.png" alt="OER Schema" style="width:300px;"></a>
