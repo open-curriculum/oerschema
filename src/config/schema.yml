@@ -503,7 +503,7 @@ properties:
     range:
       - "Text"
     domain:
-      - "resour"
+      - "resource"
 
   additionalName:
     label: "additionalName"
