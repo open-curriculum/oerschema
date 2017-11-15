@@ -16,8 +16,8 @@ find . -maxdepth 1 -regextype posix-extended -not -iregex '^(\.+$|\.\/(assets|CN
 yes | cp -R ../dist/* . # copy over the new, correct build
 
 # Add, Commit and Push
+git branch -u origin/master
 git add --all -v
-git fetch origin gh-pages
 status=$(git status | head -n2 | tail -n1);
 
 if [ "$status" !=  "Your branch is up-to-date with 'origin/gh-pages'." ]; then
