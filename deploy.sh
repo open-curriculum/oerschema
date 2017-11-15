@@ -20,8 +20,8 @@ git add --all -v
 status=$(git status | head -n2 | tail -n1);
 
 if [ "$status" !=  "Your branch is up-to-date with 'origin/gh-pages'." ]; then
-    git commit -m "Auto push from Travis"
+    git commit -m "Auto push from Travis #$TRAVIS_BUILD_NUMBER"
     git push --force
 else
-    echo "Nothing to commit";
+    echo "Nothing to commit #$TRAVIS_BUILD_NUMBER";
 fi
