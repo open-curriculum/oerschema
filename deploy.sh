@@ -17,6 +17,7 @@ yes | cp -R ../dist/* . # copy over the new, correct build
 
 # Add, Commit and Push
 git add --all -v
+git fetch
 status=$(git status | head -n2 | tail -n1);
 
 if [ "$status" !=  "Your branch is up-to-date with 'origin/gh-pages'." ]; then
