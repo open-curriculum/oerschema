@@ -25,3 +25,5 @@ if [ "$status" !=  "Your branch is up-to-date with 'origin/gh-pages'." ]; then
 else
     echo "Nothing to commit #$TRAVIS_BUILD_NUMBER";
 fi
+
+git status
