@@ -16,7 +16,7 @@ find . -maxdepth 1 -regextype posix-extended -not -iregex '^(\.+$|\.\/(assets|CN
 yes | cp -R ../dist/* . # copy over the new, correct build
 
 # Add, Commit and Push
-git branch -u origin/master
+git branch -u origin/gh-pages
 git add --all -v
 status=$(git status | head -n2 | tail -n1);
 
