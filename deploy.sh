@@ -18,12 +18,12 @@ yes | cp -R ../dist/* . # copy over the new, correct build
 # Add, Commit and Push
 git add --all -v
 sleep 5; # Pause for 5 seconds and let git catchup
+git commit -m "Auto push from Travis #$TRAVIS_BUILD_NUMBER"
 status=$(git status | head -n2 | tail -n1);
 
 echo $status;
 
 if [ "$status" !=  "Your branch is up-to-date with 'origin/gh-pages'." ]; then
-    git commit -m "Auto push from Travis #$TRAVIS_BUILD_NUMBER"
     git push --force
 else
     echo "Nothing to commit #$TRAVIS_BUILD_NUMBER";
