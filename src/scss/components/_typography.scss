@@ -1,9 +1,14 @@
 p {
-  font-family: 'Source Code Pro', monospace;
   font-size: 18px;
 }
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight:700
+}
+h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-weight:400
 }
 .h1 {
   @extend h1;
