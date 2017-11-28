@@ -37,7 +37,9 @@ header {
   };
 }
 */
-
+#home-header {
+  text-align: center;
+}
 .breadcrumb {
   @extend .breadcrumb;
   color: color("blue-grey", "lighten-3");
