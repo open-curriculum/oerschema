@@ -37,6 +37,18 @@ header {
   };
 }
 */
+
+// Fixes the complete lack of list styling in this version of materialize
+ul:not(.browser-default) {
+  padding-left: 30px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+ul:not(.browser-default) li {
+    list-style-type: disc;
+}
+
 .header-margin {
   margin: 80px 0 40px;
 }
