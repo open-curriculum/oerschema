@@ -7,7 +7,7 @@
 {% block content %}
     <div class="container">
         <span class="right blue-grey-text text-lighten-1">v{{ schema.version }}</span>
-        <h1>{{ title }}</h1>
+        <h1 class="header-margin center">{{ title }}</h1>
         {{ schema_class_tree(schema, seed="root", list=[]) }}
 
         {{ schema_class_tree(schema, seed="intangible", list=[]) }}

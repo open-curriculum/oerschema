@@ -37,9 +37,12 @@ header {
   };
 }
 */
-#home-header {
-  text-align: center;
+.header-margin {
   margin: 80px 0 40px;
+}
+
+.center {
+  text-align: center;
 }
 .breadcrumb {
   @extend .breadcrumb;
