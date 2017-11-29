@@ -5,13 +5,15 @@ h1 {
     font-family: 'Montserrat', sans-serif;
     font-weight:700
 }
-h2, h3, h4, h5, h6 {
+h2, h3 {
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
     font-weight:400
 }
-h4.h4 {
-  text-transform: none;
+h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: none;
+    font-weight:400
 }
 .h1 {
   @extend h1;
