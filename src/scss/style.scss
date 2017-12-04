@@ -27,7 +27,10 @@ main {
     }
   }
 }
-
+.responsive-img.logo {
+  max-width: 180px;
+  margin: 6px;
+}
 /* Remove until I can locate the bg image
 header {
   background: url("/images/node-graph.svg") center left no-repeat scroll;
