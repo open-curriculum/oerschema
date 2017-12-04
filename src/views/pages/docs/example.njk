@@ -1,0 +1,91 @@
+{% extends 'templates/base.njk' %}
+
+{% set title = "Example" %}
+{% set action = 'example' %}
+
+{% block content %}
+
+<!-- Scope in the prefixes -->
+<div prefix="oer: http://oerschema.org/ cc:http://creativecommons.org/ns dc:http://purl.org/dc/terms/">
+    
+    <!-- A design project is a learning component! -->
+    <div resource="#oer-design-project" typeof="oer:LearningComponent">
+        
+        <!-- Topics, not sure if this is being used correctly -->
+        <meta  property="oer:forTopic" content="oer, schema, remix, licensing">
+        
+        <!-- CC License for the entire LearningComponent -->
+        <meta  rel="cc:license" href="https://creativecommons.org/licenses/by/4.0/" content="License: CC-BY-4.0">
+        
+        <!-- Authors. Attribution needs to be evaluated. Also, a recommended attribution for remix needs to be made -->
+        <meta  property="cc:attributionName" content="Michael Collins, Katrina Wehr, Alex Boyce">
+
+        <!-- Has supporting material -->
+        <meta property="oer:hasComponent" content="#readings-proj-1" />
+        <meta property="oer:hasComponent" content="#steps-to-completion-proj-1" />
+
+
+        <!-- Learning component is supported by the following learning objectives (Not required as they are also embedded on the page)-->
+        <meta property="oer:hasLearningObjective" content="#design-oer-module-lo1" />
+        <meta property="oer:hasLearningObjective" content="#design-oer-module-lo2" />
+
+        <!-- Name of design project and learning component -->
+        <div  property="oer:name">
+            <h1>Design an OER Module Project:</h1>
+            <h2>Beginner</h2>
+        </div>
+        <!-- /End name of learning component -->
+
+        <!-- Description of learning compontent -->
+        <div property="oer:description">
+            <p>This project was designed to help you gain familiarity with adding OER Schema to a project. Typically, a project will have a longer description.</p>
+        </div>
+        <!-- /End description -->
+        <!-- Readings, supporting material -->
+        <div resource="#readings-proj-1" typeof="oer:SupportingMaterial">
+            <meta property="oer:forComponent" content="#oer-design-project" />
+            <h2><span property="oer:name">Readings:</span></h2>
+            <div resource="#reading-2" typeof="oer:SupportingMaterial">
+                <meta property="oer:forComponent" content="#readings-proj-1" />
+                <p class="citation">Collins, M. (2016, May 27). <span property="oer:name"><cite>Interoperable Open Education Resources (OER)</cite></span> [Web log post]. Retrieved September 27, 2016, from <span property="oer:resource">http://www.collinsartanddesign.com/blog/2016/5/27/interoperable-open-education-resources-oer</span></p>
+                <meta property="oer:description" content="Michael Collins describes an interoperable OER future.">
+            </div>
+            <div resource="#reading-1" typeof="oer:SupportingMaterial">
+                <meta property="oer:forComponent" content="#readings-proj-1" />
+                <p class="citation">Wehr, K. M. (2016, June 15). <span property="oer:name"><cite>Is OER Really Open?</cite></span> [Web log post]. Retrieved September 27, 2016, from <span property="oer:resource">https://medium.com/@katrina.m.wehr/is-oer-really-open-1ac98e0913d8</span></p>
+                <meta property="oer:description" content="Katrina Wehr evaluates existing OER for quality and reuse.">
+            </div>
+
+        </div>
+        <!-- /End Readings, supporting material -->
+        <!-- Steps to Completion, Supporting Material -->
+        <div resource="#steps-to-completion-proj-1" typeof="oer:SupportingMaterial">
+            <meta property="oer:forComponent" content="#oer-design-project" />
+            <h2><span property="oer:name">Steps to Completion</span></h2>
+            <ol>
+                <li><span property="oer:task">Read the readings.</span></li>
+                <li><span property="oer:task">Create the project.</span></li>
+                <li><span property="oer:task">Submit the project.</span></li>
+            </ol>
+        </div>
+        <!-- /End Steps to completion, Supporting Material -->
+        <!-- Learning Objectives -->
+        <h2>Learning Objectives</h2>
+        <ul>
+            <li>
+                <span resource="#design-oer-module-lo1" typeof="oer:LearningObjective">
+                     <meta property="oer:forComponent" content="#oer-design-project" />
+                    <span property="oer:value">Learn to use the SEED OER builder interface by constructing a learning module.</span>
+                </span>
+            </li>
+            <li>
+            <span resource="#design-oer-module-lo2" typeof="oer:LearningObjective">
+                <meta property="oer:forComponent" content="#oer-design-project" />
+                <span property="oer:value">Gain basic understanding of how learning content can be remixed when structured with OER Schema.</span>
+            </span></li>
+        </ul>
+        <!-- /End Learning Objectives -->
+    </div>
+</div>
+
+{% endblock %}
