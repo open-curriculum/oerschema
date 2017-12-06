@@ -1,6 +1,6 @@
 # All classes and properties are also subClasses of themselves
 # All classes have the rdfs:type of rdfs:Class
-version: 0.3.2
+version: 0.3.3
 classes:
   Resource:
     label: "Resource"
@@ -8,7 +8,7 @@ classes:
     schema: "root"
     subClassOf:
       - "http://schema.org/Thing"
-      - "http://creativecommons.org/ns/#Work"
+      - "http://creativecommons.org/ns#Work"
     properties:
       - "parentOf"
       - "childOf"
@@ -34,13 +34,32 @@ classes:
       - "currentStanding"
       - "deliveryFormat"
       - "enrollmentSize"
+      - "section"
+      - "termOffered"
+
+  CourseSection:
+    label: "CourseSection"
+    comment: "A specific instance of a course offered during a specific term"
+    subClassOf:
+      - "Resource"
+    properties:
+      - "sectionIdentifier"
+      - "primaryInstructor"
+      - "instructor"
+      - "syllabus"
+      - "forCourse"
+      - "termOffered"
+      - "enrollmentSize"
+      - "duration"
+      - "deliveryFormat"
 
   CourseSyllabus:
     label: "CourseSyllabus"
     comment: ""
     subClassOf:
       - "Resource"
-    properties: []
+    properties:
+      - "associatedMedia"
 
   Topic:
     label: "Topic"
@@ -59,7 +78,7 @@ classes:
 
   LearningComponent:
     label: "LearningComponent"
-    comment: "A generic compenent as a base to learning content"
+    comment: "A generic component as a base to learning content"
     subClassOf:
       - "Resource"
       - "http://schema.org/CreativeWork"
@@ -76,9 +95,11 @@ classes:
     label: "LearningObjective"
     commnet: "An expected outcome or skill gained by application of a LearningComponent"
     subClassOf:
-      - "LearningComponent"
+      - "Resource"
     properties:
       - "prerequisite"
+      - "forCourse"
+      - "forComponent"
 
   SupportingMaterial:
     label: "SupportingMaterial"
@@ -618,7 +639,15 @@ properties:
     range:
       - "Text"
     domain:
-      - "Coure"
+      - "Course"
+
+  sectionIdentifier:
+      label: "sectionIdentifier"
+      comment: "The identifier of the section, i.e. 001, 002, e3we1-09"
+      range:
+        - "Text"
+      domain:
+        - "CourseSection"
 
   primaryInstructor:
     label: "primaryInstructor"
@@ -717,6 +746,24 @@ properties:
       - "Course"
     domain:
       - "Resource"
+
+  section:
+    label: "section"
+    comment: "A specific instance of a course offered during a specific term."
+    range:
+      - "CourseSection"
+    domain:
+      - "Course"
+
+  termOffered:
+    label: "termOffered"
+    comment: "A term during which a course or course section is offered."
+    range:
+      - "Text"
+    domain:
+      - "Course"
+      - "CourseSection"
+
 
   parentOf:
     label: "parentOf"
@@ -844,3 +891,11 @@ properties:
       - "Topic"
     domain:
       - "Resource"
+
+  associatedMedia:
+    label: "associatedMedia"
+    comment: "Refers to any media referenced by the content"
+    range:
+        - "http://schema.org/MediaObject"
+    domain:
+        - "Resource"
