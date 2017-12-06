@@ -78,7 +78,7 @@ classes:
 
   LearningComponent:
     label: "LearningComponent"
-    comment: "A generic compenent as a base to learning content"
+    comment: "A generic component as a base to learning content"
     subClassOf:
       - "Resource"
       - "http://schema.org/CreativeWork"
