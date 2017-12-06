@@ -61,6 +61,7 @@ classes:
     properties:
       - "section"
       - "associatedMedia"
+      - "forCourse"
 
   Topic:
     label: "Topic"
