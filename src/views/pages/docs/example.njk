@@ -7,7 +7,11 @@
 
 <!-- Scope in the prefixes -->
 <div prefix="oer: http://oerschema.org/ cc:http://creativecommons.org/ns dc:http://purl.org/dc/terms/" class="container">
-    
+    <!-- Define the Course -->
+    <div prefix="oer:http://oerschema.org cc:http://creativecommons.org/ns# schema:http://schema.org" resource="#my-course" typeof="http://oerschema.org/Course">
+        <h1 property="http://oerschema.org/name">My Course</h1>
+        <p resource="#bysa-p1" typeof="http://oerschema.org/Text">This paragraph is under a different copyright">
+    </div>
     <!-- A design project is a learning component! -->
     <div resource="#oer-design-project" typeof="oer:LearningComponent">
         
@@ -94,5 +98,15 @@
             </ul> -->
     </div>
 </div>
+
+<!-- Link the license for the course -->
+<link about="#my-course" property="cc:license" content="https://creativecommons.org/licenses/by/4.0/">
+<meta about="#my-course" property="cc:attributionUrl" content="https://mycourses.com/myCourse">
+<meta about="#my-course" property="cc:attributionName" typeof="oer:Text" content="Bob Jones">
+<!-- Link the License for the inner content -->
+<link about="#bysa-p1" property="cc:license" href="#bysa-license">
+<link resource="#bysa-license" typeof="cc:License" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<!-- Link the inner content to the course as a description -->
+<link about="#my-course" property="http://oerschema.org/description" href="#bysa-p1">
 
 {% endblock %}
