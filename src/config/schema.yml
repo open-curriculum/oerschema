@@ -59,6 +59,7 @@ classes:
     subClassOf:
       - "Resource"
     properties:
+      - "section"
       - "associatedMedia"
 
   Topic:
