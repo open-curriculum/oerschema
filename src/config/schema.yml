@@ -59,7 +59,9 @@ classes:
     subClassOf:
       - "Resource"
     properties:
+      - "section"
       - "associatedMedia"
+      - "forCourse"
 
   Topic:
     label: "Topic"
