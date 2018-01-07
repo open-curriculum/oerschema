@@ -15,7 +15,6 @@ classes:
       - "forCourse"
       - "mainContent"
       - "forTopic"
-      - "oerSourceUrl"
 
   TableOfContents:
     subClassOf:
@@ -923,13 +922,5 @@ properties:
     comment: "Refers to any media referenced by the content"
     range:
        - "http://schema.org/MediaObject"
-    domain:
-       - "Resource"
-        
-  oerSourceUrl:
-    label: "oerSourceUrl"
-    comment: "If you are using someone elses OER content, this property will add to the OER source url."
-    range:
-       - "Resource"
     domain:
        - "Resource"
