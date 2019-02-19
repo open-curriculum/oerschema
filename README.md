@@ -15,6 +15,13 @@ A RDF vocabulary for OER content on the web.
 
 Modify `oerschema/src/config/schema.yml` and create a pull request for evaluation.
 
+## Adding schema usage samples to the OER Schema website
+
+1. Locate the relevant class in `oerschema/src/config/schema.yml` for which you would like to add a usage sample code.
+2. Add a folder to  `/src/views/samples` with the name of the class.
+3. Create any of the following files: `default.html`, `jsonld.html`, `microdata.html`, `rdfa.html`
+4. When the files are committed, create a pull request.
+
 ## Updating OERSchema.org wesbite:
 
 Twig templates and pages directory: `oerschema/src/views/`
