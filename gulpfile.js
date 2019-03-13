@@ -6,7 +6,6 @@ var concat = require('gulp-concat');
 var cleancss = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
-var plumber = require('gulp-plumber');
 var fs = require('fs');
 var browserSync = require('browser-sync').create();
 var yaml = require('yamljs');
@@ -123,7 +122,7 @@ gulp.task('images', function () {
 
 gulp.task('resetSchema', function() {
     return del([
-        './src/views/pages/**',
+        './src/views/pages/**/*',
         '!./src/views/pages',
         '!./src/views/pages/docs/**',
         '!./src/views/pages/index.njk'

@@ -9,9 +9,7 @@ git clone "https://$GITHUB_TOKEN@github.com/open-curriculum/oerschema.git" -b gh
 
 # Run Gulp
 echo "Running Gulp Tasks";
-gulp assets
-gulp buildSchema
-gulp template
+yarn run post-install
 echo "Tasks Complete";
 cd _dist
 echo "In compiled _dist directory, cleaning up data";
