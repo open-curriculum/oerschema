@@ -1,13 +1,15 @@
 language: node_js
 node_js:
-  - '6.1'
-install:
-  - npm install
-script:
-  - "./deploy.sh"
+  - '6'
 env:
   global:
     - secure: SCDBBVw0e25MUlL3Suj0niC5sL+4oztFncl6D7Jcpt0JE2OmTxiN4mxxifKchCDp6+5OsaDnnIFWO8Lp9NTxXrYE7+kOH0ytjIFPi3qt5yCxskYgFib42M+YyV7PmNFCfY2zDSAN6HIens76qEPMxbNMHKL+c0u1mN2vwALf0fZvqnFUpsiiPpdr9J2CWiERr2hSNK61JJKEhRmrUPHKW6DFtmmNriK7zAU2nA6HU58fC950JJ5nis2zvm74+illS+4flTQFbk5IC3FvWuFdRXI4Z8KR+HEefzZq6lY8/dNtNq6JKPWlQx8VsouCV1PBUbGi/1exeNBIpcrbKkfwt3ErPffUZKkAMMlq4E6vNJsKM4X8bqholhWSFzDRPMGlgxDBtBKtS4nM3KYcynyD+o0WN63sK1OxLsIViROClszTQAKLVcH6WCVDrcv8na79DKFXqRQhxMhRw6MEbIAI6CCtP/p97aAAkv07WzvIJEfpT7O6Z3IUZi/Or0EZ6IKSDYPl6NMy14s9enho/ZqELBSlAwRemeeUOFVYgZx1x2jUEtQJS4ICGIk91bw8UK0GjKhlXjASEjNqq3cLzAxnnrBfQaerH3PvSFBL1Zr5PaeZu7y+nKz9cxZ+Ckh4WYaVTrGRxffxGlyX9mjJog6exVkEjJDlVwHAIG33Igqj+Eg=
-branches:
-  only:
-    - master
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  local_dir: ./dist
+  fqdn: oerschema.org
+  on:
+    branch: master
