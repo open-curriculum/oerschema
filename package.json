@@ -9,7 +9,7 @@
     "server": "node_modules/.bin/gulp server",
     "build-schema": "node_modules/.bin/gulp buildSchema",
     "template": "node_modules/.bin/gulp template",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "author": "Alex Boyce <curiosity26@gmail.com>",
   "license": "SEE LICENSE IN LICENSE",
