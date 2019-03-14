@@ -172,7 +172,7 @@ gulp.task('buildSchema', ['resetSchema'], function() {
     return true;
 });
 
-gulp.task('template', function() {
+gulp.task('template', ['buildSchema'], function() {
     var data = {
         stylesheets: ['style.min.css'],
         scripts: ['bundle.min.js'],
@@ -210,5 +210,5 @@ gulp.task('watch', function() {
 });
 
 gulp.task('assets', ['scss', 'js', 'fonts', 'images']);
-gulp.task('default', ['assets', 'buildSchema', 'template']);
+gulp.task('default', ['assets', 'template']);
 gulp.task('server', ['default', 'browserSyncServer', 'watch']);
