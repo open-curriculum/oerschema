@@ -5,7 +5,7 @@
   "private": true,
   "main": "index.html",
   "scripts": {
-    "post-install": "node_modules/.bin/gulp",
+    "install": "node_modules/.bin/gulp",
     "server": "node_modules/.bin/gulp server",
     "build-schema": "node_modules/.bin/gulp buildSchema",
     "template": "node_modules/.bin/gulp template",
