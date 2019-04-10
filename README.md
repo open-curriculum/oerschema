@@ -15,7 +15,7 @@ $ `yarn`
 
 Modify `oerschema/src/config/schema.yml` and create a pull request for evaluation.
 
-## Adding schema usage samples to the OER Schema website
+### Adding schema usage samples to the OER Schema website
 
 ![uage example screenshot](https://github.com/open-curriculum/oerschema/raw/master/src/images/usage-samples.png)
 
