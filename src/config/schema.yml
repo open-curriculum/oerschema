@@ -118,11 +118,32 @@ classes:
       - "forCourse"
       - "forComponent"
 
-  SupportingMaterial:
-    label: "SupportingMaterial"
-    comment: "Material that teaches the learning objectives of the course."
+  AssociatedMaterial:
+    label: "AssociatedMaterial"
+    comment: "Material that is associated with the course."
     subClassOf:
       - "LearningComponent"
+    properties: []
+
+  SupportingMaterial:
+    label: "SupportingMaterial"
+    comment: "Material associated with an instructional component that teaches the learning objectives of that component."
+    subClassOf:
+      - "AssociatedMaterial"
+    properties: []
+
+  SupplementalMaterial:
+    label: "SupplementalMaterial"
+    comment: "Material associated with an instructional component that provides additional information about that component. Examples include Curriculum guides, Family course guides Student study guides."
+    subClassOf:
+      - "AssociatedMaterial"
+    properties: []
+
+  ReferencedMaterial:
+    label: "ReferencedMaterial"
+    comment: "Material associated with an instructional component that is referenced by that component. Examples include primary sources analysed in activities or assessments, material studied in Courses, raw material used in activities or assessments"
+    subClassOf:
+      - "AssociatedMaterial"
     properties: []
 
   InstructionalPattern:
