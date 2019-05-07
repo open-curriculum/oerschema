@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" >
     <head>
         <meta charset="UTF-8">
-        <title>Unit | Open Educational Resource Schema</title>
+        <title>AssociatedMaterial | Open Educational Resource Schema</title>
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
@@ -26,9 +26,9 @@
     </nav>
 </div>
         <main>
-    <div class="schema-content container" vocab="http://oerschema.org/" typeof="rdfs:Class" resource="http://oerschema.org/Unit">
+    <div class="schema-content container" vocab="http://oerschema.org/" typeof="rdfs:Class" resource="http://oerschema.org/AssociatedMaterial">
         <span class="right blue-grey-text text-lighten-1">v0.3.4</span>
-        <h1 property="rdfs:label">Unit</h1>
+        <h1 property="rdfs:label">AssociatedMaterial</h1>
         
         
         <div class="breadcrumbs">
@@ -39,15 +39,12 @@
                 
                 
                 
-                
-                
-
 
 
 
             </div>
         </div>
-        <p property="rdfs:comment"></p>
+        <p property="rdfs:comment">Material that is associated with the course.</p>
         
         <table class="class-table schema-table striped">
             <thead>
@@ -60,18 +57,8 @@
         <tbody class="subclass">
         <tr>
             <th colspan="3">
-                <link property="rdfs:subClassOf" href="http://oerschema.org/Unit">
-                Properties of <a href="/Unit">Unit</a>
-            </th>
-        </tr>
-        </tbody>
-                
-                    
-        <tbody class="subclass">
-        <tr>
-            <th colspan="3">
-                <link property="rdfs:subClassOf" href="http://oerschema.org/InstructionalPattern">
-                Properties of <a href="/InstructionalPattern">InstructionalPattern</a>
+                <link property="rdfs:subClassOf" href="http://oerschema.org/AssociatedMaterial">
+                Properties of <a href="/AssociatedMaterial">AssociatedMaterial</a>
             </th>
         </tr>
         </tbody>
@@ -247,10 +234,9 @@
                         </tr>
                     </tbody>
 
-
         </table>
 
-        <h2 class="h5">"Unit" is the value type for Properties:</h2>
+        <h2 class="h5">"AssociatedMaterial" is the value type for Properties:</h2>
         
     
         
@@ -361,9 +347,15 @@
         
     
         
-    
+            
         
     
+        
+            
+        
+    
+        
+            
         
     
         
@@ -478,7 +470,11 @@
     
     <ul>
         
-            <li><em>This is the most specific of this type.</em></li>
+            <li><a href="/ReferencedMaterial">ReferencedMaterial</a></li>
+        
+            <li><a href="/SupplementalMaterial">SupplementalMaterial</a></li>
+        
+            <li><a href="/SupportingMaterial">SupportingMaterial</a></li>
         
     </ul>
 
