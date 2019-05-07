@@ -14,21 +14,21 @@
   "author": "Alex Boyce <curiosity26@gmail.com>",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
-    "browser-sync": "*",
+    "browser-sync": "^2.26.5",
     "del": "^2.2.2",
     "gh-pages": "^2.0.1",
-    "gulp": "*",
-    "gulp-clean-css": "*",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.2.0",
     "gulp-concat": "*",
-    "gulp-debug": "*",
-    "gulp-nunjucks": "*",
-    "gulp-plumber": "*",
-    "gulp-rename": "*",
-    "gulp-sass": "*",
-    "gulp-uglify": "*",
-    "highlight.js": "*",
-    "nunjucks": "*",
+    "gulp-debug": "^4.0.0",
+    "gulp-nunjucks": "^4.0.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
+    "highlight.js": "^9.15.6",
+    "nunjucks": "^3.2.0",
     "nunjucks-highlight.js": "*",
-    "yamljs": "*"
+    "yamljs": "^0.3.0"
   }
 }
