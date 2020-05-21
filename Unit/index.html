@@ -27,7 +27,7 @@
 </div>
         <main>
     <div class="schema-content container" vocab="http://oerschema.org/" typeof="rdfs:Class" resource="http://oerschema.org/Unit">
-        <span class="right blue-grey-text text-lighten-1">v0.3.4</span>
+        <span class="right blue-grey-text text-lighten-1">v1.0.0</span>
         <h1 property="rdfs:label">Unit</h1>
         
         
@@ -110,19 +110,6 @@
                             <a href="/LearningComponent/">LearningComponent</a> 
                     </td>
                     <td class="property-comment" property="rdfs:comment">Which LearningComponent the InstructionalPattern contains or is supported by (inverse of forComponent)</td>
-                </tr>
-                
-                <tr typeof="rdfs:Property" resource="http://oerschema.org/duration/">
-                    <td class="property-label" property="rdfs:label"><a href="/duration">duration</a></td>
-                    <td class="property-range">
-                            <link property="rangeIncludes" href="http://oerschema.org/Enumeration">
-                            <a href="/Enumeration/">Enumeration</a> or
-                            <link property="rangeIncludes" href="http://oerschema.org/Number">
-                            <a href="/Number/">Number</a> or
-                            <link property="rangeIncludes" href="http://oerschema.org/Text">
-                            <a href="/Text/">Text</a> 
-                    </td>
-                    <td class="property-comment" property="rdfs:comment">The duration of the resource.</td>
                 </tr>
                 
                 <tr typeof="rdfs:Property" resource="http://oerschema.org/doTask/">
@@ -246,6 +233,18 @@
                             </th>
                         </tr>
                     </tbody>
+                
+                    <tbody>
+                        <tr>
+                            <th colspan="3">
+                                <link property="rdfs:subClassOf" href="https://schema.org/AlignmentObject">
+                                Extends class
+                                
+                                    <a href="https://schema.org/AlignmentObject" target="_blank"><b>https://schema.org/AlignmentObject</b></a>
+                                
+                            </th>
+                        </tr>
+                    </tbody>
 
 
         </table>
@@ -253,7 +252,6 @@
         <h2 class="h5">"Unit" is the value type for Properties:</h2>
         
     
-        
         
         
         

@@ -27,7 +27,7 @@
 </div>
         <main>
     <div class="schema-content container" vocab="http://oerschema.org/" typeof="rdfs:Class" resource="http://oerschema.org/Course">
-        <span class="right blue-grey-text text-lighten-1">v0.3.4</span>
+        <span class="right blue-grey-text text-lighten-1">v1.0.0</span>
         <h1 property="rdfs:label">Course</h1>
         
         
@@ -68,48 +68,23 @@
                     <td class="property-comment" property="rdfs:comment">The identifier of the course, i.e. MATH-100</td>
                 </tr>
                 
-                <tr typeof="rdfs:Property" resource="http://oerschema.org/primaryInstructor/">
-                    <td class="property-label" property="rdfs:label"><a href="/primaryInstructor">primaryInstructor</a></td>
-                    <td class="property-range">
-                            <link property="rangeIncludes" href="http://oerschema.org/Person">
-                            <a href="/Person/">Person</a> 
-                    </td>
-                    <td class="property-comment" property="rdfs:comment"></td>
-                </tr>
-                
-                <tr typeof="rdfs:Property" resource="http://oerschema.org/instructor/">
-                    <td class="property-label" property="rdfs:label"><a href="/instructor">instructor</a></td>
-                    <td class="property-range">
-                            <link property="rangeIncludes" href="http://oerschema.org/Person">
-                            <a href="/Person/">Person</a> 
-                    </td>
-                    <td class="property-comment" property="rdfs:comment"></td>
-                </tr>
-                
-                <tr typeof="rdfs:Property" resource="http://oerschema.org/duration/">
-                    <td class="property-label" property="rdfs:label"><a href="/duration">duration</a></td>
-                    <td class="property-range">
-                            <link property="rangeIncludes" href="http://oerschema.org/Enumeration">
-                            <a href="/Enumeration/">Enumeration</a> or
-                            <link property="rangeIncludes" href="http://oerschema.org/Number">
-                            <a href="/Number/">Number</a> or
-                            <link property="rangeIncludes" href="http://oerschema.org/Text">
-                            <a href="/Text/">Text</a> 
-                    </td>
-                    <td class="property-comment" property="rdfs:comment">The duration of the resource.</td>
-                </tr>
-                
-                <tr typeof="rdfs:Property" resource="http://oerschema.org/prerequisite/">
-                    <td class="property-label" property="rdfs:label"><a href="/prerequisite">prerequisite</a></td>
+                <tr typeof="rdfs:Property" resource="http://oerschema.org/coursePrerequisites/">
+                    <td class="property-label" property="rdfs:label"><a href="/coursePrerequisites">coursePrerequisites</a></td>
                     <td class="property-range">
                             <link property="rangeIncludes" href="http://oerschema.org/Course">
                             <a href="/Course/">Course</a> or
+                            <link property="rangeIncludes" href="http://oerschema.org/http://schema.org/AlignmentObject">
+                            <a href="/http://schema.org/AlignmentObject/">http://schema.org/AlignmentObject</a> or
+                            <link property="rangeIncludes" href="http://oerschema.org/http://schema.org/Course">
+                            <a href="/http://schema.org/Course/">http://schema.org/Course</a> or
+                            <link property="rangeIncludes" href="http://oerschema.org/http://schema.org/Text">
+                            <a href="/http://schema.org/Text/">http://schema.org/Text</a> or
                             <link property="rangeIncludes" href="http://oerschema.org/LearningComponent">
                             <a href="/LearningComponent/">LearningComponent</a> or
                             <link property="rangeIncludes" href="http://oerschema.org/LearningObjective">
                             <a href="/LearningObjective/">LearningObjective</a> 
                     </td>
-                    <td class="property-comment" property="rdfs:comment">A requirement to be completed before this resource can be performed.</td>
+                    <td class="property-comment" property="rdfs:comment">Requirements for taking the Course. May be completion of another Course or a textual description like &quot;permission of instructor&quot;. Requirements may be a pre-requisite competency, referenced using AlignmentObject.</td>
                 </tr>
                 
                 <tr typeof="rdfs:Property" resource="http://oerschema.org/institution/">
@@ -144,15 +119,6 @@
                     <td class="property-range">
                             <link property="rangeIncludes" href="http://oerschema.org/CourseSyllabus">
                             <a href="/CourseSyllabus/">CourseSyllabus</a> 
-                    </td>
-                    <td class="property-comment" property="rdfs:comment"></td>
-                </tr>
-                
-                <tr typeof="rdfs:Property" resource="http://oerschema.org/currentStanding/">
-                    <td class="property-label" property="rdfs:label"><a href="/currentStanding">currentStanding</a></td>
-                    <td class="property-range">
-                            <link property="rangeIncludes" href="http://oerschema.org/ClassStanding">
-                            <a href="/ClassStanding/">ClassStanding</a> 
                     </td>
                     <td class="property-comment" property="rdfs:comment"></td>
                 </tr>
@@ -275,6 +241,18 @@
                         </tr>
                     </tbody>
 
+                
+                    <tbody>
+                        <tr>
+                            <th colspan="3">
+                                <link property="rdfs:subClassOf" href="http://schema.org/Course">
+                                Extends class
+                                
+                                    <a href="http://schema.org/Course" target="_blank"><b>http://schema.org/Course</b></a>
+                                
+                            </th>
+                        </tr>
+                    </tbody>
         </table>
 
         <h2 class="h5">"Course" is the value type for Properties:</h2>
@@ -328,7 +306,6 @@
         
         
         
-        
     <table class="schema-table properties-table striped">
         <thead>
             <tr>
@@ -341,6 +318,18 @@
                 
                 <tr>
                     <td>
+                        <a href="/coursePrerequisites">coursePrerequisites</a>
+                    </td>
+                    <td>
+                                <a href="/Resource">Resource</a><br>
+                    </td>
+                    <td>
+                        Requirements for taking the Course. May be completion of another Course or a textual description like "permission of instructor". Requirements may be a pre-requisite competency, referenced using AlignmentObject.
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
                         <a href="/forCourse">forCourse</a>
                     </td>
                     <td>
@@ -348,18 +337,6 @@
                     </td>
                     <td>
                         The Course in which the resource is meant for.
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="/prerequisite">prerequisite</a>
-                    </td>
-                    <td>
-                                <a href="/Resource">Resource</a><br>
-                    </td>
-                    <td>
-                        A requirement to be completed before this resource can be performed.
                     </td>
                 </tr>
         </tbody>

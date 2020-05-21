@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" >
     <head>
         <meta charset="UTF-8">
-        <title>prerequisite | Open Educational Resource Schema</title>
+        <title>coursePrerequisites | Open Educational Resource Schema</title>
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
@@ -26,9 +26,9 @@
     </nav>
 </div>
         <main>
-    <div class="schema-content container" vocab="http://oerschema.org/" typeof="rdfs:Property" resource="http://oerschema.org/prerequisite">
-        <span class="right blue-grey-text text-lighten-1">v0.3.4</span>
-        <h1 property="rdfs:label">prerequisite</h1>
+    <div class="schema-content container" vocab="http://oerschema.org/" typeof="rdfs:Property" resource="http://oerschema.org/coursePrerequisites">
+        <span class="right blue-grey-text text-lighten-1">v1.0.0</span>
+        <h1 property="rdfs:label">coursePrerequisites</h1>
         <link property="rdfs:subClassOf" href="http://oerschema.org/Property">
         
         
@@ -43,10 +43,10 @@
 
 
 
-    <a href="/prerequisite" class="breadcrumb">prerequisite</a>
+    <a href="/coursePrerequisites" class="breadcrumb">coursePrerequisites</a>
 
         </div>
-        <p property="rdfs:comment">A requirement to be completed before this resource can be performed.</p>
+        <p property="rdfs:comment">Requirements for taking the Course. May be completion of another Course or a textual description like "permission of instructor". Requirements may be a pre-requisite competency, referenced using AlignmentObject.</p>
         
             <table class="schema-table range-table striped">
                 <thead>
@@ -69,6 +69,24 @@
                             <td>
                                 <link property="rangeIncludes" href="LearningComponent">
                                 <a href="http://oerschema.org/LearningComponent">LearningComponent</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <link property="rangeIncludes" href="http://schema.org/AlignmentObject">
+                                <a href="http://oerschema.org/http://schema.org/AlignmentObject">http://schema.org/AlignmentObject</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <link property="rangeIncludes" href="http://schema.org/Course">
+                                <a href="http://oerschema.org/http://schema.org/Course">http://schema.org/Course</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <link property="rangeIncludes" href="http://schema.org/Text">
+                                <a href="http://oerschema.org/http://schema.org/Text">http://schema.org/Text</a>
                             </td>
                         </tr>
                 </tbody>

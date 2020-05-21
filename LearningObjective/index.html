@@ -27,7 +27,7 @@
 </div>
         <main>
     <div class="schema-content container" vocab="http://oerschema.org/" typeof="rdfs:Class" resource="http://oerschema.org/LearningObjective">
-        <span class="right blue-grey-text text-lighten-1">v0.3.4</span>
+        <span class="right blue-grey-text text-lighten-1">v1.0.0</span>
         <h1 property="rdfs:label">LearningObjective</h1>
         
         
@@ -59,19 +59,6 @@
             </th>
         </tr>
                 
-                <tr typeof="rdfs:Property" resource="http://oerschema.org/prerequisite/">
-                    <td class="property-label" property="rdfs:label"><a href="/prerequisite">prerequisite</a></td>
-                    <td class="property-range">
-                            <link property="rangeIncludes" href="http://oerschema.org/Course">
-                            <a href="/Course/">Course</a> or
-                            <link property="rangeIncludes" href="http://oerschema.org/LearningComponent">
-                            <a href="/LearningComponent/">LearningComponent</a> or
-                            <link property="rangeIncludes" href="http://oerschema.org/LearningObjective">
-                            <a href="/LearningObjective/">LearningObjective</a> 
-                    </td>
-                    <td class="property-comment" property="rdfs:comment">A requirement to be completed before this resource can be performed.</td>
-                </tr>
-                
                 <tr typeof="rdfs:Property" resource="http://oerschema.org/forCourse/">
                     <td class="property-label" property="rdfs:label"><a href="/forCourse">forCourse</a></td>
                     <td class="property-range">
@@ -88,6 +75,25 @@
                             <a href="/LearningComponent/">LearningComponent</a> 
                     </td>
                     <td class="property-comment" property="rdfs:comment">Which LearningComponent the resource supports (inverse of hasComponent)</td>
+                </tr>
+                
+                <tr typeof="rdfs:Property" resource="http://oerschema.org/coursePrerequisites/">
+                    <td class="property-label" property="rdfs:label"><a href="/coursePrerequisites">coursePrerequisites</a></td>
+                    <td class="property-range">
+                            <link property="rangeIncludes" href="http://oerschema.org/Course">
+                            <a href="/Course/">Course</a> or
+                            <link property="rangeIncludes" href="http://oerschema.org/http://schema.org/AlignmentObject">
+                            <a href="/http://schema.org/AlignmentObject/">http://schema.org/AlignmentObject</a> or
+                            <link property="rangeIncludes" href="http://oerschema.org/http://schema.org/Course">
+                            <a href="/http://schema.org/Course/">http://schema.org/Course</a> or
+                            <link property="rangeIncludes" href="http://oerschema.org/http://schema.org/Text">
+                            <a href="/http://schema.org/Text/">http://schema.org/Text</a> or
+                            <link property="rangeIncludes" href="http://oerschema.org/LearningComponent">
+                            <a href="/LearningComponent/">LearningComponent</a> or
+                            <link property="rangeIncludes" href="http://oerschema.org/LearningObjective">
+                            <a href="/LearningObjective/">LearningObjective</a> 
+                    </td>
+                    <td class="property-comment" property="rdfs:comment">Requirements for taking the Course. May be completion of another Course or a textual description like &quot;permission of instructor&quot;. Requirements may be a pre-requisite competency, referenced using AlignmentObject.</td>
                 </tr>
         </tbody>
                 
@@ -223,7 +229,6 @@
         
         
         
-        
     <table class="schema-table properties-table striped">
         <thead>
             <tr>
@@ -236,6 +241,18 @@
                 
                 <tr>
                     <td>
+                        <a href="/coursePrerequisites">coursePrerequisites</a>
+                    </td>
+                    <td>
+                                <a href="/Resource">Resource</a><br>
+                    </td>
+                    <td>
+                        Requirements for taking the Course. May be completion of another Course or a textual description like "permission of instructor". Requirements may be a pre-requisite competency, referenced using AlignmentObject.
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
                         <a href="/hasLearningObjective">hasLearningObjective</a>
                     </td>
                     <td>
@@ -243,18 +260,6 @@
                     </td>
                     <td>
                         A LearningObjective gained as a result of an InstructionalPattern .
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <a href="/prerequisite">prerequisite</a>
-                    </td>
-                    <td>
-                                <a href="/Resource">Resource</a><br>
-                    </td>
-                    <td>
-                        A requirement to be completed before this resource can be performed.
                     </td>
                 </tr>
         </tbody>
