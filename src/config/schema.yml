@@ -1,6 +1,6 @@
 # All classes and properties are also subClasses of themselves
 # All classes have the rdfs:type of rdfs:Class
-version: 0.3.4
+version: 1.0.0
 classes:
   Resource:
     label: "Resource"
@@ -36,17 +36,14 @@ classes:
     comment: "An instructional course"
     subClassOf:
       - "Resource"
+      - "http://schema.org/Course"
     properties:
       - "courseIdentifier"
-      - "primaryInstructor"
-      - "instructor"
-      - "duration"
-      - "prerequisite"
+      - "coursePrerequisites"
       - "institution"
       - "department"
       - "program"
       - "syllabus"
-      - "currentStanding"
       - "deliveryFormat"
       - "enrollmentSize"
       - "section"
@@ -57,15 +54,14 @@ classes:
     comment: "A specific instance of a course offered during a specific term"
     subClassOf:
       - "Resource"
+      - "http://schema.org/CourseInstance"
     properties:
       - "sectionIdentifier"
       - "primaryInstructor"
-      - "instructor"
       - "syllabus"
       - "forCourse"
       - "termOffered"
       - "enrollmentSize"
-      - "duration"
       - "deliveryFormat"
 
   CourseSyllabus:
@@ -99,11 +95,11 @@ classes:
     subClassOf:
       - "Resource"
       - "http://schema.org/CreativeWork"
+      - "https://schema.org/AlignmentObject"
     properties:
       - "forCourse"
       - "forComponent"
       - "hasComponent"
-      - "duration"
       - "doTask"
       - "hasLearningObjective"
       - "deliveryFormat"
@@ -114,9 +110,9 @@ classes:
     subClassOf:
       - "Resource"
     properties:
-      - "prerequisite"
       - "forCourse"
       - "forComponent"
+      - "coursePrerequisites"
 
   AssociatedMaterial:
     label: "AssociatedMaterial"
@@ -711,18 +707,21 @@ properties:
     domain:
       - "Resource"
 
-  prerequisite:
-    label: "prerequisite"
-    comment: "A requirement to be completed before this resource can be performed."
+  coursePrerequisites:
+    label: "coursePrerequisites"
+    comment: "Requirements for taking the Course. May be completion of another Course or a textual description like \"permission of instructor\". Requirements may be a pre-requisite competency, referenced using AlignmentObject."
     range:
       - "Course"
       - "LearningObjective"
       - "LearningComponent"
+      - "http://schema.org/AlignmentObject"
+      - "http://schema.org/Course"
+      - "http://schema.org/Text"
     domain:
       - "Resource"
 
   institution:
-    label: "insitution"
+    label: "institution"
     comment: ""
     range:
       - "Organization"
@@ -844,17 +843,6 @@ properties:
     domain:
       - "LearningComponent"
       - "Course"
-
-  duration:
-    label: "duration"
-    comment: "The duration of the resource."
-    range:
-      - "Number"
-      - "Enumeration"
-      - "Text"
-    domain:
-      - "Activity"
-      - "Assessment"
 
   material:
     label: "material"
