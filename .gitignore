@@ -35,3 +35,5 @@ dist/*
 src/views/pages/*
 !src/views/pages/docs
 !src/views/pages/index.njk
+
+dist
