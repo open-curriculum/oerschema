@@ -1,5 +1,6 @@
 {
   "name": "oerschema",
+<<<<<<< Updated upstream
   "version": "1.0.0",
   "description": "OER Vocabulary for RDF",
   "private": true,
@@ -31,4 +32,34 @@
     "nunjucks-highlight.js": "*",
     "yamljs": "^0.3.0"
   }
+=======
+  "version": "1.1.0",
+  "description": "Your project description",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build"
+  },
+  "dependencies": {
+    "browser-sync": "^2.27.7",
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-nunjucks": "^5.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-uglify": "^3.0.2",
+    "highlight.js": "^11.5.0",
+    "jsonld": "^8.3.2",
+    "n3": "^1.22.3",
+    "nunjucks": "^3.2.3",
+    "rdf-ext": "^2.5.2",
+    "sass": "^1.43.4",
+    "yamljs": "^0.3.0"
+  },
+  "author": "Your Name",
+  "license": "ISC"
+>>>>>>> Stashed changes
 }

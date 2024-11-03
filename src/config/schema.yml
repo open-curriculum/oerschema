@@ -25,11 +25,13 @@ classes:
       - "forCourse"
 
   TableOfContentsEntry:
+    label: "Table of Contents Entry"
+    comment: "An entry in the table of contents."
     subClassOf:
-       - "TableOfContents"
+      - "http://schema.org/Thing"
     properties:
-       - "title"
-       - "forComponent"
+      - "entryTitle"
+      - "entryPage"
 
   Course:
     label: "Course"
