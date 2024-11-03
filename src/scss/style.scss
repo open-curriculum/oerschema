@@ -73,7 +73,8 @@ ul.browser-default li {
   }
 
   &:before {
-    @extend .breadcrumb:before;
+    @extend .breadcrumb;
+    @extend :before;
     color: color("blue-grey", "lighten-2");
     font-size: 20px;
   }
@@ -89,7 +90,7 @@ nav {
 }
 
 footer.page-footer {
-  @extend footer.page-footer;
+  @extend footer, .page-footer;
   background: $footer-bg-color;
 }
 
