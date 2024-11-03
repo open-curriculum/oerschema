@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import nunjucks from 'nunjucks';
 import gnj from 'gulp-nunjucks';
 import gulpSass from 'gulp-sass';
-import sass from 'sass';
+import * as sass from 'sass';
 import concat from 'gulp-concat';
 import cleancss from 'gulp-clean-css';
 import uglify from 'gulp-uglify';
@@ -186,14 +186,22 @@ function browserSyncServer() {
         open: "local"
     });
 }
-
 const template = gulp.series(resetSchema, buildSchema, buildTemplates);
 const assets = gulp.parallel(styles, js, fonts, images);
-const build = gulp.series(resetSchema, buildSchema, gulp.parallel(styles, js, fonts, images, buildTemplates, turtle));
+const build = gulp.series(
+  resetSchema,
+  buildSchema,
+  gulp.parallel(styles, js, fonts, images, buildTemplates, turtle)
+);
 
-export { resetSchema, buildSchema, template };
+// Export build along with existing tasks
+export { resetSchema, buildSchema, template, build };
+
+// Other exports remain unchanged
 export const clearSchema = resetSchema;
 export const resetSchemaTask = gulp.series(resetSchema, buildSchema);
 export const templateTask = template;
 export const server = gulp.series(gulp.parallel(assets, template), browserSyncServer, watch);
+
+// Default task remains as build with server
 export default gulp.series(build, gulp.parallel(browserSyncServer, watch));

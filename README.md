@@ -7,9 +7,11 @@ A RDF vocabulary for OER content on the web.
 
 ## Local development setup:
 
-$ `npm ci`
+$ `npm install`
 
-$ `gulp server` ([To install Gulp 4](https://gulpjs.com/docs/en/getting-started/quick-start))
+$ `npm run build`
+
+$ `npm start` ([To install Gulp 4](https://gulpjs.com/docs/en/getting-started/quick-start))
 
 ## Schema development
 

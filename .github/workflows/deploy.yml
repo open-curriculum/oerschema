@@ -23,7 +23,7 @@ jobs:
       run: npm install
 
     - name: Build project
-      run: npm build  # Adjust this command to your build script
+      run: npm run build  # Adjust this command to your build script
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
