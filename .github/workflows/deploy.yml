@@ -5,17 +5,17 @@ on:
     branches:
       - master  # Change this to your default branch if it's not 'main'
   workflow_dispatch:  # Allows manual triggering of the workflow
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3  # Updated to v3
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3  # Updated to v3
       with:
         node-version: '18'  # Use the Node.js version you prefer
 
