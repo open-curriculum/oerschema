@@ -1,34 +1,34 @@
 {
   "name": "oerschema",
-  "version": "1.0.0",
-  "description": "OER Vocabulary for RDF",
-  "private": true,
-  "main": "index.html",
+  "version": "1.1.0",
+  "description": "Your project description",
+  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "install": "node_modules/.bin/gulp",
-    "server": "node_modules/.bin/gulp server",
-    "build-schema": "node_modules/.bin/gulp buildSchema",
-    "template": "node_modules/.bin/gulp template",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "start": "gulp",
+    "build": "gulp build"
+  },
+  "dependencies": {
+    "gulp-nunjucks": "^5.0.0",
+    "highlight.js": "^11.5.0",
+    "nunjucks": "^3.2.3"
   },
   "author": "Alex Boyce <curiosity26@gmail.com>",
   "license": "SEE LICENSE IN LICENSE",
-  "dependencies": {
-    "browser-sync": "^2.26.5",
-    "del": "^2.2.2",
-    "gh-pages": "^2.0.1",
-    "gulp": "^4.0.2",
-    "gulp-clean-css": "^4.2.0",
-    "gulp-concat": "*",
-    "gulp-debug": "^4.0.0",
-    "gulp-nunjucks": "^4.0.0",
+  "devDependencies": {
+    "browser-sync": "^3.0.3",
+    "del": "^8.0.0",
+    "gulp": "^5.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-nunjucks-render": "^2.2.3",
     "gulp-plumber": "^1.2.1",
-    "gulp-rename": "^1.4.0",
-    "gulp-sass": "^4.0.2",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
     "gulp-uglify": "^3.0.2",
-    "highlight.js": "^10.4.1",
-    "nunjucks": "^3.2.0",
-    "nunjucks-highlight.js": "*",
+    "jsonld": "^8.3.2",
+    "n3": "^1.22.3",
+    "sass": "^1.80.6",
     "yamljs": "^0.3.0"
   }
 }
