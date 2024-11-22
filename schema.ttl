@@ -1,0 +1,277 @@
+@prefix ex: <http://example.org/>.
+@prefix schema: <http://schema.org/>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+
+ex:ActionType a rdfs:Class;
+    rdfs:comment "A datatype declaring the type of action taken";
+    rdfs:label "ActionType";
+    rdfs:subClassOf "DataType".
+ex:Activity schema:property "assessedBy", "gradingFormat";
+    a rdfs:Class;
+    rdfs:comment "An activity performed by students which can be assessed and graded.";
+    rdfs:label "Activity";
+    rdfs:subClassOf "Task".
+ex:Assess a rdfs:Class;
+    rdfs:comment "Assess is involved with the resource";
+    rdfs:label "Assess";
+    rdfs:subClassOf "ActionType".
+ex:Assessment schema:property "assessing", "gradingFormat", "material";
+    a rdfs:Class;
+    rdfs:comment "An assessment of a student's activity.";
+    rdfs:label "Assessment";
+    rdfs:subClassOf "InstructionalPattern", "http://schema.org/Action".
+ex:AssociatedMaterial a rdfs:Class;
+    rdfs:comment "Material that is associated with the course.";
+    rdfs:label "AssociatedMaterial";
+    rdfs:subClassOf "LearningComponent".
+ex:Boolean a rdfs:Class;
+    rdfs:comment "A truthy value";
+    rdfs:label "Boolean";
+    rdfs:subClassOf "DataType", "http://schema.org/Boolean".
+ex:Class schema:property "supersededBy";
+    a rdfs:Class;
+    rdfs:label "Class";
+    rdfs:subClassOf "Intangible", "http://schema.org/Class".
+ex:ClassStanding a rdfs:Class;
+    rdfs:label "ClassStanding";
+    rdfs:subClassOf "Intangible".
+ex:CompletionGradeFormat a rdfs:Class;
+    rdfs:comment "A boolean grading format determining if the activity had been completed.";
+    rdfs:label "CompletionGradeFormat";
+    rdfs:subClassOf "GradeFormat".
+ex:Course schema:property "courseIdentifier", "coursePrerequisites", "deliveryFormat", "department", "enrollmentSize", "institution", "program", "section", "syllabus", "termOffered";
+    a rdfs:Class;
+    rdfs:comment "An instructional course";
+    rdfs:label "Course";
+    rdfs:subClassOf "Resource", "http://schema.org/Course".
+ex:CourseSection schema:property "deliveryFormat", "enrollmentSize", "forCourse", "primaryInstructor", "sectionIdentifier", "syllabus", "termOffered";
+    a rdfs:Class;
+    rdfs:comment "A specific instance of a course offered during a specific term";
+    rdfs:label "CourseSection";
+    rdfs:subClassOf "Resource", "http://schema.org/CourseInstance".
+ex:CourseSyllabus schema:property "associatedMedia", "forCourse", "section";
+    a rdfs:Class;
+    rdfs:label "CourseSyllabus";
+    rdfs:subClassOf "Resource".
+ex:CreativeWork a rdfs:Class;
+    rdfs:label "CreativeWork";
+    rdfs:subClassOf "Thing", "http://schema.org/CreativeWork".
+ex:DataType a rdfs:Class;
+    rdfs:comment "A general type for data values.";
+    rdfs:label "DataType";
+    rdfs:subClassOf "Class", "http://schema.org/DataType", "rdfs:datatype".
+ex:Date a rdfs:Class;
+    rdfs:comment "A year, month, day value";
+    rdfs:label "Date";
+    rdfs:subClassOf "DataType", "http://schema.org/Date".
+ex:DateTime a rdfs:Class;
+    rdfs:comment "A value with year, month, day, hour, minute, seconds (optional) and timezone (optional).";
+    rdfs:label "DateTime";
+    rdfs:subClassOf "DataType", "http://schema.org/DateTime".
+ex:Discussing a rdfs:Class;
+    rdfs:comment "Discussing is involved with the resource";
+    rdfs:label "Discussing";
+    rdfs:subClassOf "ActionType".
+ex:Enumeration schema:property "supersededBy";
+    a rdfs:Class;
+    rdfs:label "Enumeration";
+    rdfs:subClassOf "Intangible", "http://schema.org/Enumeration".
+ex:FaceToFaceFormat a rdfs:Class;
+    rdfs:comment "An in-person format where participants are physically present.";
+    rdfs:label "FaceToFaceFormat";
+    rdfs:subClassOf "Format".
+ex:False a rdfs:Class;
+    rdfs:comment "A truthy value of False.";
+    rdfs:label "False";
+    rdfs:subClassOf "Boolean", "http://schema.org/False".
+ex:Format a rdfs:Class;
+    rdfs:comment "The format of the resource.";
+    rdfs:label "Format";
+    rdfs:subClassOf "Intangible".
+ex:GradeFormat a rdfs:Class;
+    rdfs:comment "The grading format used in activities and assessments.";
+    rdfs:label "GradeFormat";
+    rdfs:subClassOf "Intangible".
+ex:ImageObject a rdfs:Class;
+    rdfs:comment "An image";
+    rdfs:label "ImageObject";
+    rdfs:subClassOf "MediaObject", "http://schema.org/ImageObject".
+ex:InstructionalPattern a rdfs:Class;
+    rdfs:comment "An assembly of learning components arranged to deliver a learning experience";
+    rdfs:label "InstructionalPattern";
+    rdfs:subClassOf "LearningComponent".
+ex:Intangible a rdfs:Class;
+    rdfs:comment "A utility class that serves as the umbrella for a number of 'intangible' things such as quantities, structured values, etc.";
+    rdfs:label "Intangible";
+    rdfs:subClassOf "Thing", "http://schema.org/Intangible".
+ex:Integer a rdfs:Class;
+    rdfs:comment "A numeric value of 0 or greater.";
+    rdfs:label "Integer";
+    rdfs:subClassOf "Number", "http://schema.org/Integer".
+ex:LearningComponent schema:property "deliveryFormat", "doTask", "forComponent", "forCourse", "hasComponent", "hasLearningObjective";
+    a rdfs:Class;
+    rdfs:comment "A generic component as a base to learning content";
+    rdfs:label "LearningComponent";
+    rdfs:subClassOf "Resource", "http://schema.org/CreativeWork", "https://schema.org/AlignmentObject".
+ex:LearningObjective schema:property "coursePrerequisites", "forComponent", "forCourse";
+    a rdfs:Class;
+    rdfs:label "LearningObjective";
+    rdfs:subClassOf "Resource".
+ex:Lesson a rdfs:Class;
+    rdfs:label "Lesson";
+    rdfs:subClassOf "InstructionalPattern".
+ex:LetterGradeFormat a rdfs:Class;
+    rdfs:comment "A grading format using a letter value.";
+    rdfs:label "LetterGradeFormat";
+    rdfs:subClassOf "GradeFormat".
+ex:Listening a rdfs:Class;
+    rdfs:comment "Listening is involved with the resource";
+    rdfs:label "Listening";
+    rdfs:subClassOf "ActionType".
+ex:Making a rdfs:Class;
+    rdfs:comment "Making is involved with the resource";
+    rdfs:label "Making";
+    rdfs:subClassOf "ActionType".
+ex:MediaObject a rdfs:Class;
+    rdfs:comment "A media object such as a video or interactive object.";
+    rdfs:label "MediaObject";
+    rdfs:subClassOf "CreativeWork", "http://schema.org/MediaObject".
+ex:Module a rdfs:Class;
+    rdfs:label "Module";
+    rdfs:subClassOf "InstructionalPattern".
+ex:No a rdfs:Class;
+    rdfs:comment "A truthy value of No.";
+    rdfs:label "No";
+    rdfs:subClassOf "Boolean".
+ex:Number a rdfs:Class;
+    rdfs:comment "A general numeric value.";
+    rdfs:label "Number";
+    rdfs:subClassOf "DataType", "http://schema.org/Number".
+ex:Observing a rdfs:Class;
+    rdfs:comment "Observing is involved with the resource";
+    rdfs:label "Observing";
+    rdfs:subClassOf "ActionType".
+ex:Organization a rdfs:Class;
+    rdfs:label "Organization";
+    rdfs:subClassOf "Thing", "http://schema.org/Organization".
+ex:PercentGradeFormat a rdfs:Class;
+    rdfs:comment "A grading format using a percentage value.";
+    rdfs:label "PercentGradeFormat";
+    rdfs:subClassOf "GradeFormat".
+ex:Person a rdfs:Class;
+    rdfs:label "Person";
+    rdfs:subClassOf "Thing", "http://schema.org/Person".
+ex:Place a rdfs:Class;
+    rdfs:label "Place";
+    rdfs:subClassOf "Thing", "http://schema.org/Place".
+ex:PointGradeFormat a rdfs:Class;
+    rdfs:comment "A grading format using numerical points";
+    rdfs:label "PointGradeFormat";
+    rdfs:subClassOf "GradeFormat".
+ex:Practice a rdfs:Class;
+    rdfs:label "Practice";
+    rdfs:subClassOf "Task".
+ex:Presenting a rdfs:Class;
+    rdfs:comment "Presenting is involved with the resource";
+    rdfs:label "Presenting";
+    rdfs:subClassOf "ActionType".
+ex:Project a rdfs:Class;
+    rdfs:comment "A collection of activities, each of which test a particular skill, demonstrating proficiency across a range of skills";
+    rdfs:label "Project";
+    rdfs:subClassOf "Activity".
+ex:Property schema:property "domainIncludes", "inverseOf", "rangeIncludes", "supersededBy";
+    a rdfs:Class;
+    rdfs:label "Property";
+    rdfs:subClassOf "Intangible", "http://schema.org/Intangible".
+ex:Quiz a rdfs:Class;
+    rdfs:comment "A quiz assessment";
+    rdfs:label "Quiz";
+    rdfs:subClassOf "Assessment".
+ex:Reading a rdfs:Class;
+    rdfs:comment "Reading is involved with the resource";
+    rdfs:label "Reading";
+    rdfs:subClassOf "ActionType".
+ex:ReferencedMaterial a rdfs:Class;
+    rdfs:comment "Material associated with an instructional component that is referenced by that component. Examples include primary sources analysed in activities or assessments, material studied in Courses, raw material used in activities or assessments";
+    rdfs:label "ReferencedMaterial";
+    rdfs:subClassOf "AssociatedMaterial".
+ex:Reflecting a rdfs:Class;
+    rdfs:comment "Reflecting is involved with the resource";
+    rdfs:label "Refecting";
+    rdfs:subClassOf "ActionType".
+ex:Researching a rdfs:Class;
+    rdfs:comment "Researching is involved with the resource";
+    rdfs:label "ResearchingActivity";
+    rdfs:subClassOf "ActionType".
+ex:Resource schema:property "childOf", "forCourse", "forTopic", "mainContent", "parentOf";
+    a rdfs:Class;
+    rdfs:comment "A general component that all open educational resources are based from.";
+    rdfs:label "Resource";
+    rdfs:subClassOf "http://creativecommons.org/ns#Work", "http://schema.org/Thing".
+ex:StructuredValue a rdfs:Class;
+    rdfs:label "StructuredValue";
+    rdfs:subClassOf "Intangible", "http://schema.org/StructuredValue".
+ex:Submission a rdfs:Class;
+    rdfs:comment "An assessment on material provided by a Student";
+    rdfs:label "Submission";
+    rdfs:subClassOf "Assessment".
+ex:SupplementalMaterial a rdfs:Class;
+    rdfs:comment "Material associated with an instructional component that provides additional information about that component. Examples include Curriculum guides, Family course guides Student study guides.";
+    rdfs:label "SupplementalMaterial";
+    rdfs:subClassOf "AssociatedMaterial".
+ex:SupportingMaterial a rdfs:Class;
+    rdfs:comment "Material associated with an instructional component that teaches the learning objectives of that component.";
+    rdfs:label "SupportingMaterial";
+    rdfs:subClassOf "AssociatedMaterial".
+ex:TableOfContents schema:property "childOf", "entry", "forCourse";
+    a rdfs:Class;
+    rdfs:label "TableOfContents";
+    rdfs:subClassOf "http://schema.org/Thing".
+ex:TableOfContentsEntry schema:property "forComponent", "title";
+    a rdfs:Class;
+    rdfs:label "TableOfContentsEntry";
+    rdfs:subClassOf "TableOfContents".
+ex:Task schema:property "material";
+    a rdfs:Class;
+    rdfs:comment "A task given to a student";
+    rdfs:label "Task";
+    rdfs:subClassOf "InstructionalPattern", "http://schema.org/Action".
+ex:Text a rdfs:Class;
+    rdfs:label "Text";
+    rdfs:subClassOf "DataType", "http://schema.org/Text".
+ex:Thing schema:property "additionalType", "description", "image", "mainEntityOfPage", "name", "sameAs", "uri";
+    a rdfs:Class;
+    rdfs:comment "The most generic type of items.";
+    rdfs:label "Thing";
+    rdfs:subClassOf "http://schema.org/Thing".
+ex:Time a rdfs:Class;
+    rdfs:comment "A value including hour, minute, seconds (optional) and timezone (optional).";
+    rdfs:label "Time";
+    rdfs:subClassOf "DataType", "http://schema.org/Time".
+ex:Topic schema:property "material";
+    a rdfs:Class;
+    rdfs:comment "The context of a LearningComponent";
+    rdfs:label "Topic";
+    rdfs:subClassOf "Resource".
+ex:True a rdfs:Class;
+    rdfs:comment "A truthy value of True.";
+    rdfs:label "True";
+    rdfs:subClassOf "Boolean", "http://schema.org/True".
+ex:URL a rdfs:Class;
+    rdfs:comment "A web address";
+    rdfs:label "URL";
+    rdfs:subClassOf "Text", "http://schema.org/URL".
+ex:Unit a rdfs:Class;
+    rdfs:label "Unit";
+    rdfs:subClassOf "InstructionalPattern".
+ex:Watching a rdfs:Class;
+    rdfs:comment "Watching is involved with the resource";
+    rdfs:label "Watching";
+    rdfs:subClassOf "ActionType".
+ex:Writing a rdfs:Class;
+    rdfs:label "Writing is involved with the resource";
+    rdfs:subClassOf "ActionType".
+ex:Yes a rdfs:Class;
+    rdfs:comment "A truthy value of Yes.";
+    rdfs:label "Yes";
+    rdfs:subClassOf "Boolean".

@@ -52,35 +52,17 @@
         <dt><b>vocab=""</b></dt>
         <dd>
             The <code>vocab</code> attribute specified the root URL of the vocabulary you would like to apply. The vocabulary is applied to the element itself and all child elements. For this reason, the vocab attribute is commonly applied to the <code>&lt;body&gt;</code> tag.
-        <pre><code class="hljs html"><span class="hljs-comment">&lt;!-- http://example.com/my-course.html --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">vocab</span>=<span class="hljs-string">&quot;http://oerschema.org&quot;</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- ... --&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+        <pre><code class="hljs plaintext"></code></pre>
         </dd>
         <dt><b>typeof=""</b></dt>
         <dd>
             <p>The <code>typeof</code> attribute allows you to specify which <strong>type</strong> you want to apply to the element.</p>
-            <pre><code class="hljs html"><span class="hljs-comment">&lt;!-- http://example.com/my-course.html --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">vocab</span>=<span class="hljs-string">&quot;http://oerschema.org&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">typeof</span>=<span class="hljs-string">&quot;Course&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>My Course<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>A description of my course.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-        <span class="hljs-comment">&lt;!-- ... --&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+            <pre><code class="hljs plaintext"></code></pre>
         </dd>
         <dt><b>property=""</b></dt>
         <dd>
             <p>The <code>property</code> attribute is used to specify which property to use for the associated <strong>type</strong>. The <code>property</code> attribute is placed on a child element whose parent makes use of the <code>typeof</code> attribte. The property attribute's value is the name of property to use. The property name must be a valid property name associated with the <strong>type</strong> referenced in the parent element's <code>typeof</code> attribute.</p>
-            <pre><code class="hljs html"><span class="hljs-comment">&lt;!-- http://example.com/my-course.html --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">vocab</span>=<span class="hljs-string">&quot;http://oerschema.org&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">typeof</span>=<span class="hljs-string">&quot;Course&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;courseIdentifier&quot;</span>&gt;</span>My Course<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;description&quot;</span>&gt;</span>A description of my course.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/path/to/my/image.jpg&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;http://schema.org/image&quot;</span>&gt;</span>
-        <span class="hljs-comment">&lt;!-- ... --&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+            <pre><code class="hljs plaintext"></code></pre>
             <p>In the example above, we've create an object using the type Course located in the http://oerschema.org/ vocabulary. We've described the Course object using the <code>courseIdentifier</code> and <code>description</code> properties. The values of these properties is the content of their respective elements. So <code>courseIdentifier</code>'s value is <code>My Course</code> and <code>description</code>'s value is <code>A description of my course.</code></p>
             <p>Take notice of the <code>&lt;img&gt;</code> element. The value of the property attribute is a URL to a property found in schema.org. Since <a href="/Course">Course</a> is a child of <a href="/Resource">Resource</a> which also extends <a href="http://schema.org/Thing">http://schema.org/Thing</a>, all of the properties of http://schema.org/Thing can also be used on <a href="/Course">Course</a>, but since they exist in a different vocabulary, you have to provide the full URL path of the property. In this case, the value of the <code>http://schema.org/image</code> property is actually the value of the <code>src</code> parameter, <code>/path/to/my/image.jpg</code>. Later, you'll see how to use <code>prefixes</code> with the <code>vocab</code> attribute to make it easier to use multiple libraries.</p>
         </dd>
@@ -88,81 +70,27 @@
         <dd>
             <p>So far, we've created a <a href="/Course">Course</a> object and applied some attributes to it. But how do we reference this object? Enter the <code>resource</code> attribute. Without the <code>resource</code> attribute, you must use the full URL of the HTML page as a reference, but this makes this complicated when there are multiple objects on a page and they need to reference one another.</p>
             <p>What do I mean by reference? I mean create a relationship. The <code>resource</code> attribute allows an object to have be identified for use as a value of a <strong>property</strong>. Let's see an example:</p>
-            <pre><code class="hljs html"><span class="hljs-comment">&lt;!-- http://example.com/my-course.html --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">vocab</span>=<span class="hljs-string">&quot;http://oerschema.org&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">typeof</span>=<span class="hljs-string">&quot;Course&quot;</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;#my-course&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;courseIdentifier&quot;</span>&gt;</span>My Course<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;description&quot;</span>&gt;</span>A description of my course.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/path/to/my/image.jpg&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;http://schema.org/image&quot;</span>&gt;</span>
-        <span class="hljs-comment">&lt;!-- ... --&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+            <pre><code class="hljs plaintext"></code></pre>
             <p>First, notice the <code>#</code> prefix on the resource name. Essentially, the <code>resource</code> is the unique URL of the object. On the web, the URL gets you to the page, but a page anchor, which starts with the prefix <code>#</code>, takes you to the element on the page. So by prefixing our resource name with <code>#</code>, we're just saying that this is the element on the page with this ID.</p>
             <p>Next, we need to put it to good use. In the following example, you'll see how the <code>resource</code> attribute and its value play a role with mapping a schema object as a value of a property in another object on the same page.</p>
-            <pre><code class="hljs html"><span class="hljs-comment">&lt;!-- http://example.com/my-course.html --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">vocab</span>=<span class="hljs-string">&quot;http://oerschema.org&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">typeof</span>=<span class="hljs-string">&quot;Course&quot;</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;#my-course&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;courseIdentifier&quot;</span>&gt;</span>My Course<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;description&quot;</span>&gt;</span>A description of my course.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/path/to/my/image.jpg&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;http://schema.org/image&quot;</span>&gt;</span>
-        <span class="hljs-comment">&lt;!-- ... --&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;primaryInstructor&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#instructor&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">typeof</span>=<span class="hljs-string">&quot;Person&quot;</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;#instructor&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;name&quot;</span>&gt;</span>Dr. Bob Jones<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;description&quot;</span>&gt;</span>An instructor at a university somewhere.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+            <pre><code class="hljs plaintext"></code></pre>
             <p>Now we've created another object, <a href="/Person">Person</a>, as a sibling to <a href="/Course">Course</a>. We want relate the <a href="/Person">Person</a> as the <a href="/primaryInstructor">primaryInstructor</a> of the <a href="/Course">Course</a>. In order to do so, we make use of the <code>&lt;link&gt;</code> tag. The <code>&lt;link&gt;</code> tag doesn't render any output to the page. Just like a <code>&lt;meta&gt;</code> tag, it's only for use as metadata on the page. More specifically, for the linking of resource.</p>
             <p>In the example above, the <code>&lt;link&gt;</code> element is a child of the <a href="/Course">Course</a> element and has the <code>property</code> attribute with a value of <a href="/primaryInstructor">primaryInstructor</a>. The <code>href</code> attribute on the <code>&lt;link&gt;</code> element is the URL of the resource to be used as the value of the <a href="/primaryInstructor">primaryInstructor</a> property on the <a href="/Course">Course</a> object. Since they are on the same page, only the value of the <code>resource</code> attribute on the <a href="/Person">Person</a> element is required to link the <a href="/Person">Person</a> resource to the <a href="/Course">Course</a> resource.</p>
             <p>Let's pretend that this instructor, Dr. Jones, is teaching another course and also puts his course online. He could reference the <a href="/Person">Person</a> object, <code>#instructor</code>, from the http://example.com/my-course.html my course page:</p>
-            <pre><code class="hljs html"><span class="hljs-comment">&lt;!-- http://example.com/my-other-course.html --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">vocab</span>=<span class="hljs-string">&quot;http://oerschema.org&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">typeof</span>=<span class="hljs-string">&quot;Course&quot;</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;#my-course&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;courseIdentifier&quot;</span>&gt;</span>My Other Course<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-        <span class="hljs-comment">&lt;!-- ... --&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;primaryInstructor&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;http://example.com/my-course.html#instructor&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+            <pre><code class="hljs plaintext"></code></pre>
             <p>Alternatively, he may want to use an <code>&lt;a&gt;</code> tag in place of the <code>&lt;link&gt;</code> tag. This will render a link on the page that students can see and click on.</p>
-            <pre><code class="hljs html"><span class="hljs-comment">&lt;!-- http://example.com/my-other-course.html --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">vocab</span>=<span class="hljs-string">&quot;http://oerschema.org&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">typeof</span>=<span class="hljs-string">&quot;Course&quot;</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;#my-course&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;courseIdentifier&quot;</span>&gt;</span>My Other Course<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-        <span class="hljs-comment">&lt;!-- ... --&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;primaryInstructor&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;http://example.com/my-course.html#instructor&quot;</span>&gt;</span>Instructor Bio<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+            <pre><code class="hljs plaintext"></code></pre>
             <p>With respect to OER content, you may have an introduction page to your course, a syllabus page, multiple lesson or module pages and different supporting materials. Using the <code>resource</code> attribute with <code>&lt;link&gt;</code> and <code>&lt;a&gt;</code> elements to link resources together contextually helps to connect content pieces into a larger "sum of parts" that becomes a complete resource.</p>
             <p>There may also be times when you want to apply metadata to content without having it render on the page, but the value is just basic text. The <code>&lt;meta&gt;</code> tag is very useful for this.</p>
-            <pre><code class="hljs html"><span class="hljs-comment">&lt;!-- http://example.com/my-other-course.html --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">vocab</span>=<span class="hljs-string">&quot;http://oerschema.org&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">typeof</span>=<span class="hljs-string">&quot;Course&quot;</span> <span class="hljs-attr">resource</span>=<span class="hljs-string">&quot;#my-course&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;courseIdentifier&quot;</span>&gt;</span>My Other Course<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;duration&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;3 Weeks&quot;</span>&gt;</span>
-        <span class="hljs-comment">&lt;!-- ... --&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;primaryInstructor&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;http://example.com/my-course.html#instructor&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+            <pre><code class="hljs plaintext"></code></pre>
         </dd>
         <dt><b>prefix=""</b></dt>
         <dd>
             <p>The <code>prefix</code> attribute allows multiple vocabularies to work together without collision. You may use the <code>vocab</code> to declare a primary vocabulary and <code>prefix</code> to include new vocabs with a namespace prefix. Just like <code>vocab</code>, <code>prefix</code> uses the base URL of the vocabulary, the difference is that the URL is prefixed with a namespace identifier and a '<code>:</code>'. The example below revises the example from the <code>property</code> attribute above:</p>
-            <pre><code class="hljs html"><span class="hljs-comment">&lt;!-- http://example.com/my-course.html --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">vocab</span>=<span class="hljs-string">&quot;http://oerschema.org&quot;</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">&quot;schema:http://schema.org/&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">typeof</span>=<span class="hljs-string">&quot;Course&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;courseIdentifier&quot;</span>&gt;</span>My Course<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;description&quot;</span>&gt;</span>A description of my course.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/path/to/my/image.jpg&quot;</span> <span class="hljs-attr">property</span>=<span class="hljs-string">&quot;schema:image&quot;</span>&gt;</span>
-        <span class="hljs-comment">&lt;!-- ... --&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+            <pre><code class="hljs plaintext"></code></pre>
             <p>See how the URL, http://schema.org, is prefixed with <code>schema:</code> and the property value on the <code>&lt;img&gt;</code> element has the http://schema.org/ prefix replaced with the namespace prefix <code>schema:</code>?</p>
             <p>Adding multiple prefixes is as easy as separating them with a space.</p>
-            <pre><code class="hljs html"><span class="hljs-comment">&lt;!-- http://example.com/my-course.html --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">vocab</span>=<span class="hljs-string">&quot;http://oerschema.org&quot;</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">&quot;schema:http://schema.org/ cc:http://creativecommons.org/ns dc:http://purl.org/dc/terms/&quot;</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- ... --&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+            <pre><code class="hljs plaintext"></code></pre>
             <p>Though a namespace prefix can be anything as long as it's unique to other vocabularies used along with it, <a href=https://www.w3.org/2011/rdfa-context/rdfa-1.1" target="_blank">there is a set of common name prefixes</a>. It is recommended you stick to them.</p>
             <p><i>The OER Schema is not yet on the above list, though we hope to rectify that soon. We prefer to use the prefix "</i><strong>oer:</strong><i>" when applicable.</i></p>
         </dd>
