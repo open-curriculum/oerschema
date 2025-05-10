@@ -4,8 +4,8 @@ import { cn } from "~/lib/utils";
 const navItems = [
 	{ name: "Dashboard", href: "/" },
 	{ name: "Schema", href: "/schema" },
-	{ name: "Graph", href: "/graph" },
-	{ name: "Examples", href: "/examples" }
+	{ name: "Examples", href: "/examples" },
+	{ name: "About", href: "/about" }
 ];
 
 export function Sidebar() {

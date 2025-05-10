@@ -2,6 +2,7 @@ import { json, type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData, Link } from "@remix-run/react";
 import { schema } from "~/lib/schema";
 import { Button } from "~/components/ui/button";
+import { SchemaExamples } from "~/components/schema-examples";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const className = params.name;
@@ -171,6 +172,15 @@ export default function ClassPage() {
               </div>
             ))}
           </section>
+
+          <SchemaExamples 
+            type="Class"
+            name={className}
+            label={classData.label}
+            comment={classData.comment}
+            properties={classData.properties}
+            baseUrl="http://oerschema.org/"
+          />
         </div>
       </main>
     </div>

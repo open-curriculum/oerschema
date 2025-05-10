@@ -2,6 +2,7 @@ import { json, type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData, Link } from "@remix-run/react";
 import { schema } from "~/lib/schema";
 import { Button } from "~/components/ui/button";
+import { SchemaExamples } from "~/components/schema-examples";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const propertyName = params.name;
@@ -68,6 +69,16 @@ export default function PropertyPage() {
               </div>
             </dl>
           </section>
+
+          <SchemaExamples 
+            type="Property"
+            name={propertyName}
+            label={propertyData.label}
+            comment={propertyData.comment}
+            range={propertyData.range}
+            domain={propertyData.domain}
+            baseUrl="http://oerschema.org/"
+          />
         </div>
       </main>
     </div>
