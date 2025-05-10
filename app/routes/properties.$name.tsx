@@ -3,6 +3,7 @@ import { useLoaderData, Link } from "@remix-run/react";
 import { schema } from "~/lib/schema";
 import { Button } from "~/components/ui/button";
 import { SchemaExamples } from "~/components/schema-examples";
+import { ApiCard } from "~/components/api-card";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const propertyName = params.name;
@@ -69,6 +70,8 @@ export default function PropertyPage() {
               </div>
             </dl>
           </section>
+
+          <ApiCard type="property" name={propertyName} />
 
           <SchemaExamples 
             type="Property"

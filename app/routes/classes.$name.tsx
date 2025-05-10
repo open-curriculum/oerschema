@@ -3,6 +3,7 @@ import { useLoaderData, Link } from "@remix-run/react";
 import { schema } from "~/lib/schema";
 import { Button } from "~/components/ui/button";
 import { SchemaExamples } from "~/components/schema-examples";
+import { ApiCard } from "~/components/api-card";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const className = params.name;
@@ -172,6 +173,8 @@ export default function ClassPage() {
               </div>
             ))}
           </section>
+
+          <ApiCard type="class" name={className} />
 
           <SchemaExamples 
             type="Class"
