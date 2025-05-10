@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="border-t py-6 bg-background">
       <div className="container flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-        <p>© {new Date().getFullYear()} OER Schema. All rights reserved.</p>
+        <p>Made with <span className="text-red-500">♥</span> by the OER Schema team.</p>
         <div className="flex items-center gap-2">
           <Link 
             to="https://github.com/oerschema" 
