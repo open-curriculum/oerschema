@@ -7,6 +7,7 @@ import {
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 import { Sidebar } from "~/components/sidebar";
+import { Footer } from "~/components/footer";
 
 import "./tailwind.css";
 
@@ -32,13 +33,24 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="flex">
-        <Sidebar />
-        <main className="flex-1 overflow-auto">
-          {children}
-          <ScrollRestoration />
-          <Scripts />
-        </main>
+      <body>
+        <div className="flex min-h-screen relative">
+          <Sidebar />
+          <div className="flex flex-col flex-1">
+            {/* Top bar for mobile - with space for hamburger on left */}
+            <div className="h-14 border-b lg:hidden flex items-center justify-center relative">
+              <div className="w-14"></div> {/* Space for hamburger */}
+              <img src="/logo.png" alt="OER Schema" className="h-8" />
+              <div className="w-14"></div> {/* Balance the layout */}
+            </div>
+            <main className="flex-1 overflow-auto">
+              {children}
+              <ScrollRestoration />
+              <Scripts />
+            </main>
+            <Footer />
+          </div>
+        </div>
       </body>
     </html>
   );
