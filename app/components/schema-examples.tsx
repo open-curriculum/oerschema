@@ -45,59 +45,63 @@ export function SchemaExamples({
       </p>
 
       <Tabs defaultValue="json-ld" className="w-full">
-        <div className="border-b overflow-x-auto pb-1">
-          <TabsList className="flex flex-nowrap w-max">
-            <TabsTrigger value="json-ld" className="min-w-[90px]">JSON-LD</TabsTrigger>
-            <TabsTrigger value="turtle" className="min-w-[90px]">Turtle</TabsTrigger>
-            <TabsTrigger value="rdfa" className="min-w-[90px]">RDFa</TabsTrigger>
-            <TabsTrigger value="microdata" className="min-w-[90px]">Microdata</TabsTrigger>
-            <TabsTrigger value="json-schema" className="min-w-[90px]">JSON Schema</TabsTrigger>
-            <TabsTrigger value="n-triples" className="min-w-[90px]">N-Triples</TabsTrigger>
-            <TabsTrigger value="xml-rdf" className="min-w-[90px]">XML/RDF</TabsTrigger>
-          </TabsList>
+        <div className="flex flex-col sm:flex-col gap-4">
+          <div className="overflow-x-auto">
+            <TabsList className="w-full sm:w-auto">
+              <TabsTrigger value="json-ld">JSON-LD</TabsTrigger>
+              <TabsTrigger value="turtle">Turtle</TabsTrigger>
+              <TabsTrigger value="rdfa">RDFa</TabsTrigger>
+              <TabsTrigger value="microdata">Microdata</TabsTrigger>
+              <TabsTrigger value="json-schema">JSON Schema</TabsTrigger>
+              <TabsTrigger value="n-triples">N-Triples</TabsTrigger>
+              <TabsTrigger value="xml-rdf">XML/RDF</TabsTrigger>
+            </TabsList>
+          </div>
+          
+          <div className="w-full min-w-0">
+            <TabsContent value="json-ld">
+              <div className="bg-muted rounded-lg p-4 relative w-full overflow-hidden">
+                <pre className="text-sm whitespace-pre-wrap break-all overflow-x-auto max-h-[400px] scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent">{jsonLdExample}</pre>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="turtle">
+              <div className="bg-muted rounded-lg p-4 relative w-full overflow-hidden">
+                <pre className="text-sm whitespace-pre-wrap break-all overflow-x-auto max-h-[400px] scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent">{turtleExample}</pre>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="rdfa">
+              <div className="bg-muted rounded-lg p-4 relative w-full overflow-hidden">
+                <pre className="text-sm whitespace-pre-wrap break-all overflow-x-auto max-h-[400px] scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent">{rdfaExample}</pre>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="microdata">
+              <div className="bg-muted rounded-lg p-4 relative w-full overflow-hidden">
+                <pre className="text-sm whitespace-pre-wrap break-all overflow-x-auto max-h-[400px] scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent">{microdataExample}</pre>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="json-schema">
+              <div className="bg-muted rounded-lg p-4 relative w-full overflow-hidden">
+                <pre className="text-sm whitespace-pre-wrap break-all overflow-x-auto max-h-[400px] scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent">{jsonSchemaExample}</pre>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="n-triples">
+              <div className="bg-muted rounded-lg p-4 relative w-full overflow-hidden">
+                <pre className="text-sm whitespace-pre-wrap break-all overflow-x-auto max-h-[400px] scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent">{nTriplesExample}</pre>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="xml-rdf">
+              <div className="bg-muted rounded-lg p-4 relative w-full overflow-hidden">
+                <pre className="text-sm whitespace-pre-wrap break-all overflow-x-auto max-h-[400px] scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent">{xmlRdfExample}</pre>
+              </div>
+            </TabsContent>
+          </div>
         </div>
-        
-        <TabsContent value="json-ld" className="mt-6">
-          <div className="bg-muted rounded-lg p-4 relative max-w-full overflow-hidden">
-            <pre className="text-sm whitespace-pre-wrap break-all overflow-x-auto max-h-[400px] scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent">{jsonLdExample}</pre>
-          </div>
-        </TabsContent>
-        
-        <TabsContent value="turtle" className="mt-6">
-          <div className="bg-muted rounded-lg p-4 relative max-w-full overflow-hidden">
-            <pre className="text-sm whitespace-pre-wrap break-all overflow-x-auto max-h-[400px] scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent">{turtleExample}</pre>
-          </div>
-        </TabsContent>
-        
-        <TabsContent value="rdfa" className="mt-6">
-          <div className="bg-muted rounded-lg p-4 relative max-w-full overflow-hidden">
-            <pre className="text-sm whitespace-pre-wrap break-all overflow-x-auto max-h-[400px] scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent">{rdfaExample}</pre>
-          </div>
-        </TabsContent>
-        
-        <TabsContent value="microdata" className="mt-6">
-          <div className="bg-muted rounded-lg p-4 relative max-w-full overflow-hidden">
-            <pre className="text-sm whitespace-pre-wrap break-all overflow-x-auto max-h-[400px] scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent">{microdataExample}</pre>
-          </div>
-        </TabsContent>
-        
-        <TabsContent value="json-schema" className="mt-6">
-          <div className="bg-muted rounded-lg p-4 relative max-w-full overflow-hidden">
-            <pre className="text-sm whitespace-pre-wrap break-all overflow-x-auto max-h-[400px] scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent">{jsonSchemaExample}</pre>
-          </div>
-        </TabsContent>
-        
-        <TabsContent value="n-triples" className="mt-6">
-          <div className="bg-muted rounded-lg p-4 relative max-w-full overflow-hidden">
-            <pre className="text-sm whitespace-pre-wrap break-all overflow-x-auto max-h-[400px] scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent">{nTriplesExample}</pre>
-          </div>
-        </TabsContent>
-        
-        <TabsContent value="xml-rdf" className="mt-6">
-          <div className="bg-muted rounded-lg p-4 relative max-w-full overflow-hidden">
-            <pre className="text-sm whitespace-pre-wrap break-all overflow-x-auto max-h-[400px] scrollbar-thin scrollbar-thumb-muted-foreground/20 scrollbar-track-transparent">{xmlRdfExample}</pre>
-          </div>
-        </TabsContent>
       </Tabs>
     </div>
   );

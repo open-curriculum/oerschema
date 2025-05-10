@@ -16,44 +16,40 @@ export default function Index() {
   const properties = Object.entries(schema.properties);
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="border-b">
-        <div className="container py-6">
-          <h1 className="text-3xl font-bold">OER Schema</h1>
-          <p className="mt-2 text-muted-foreground">
-            Documentation for the Open Educational Resources Schema
-          </p>
-        </div>
+    <div className="space-y-8">
+      <header className="border-b pb-6 mb-8">
+        <h1 className="text-3xl font-bold">OER Schema</h1>
+        <p className="mt-2 text-muted-foreground">
+          Documentation for the Open Educational Resources Schema
+        </p>
       </header>
 
-      <main className="container py-8">
-        <div className="grid gap-8">
-          <section>
-            <h2 className="text-2xl font-semibold mb-4">Classes</h2>
-            <div className="space-y-2">
-              {renderHierarchicalClasses(schemaTree)}
-            </div>
-          </section>
+      <div className="grid gap-8">
+        <section>
+          <h2 className="text-2xl font-semibold mb-4">Classes</h2>
+          <div className="space-y-2">
+            {renderHierarchicalClasses(schemaTree)}
+          </div>
+        </section>
 
-          <section>
-            <h2 className="text-2xl font-semibold mb-4">Properties</h2>
-            <div className="grid gap-4">
-              {properties.map(([name, data]) => (
-                <Link 
-                  key={name}
-                  to={`/properties/${name}`}
-                  className="block p-4 rounded-lg border hover:border-primary transition-colors"
-                >
-                  <h3 className="font-semibold">{data.label}</h3>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    {data.comment}
-                  </p>
-                </Link>
-              ))}
-            </div>
-          </section>
-        </div>
-      </main>
+        <section>
+          <h2 className="text-2xl font-semibold mb-4">Properties</h2>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {properties.map(([name, data]) => (
+              <Link 
+                key={name}
+                to={`/properties/${name}`}
+                className="block p-4 rounded-lg border hover:border-primary transition-colors"
+              >
+                <h3 className="font-semibold">{data.label}</h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                  {data.comment}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

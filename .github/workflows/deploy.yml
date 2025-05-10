@@ -38,13 +38,19 @@ jobs:
       
       - name: Build
         run: npm run build
+        env:
+          NODE_ENV: production
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
+      - name: Show build directory contents
+        run: ls -la build/
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
+          # Adjust this path if needed after inspecting the build output
           path: ./build/client
 
   # Deployment job

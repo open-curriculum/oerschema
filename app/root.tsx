@@ -36,15 +36,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <div className="flex min-h-screen relative">
           <Sidebar />
-          <div className="flex flex-col flex-1">
+          <div className="flex flex-col flex-1 w-full">
             {/* Top bar for mobile - with space for hamburger on left */}
             <div className="h-14 border-b lg:hidden flex items-center justify-center relative">
               <div className="w-14"></div> {/* Space for hamburger */}
               <img src="/logo.png" alt="OER Schema" className="h-8" />
               <div className="w-14"></div> {/* Balance the layout */}
             </div>
-            <main className="flex-1 overflow-auto">
-              {children}
+            <main className="flex-1">
+              <div className="mx-auto w-full px-2 sm:px-4 lg:px-6 py-6 md:max-w-7xl">
+                {children}
+              </div>
               <ScrollRestoration />
               <Scripts />
             </main>

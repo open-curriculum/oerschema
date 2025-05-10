@@ -94,105 +94,96 @@ export function ApiCard({ type, name }: ApiCardProps) {
   };
 
   return (
-    <div data-slot="card" className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 mt-4 md:mt-6 shadow-lg pt-0">
-      <div data-slot="card-header" className="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6 border-b bg-muted/50 px-4 md:px-6 rounded-t-xl pt-6">
-        <div data-slot="card-title" className="font-semibold text-xl md:text-2xl">API Access</div>
-        <div data-slot="card-description" className="text-muted-foreground text-sm">
-          Access this {type} through the API
+    <div className="space-y-3 md:space-y-4">
+      <div>
+        <h3 className="text-lg font-medium mb-2">Endpoint:</h3>
+        <div className="bg-muted p-4 rounded-md overflow-auto">
+          <code className="whitespace-pre-wrap break-all">{endpoint}</code>
         </div>
       </div>
       
-      <div data-slot="card-content" className="p-4 md:p-6 space-y-3 md:space-y-4">
-        <div>
-          <h3 className="text-lg font-medium mb-2">Endpoint:</h3>
-          <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-            <code>{endpoint}</code>
-          </pre>
-        </div>
-        
-        <div>
-          <h3 className="text-lg font-medium mb-2">Available formats:</h3>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>
-              <a 
-                className="text-primary hover:underline" 
-                href={endpoint}
-                data-accept="application/json"
-              >
-                JSON - <code>application/json</code>
-              </a>
-            </li>
-            <li>
-              <a 
-                className="text-primary hover:underline" 
-                href={endpoint}
-                data-accept="application/ld+json"
-              >
-                JSON-LD - <code>application/ld+json</code>
-              </a>
-            </li>
-            <li>
-              <a 
-                className="text-primary hover:underline" 
-                href={endpoint}
-                data-accept="application/schema+json"
-              >
-                JSON Schema - <code>application/schema+json</code>
-              </a>
-            </li>
-            <li>
-              <a 
-                className="text-primary hover:underline" 
-                href={endpoint}
-                data-accept="application/xml"
-              >
-                XML - <code>application/xml</code>
-              </a>
-            </li>
-            <li>
-              <a 
-                className="text-primary hover:underline" 
-                href={endpoint}
-                data-accept="text/turtle"
-              >
-                Turtle - <code>text/turtle</code>
-              </a>
-            </li>
-            <li>
-              <a 
-                className="text-primary hover:underline" 
-                href={endpoint}
-                data-accept="application/n-triples"
-              >
-                N-Triples - <code>application/n-triples</code>
-              </a>
-            </li>
-            <li>
-              <a 
-                className="text-primary hover:underline" 
-                href={endpoint}
-                data-accept="text/html+rdfa"
-              >
-                RDFa - <code>text/html+rdfa</code>
-              </a>
-            </li>
-            <li>
-              <a 
-                className="text-primary hover:underline" 
-                href={endpoint}
-                data-accept="text/html+microdata"
-              >
-                Microdata - <code>text/html+microdata</code>
-              </a>
-            </li>
-          </ul>
-        </div>
-        
-        <div>
-          <h3 className="text-lg font-medium mb-2">Example usage:</h3>
-          <pre className="bg-muted p-4 rounded-md overflow-x-auto">
-            <code>{`curl -H "Accept: application/json" ${origin}${endpoint}`}</code>
-          </pre>
+      <div>
+        <h3 className="text-lg font-medium mb-2">Available formats:</h3>
+        <ul className="list-disc pl-6 space-y-1">
+          <li>
+            <a 
+              className="text-primary hover:underline break-words" 
+              href={endpoint}
+              data-accept="application/json"
+            >
+              JSON - <code>application/json</code>
+            </a>
+          </li>
+          <li>
+            <a 
+              className="text-primary hover:underline break-words" 
+              href={endpoint}
+              data-accept="application/ld+json"
+            >
+              JSON-LD - <code>application/ld+json</code>
+            </a>
+          </li>
+          <li>
+            <a 
+              className="text-primary hover:underline break-words" 
+              href={endpoint}
+              data-accept="application/schema+json"
+            >
+              JSON Schema - <code>application/schema+json</code>
+            </a>
+          </li>
+          <li>
+            <a 
+              className="text-primary hover:underline break-words" 
+              href={endpoint}
+              data-accept="application/xml"
+            >
+              XML - <code>application/xml</code>
+            </a>
+          </li>
+          <li>
+            <a 
+              className="text-primary hover:underline break-words" 
+              href={endpoint}
+              data-accept="text/turtle"
+            >
+              Turtle - <code>text/turtle</code>
+            </a>
+          </li>
+          <li>
+            <a 
+              className="text-primary hover:underline break-words" 
+              href={endpoint}
+              data-accept="application/n-triples"
+            >
+              N-Triples - <code>application/n-triples</code>
+            </a>
+          </li>
+          <li>
+            <a 
+              className="text-primary hover:underline break-words" 
+              href={endpoint}
+              data-accept="text/html+rdfa"
+            >
+              RDFa - <code>text/html+rdfa</code>
+            </a>
+          </li>
+          <li>
+            <a 
+              className="text-primary hover:underline break-words" 
+              href={endpoint}
+              data-accept="text/html+microdata"
+            >
+              Microdata - <code>text/html+microdata</code>
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 className="text-lg font-medium mb-2">Example usage:</h3>
+        <div className="bg-muted p-4 rounded-md overflow-auto">
+          <code className="whitespace-pre-wrap break-all md:break-normal">{`curl -H "Accept: application/json" ${origin}${endpoint}`}</code>
         </div>
       </div>
     </div>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    // Redirect handler to restore path after GitHub Pages 404 redirect
+    (function() {
+      const redirect = sessionStorage.getItem('redirect_path');
+      if (redirect && redirect !== window.location.pathname + window.location.search + window.location.hash) {
+        sessionStorage.removeItem('redirect_path');
+        const p = new URLSearchParams(window.location.search).get('p');
+        if (p) {
+          window.history.replaceState(null, null, p);
+        }
+      }
+    })();
+  </script>
+</head>
+<body>
+  <!-- This file is only used to handle GitHub Pages redirects -->
+  <!-- The actual app is rendered by Remix -->
+</body>
+</html>
