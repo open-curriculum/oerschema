@@ -36,16 +36,22 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
-      - name: Build
-        run: npm run build
-        env:
-          NODE_ENV: production
+      - name: Build with modified index handling
+        run: |
+          # Build the app with Remix
+          NODE_ENV=production npm run build
+          
+          # Copy 404.html to client directory
+          cp public/404.html build/client/
+          
+          # Make sure the custom index.html from public is NOT being used
+          rm -f public/index.html.bak  # Clean up any previous backups
+          if [ -f public/index.html ]; then
+            mv public/index.html public/index.html.bak
+          fi
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      
-      - name: Copy 404.html to client directory
-        run: cp public/404.html build/client/
       
       - name: Debug build outputs
         run: |
@@ -56,7 +62,7 @@ jobs:
           echo "=== Client assets directory ==="
           ls -la build/client/assets/
           echo "=== Index.html contents ==="
-          cat build/client/index.html | head -n 20
+          cat build/client/index.html | head -n 30
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
