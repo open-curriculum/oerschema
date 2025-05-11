@@ -10,10 +10,14 @@
     (function() {
       // Repository name for GitHub Pages
       const repoName = 'oerschema-v7';
-      const isGitHubPages = window.location.hostname.includes('github.io');
       
-      // Add base tag dynamically for GitHub Pages
-      if (isGitHubPages) {
+      // For GitHub Pages deployment with custom domain
+      // Add base tag dynamically
+      // We'll use the repo name as the base path by default for GitHub Pages
+      // Check the environment to determine if we need a base path
+      const isProd = window.location.hostname !== 'localhost';
+      if (isProd) {
+        // For production, add the base tag with the repo name
         const baseTag = document.createElement('base');
         baseTag.href = '/' + repoName + '/';
         document.head.appendChild(baseTag);

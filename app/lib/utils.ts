@@ -14,7 +14,7 @@ export function withBase(path: string): string {
   // Remove leading slash if present
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
   
-  // In production (GitHub Pages), add the repo name as base
+  // In production (any non-localhost environment), add the repo name as base
   if (typeof window !== 'undefined' && window.location.hostname !== 'localhost') {
     return `/oerschema-v7/${cleanPath}`;
   }

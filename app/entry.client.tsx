@@ -11,12 +11,10 @@ import { hydrateRoot } from "react-dom/client";
 // GitHub Pages specific handling to fix base path issues
 const handleGitHubPages = () => {
   const repoName = 'oerschema-v7';
-  const isGitHubPages = 
-    typeof window !== 'undefined' && 
-    window.location.hostname !== 'localhost' &&
-    window.location.hostname.includes('github.io');
-
-  if (isGitHubPages) {
+  // Use a more reliable detection for production environment
+  const isProd = typeof window !== 'undefined' && window.location.hostname !== 'localhost';
+  
+  if (isProd) {
     // Handle any GitHub Pages specific path issues
     const pathname = window.location.pathname;
     // If we're on the root of the repo but missing the trailing slash
