@@ -10,7 +10,7 @@ interface ExampleCardProps {
 export function ExampleCard({ title, description, implementation, visual }: ExampleCardProps) {
   return (
     <div className="mt-6">
-      <div className="bg-card border shadow rounded-lg">
+      <div className="bg-card border shadow-md rounded-lg">
         <div className="border-b bg-muted/50 px-4 md:px-6 pt-4 pb-4">
           <h2 className="text-xl font-semibold">{title}</h2>
           {description && <p className="mt-2 text-muted-foreground">{description}</p>}

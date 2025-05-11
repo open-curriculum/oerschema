@@ -72,7 +72,7 @@ export default function ClassPage() {
   return (
     <div className="py-6 md:py-8">
       <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:px-6">
-        <header className="mb-6 md:mb-8 border-b pb-6">
+        <header className="mb-6 md:mb-8 pb-6">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">{className}</h1>
             <Button variant="outline" size="sm" asChild className="shrink-0">
@@ -85,7 +85,7 @@ export default function ClassPage() {
         </header>
 
         <div className="grid gap-6 md:gap-8">
-          <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border shadow-lg pt-0">
+          <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border shadow-md pt-0">
             <div className="border-b bg-muted/50 px-4 md:px-6 rounded-t-xl pt-6 pb-6">
               <h2 className="font-semibold text-xl md:text-2xl">Class Details</h2>
             </div>
@@ -134,14 +134,14 @@ export default function ClassPage() {
           </div>
 
           {propertiesByClass.length > 0 && (
-            <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border shadow-lg mt-4 md:mt-6 pt-0">
+            <div className="bg-card text-card-foreground flex flex-col rounded-xl border shadow-md mt-4 md:mt-6 pt-0">
               <div className="border-b bg-muted/50 px-4 md:px-6 rounded-t-xl pt-6 pb-6">
                 <h2 className="font-semibold text-xl md:text-2xl">Properties</h2>
                 <div className="text-muted-foreground text-sm">Properties for {className} and its parent classes.</div>
               </div>
-              <div className="p-4 md:p-6">
+              <div className="">
                 <div className="relative w-full overflow-auto">
-                  <table className="w-full caption-bottom text-sm border border-border">
+                  <table className="w-full caption-bottom text-sm">
                     <thead className="[&_tr]:border-b">
                       <tr className="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors">
                         <th className="text-foreground h-10 px-2 align-middle whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold">Property</th>
@@ -197,7 +197,7 @@ export default function ClassPage() {
             </div>
           )}
 
-          <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border shadow-lg mt-4 md:mt-6 pt-0">
+          <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border shadow-md mt-4 md:mt-6 pt-0">
             <div className="border-b bg-muted/50 px-4 md:px-6 rounded-t-xl pt-6 pb-6">
               <h2 className="font-semibold text-xl md:text-2xl">API Access</h2>
               <div className="text-muted-foreground text-sm">Access this class through the API</div>
@@ -207,7 +207,7 @@ export default function ClassPage() {
             </div>
           </div>
 
-          <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border shadow-lg mt-4 md:mt-6 pt-0">
+          <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border shadow-md mt-4 md:mt-6 pt-0">
             <div className="border-b bg-muted/50 px-4 md:px-6 rounded-t-xl pt-6 pb-6">
               <h2 className="font-semibold text-xl md:text-2xl">Examples</h2>
             </div>

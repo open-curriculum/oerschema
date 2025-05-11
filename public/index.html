@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <script>
-    // Redirect handler to restore path after GitHub Pages 404 redirect
+    // Handle GitHub Pages SPA redirect for Remix
     (function() {
-      const redirect = sessionStorage.getItem('redirect_path');
-      if (redirect && redirect !== window.location.pathname + window.location.search + window.location.hash) {
-        sessionStorage.removeItem('redirect_path');
-        const p = new URLSearchParams(window.location.search).get('p');
-        if (p) {
-          window.history.replaceState(null, null, p);
+      const redirect = sessionStorage.getItem('remix-redirect');
+      if (redirect) {
+        sessionStorage.removeItem('remix-redirect');
+        const urlParams = new URLSearchParams(window.location.search);
+        const path = urlParams.get('path');
+        if (path) {
+          window.history.replaceState(null, null, path);
         }
       }
     })();

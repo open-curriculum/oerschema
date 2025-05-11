@@ -5,28 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Page Not Found</title>
   <script>
-    // Single Page App routing - redirect all requests to index.html
-    const path = window.location.pathname;
-    const pathSegmentsToKeep = 1; // Change this if your site is in a subdirectory
-    
-    const redirectPath = window.location.pathname.split('/')
-      .slice(0, pathSegmentsToKeep + 1)
-      .join('/') + '/?p=/' + 
-      window.location.pathname
-        .slice(1)
-        .split('/')
-        .slice(pathSegmentsToKeep)
-        .join('/')
-        .replace(/&/g, '~and~') + 
-      (window.location.search ? '&' + window.location.search.slice(1).replace(/&/g, '~and~') : '') +
-      window.location.hash;
+    // GitHub Pages SPA redirect for Remix
+    (function() {
+      const repo = 'oerschema-v7'; // Update this to your repo name
+      const l = window.location;
+      const segments = l.pathname.split('/');
+      const repoIndex = segments.findIndex(s => s === repo);
+      
+      if (repoIndex !== -1) {
+        const pathSegments = segments.slice(repoIndex + 1);
+        const path = '/' + pathSegments.join('/');
+        const redirectPath = segments.slice(0, repoIndex + 1).join('/') + 
+          '/?path=' + encodeURIComponent(path) +
+          (l.search ? '&' + l.search.slice(1) : '') +
+          l.hash;
 
-    sessionStorage.setItem('redirect_path', window.location.pathname + window.location.search + window.location.hash);
-    window.location.replace(redirectPath);
+        sessionStorage.setItem('remix-redirect', path + l.search + l.hash);
+        l.replace(redirectPath);
+      } else {
+        l.replace('/');
+      }
+    })();
   </script>
 </head>
 <body>
   <h1>Page Not Found</h1>
-  <p>Redirecting to home page...</p>
+  <p>Redirecting...</p>
 </body>
 </html>

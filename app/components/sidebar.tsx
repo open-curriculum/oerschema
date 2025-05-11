@@ -3,6 +3,7 @@ import { Link, useLocation } from "@remix-run/react";
 import { Menu, X } from "lucide-react";
 import { cn } from "~/lib/utils";
 import { Button } from "./ui/button";
+import { useTheme } from "./ui/theme-provider";
 
 const navItems = [
 	{ name: "Dashboard", href: "/" },
@@ -14,6 +15,7 @@ const navItems = [
 export function Sidebar() {
 	const location = useLocation();
 	const [isOpen, setIsOpen] = useState(false);
+	const { theme } = useTheme();
 	
 	// Close sidebar on route change on mobile
 	useEffect(() => {
@@ -31,6 +33,8 @@ export function Sidebar() {
 		window.addEventListener('resize', handleResize);
 		return () => window.removeEventListener('resize', handleResize);
 	}, []);
+
+	const logoSrc = theme === 'dark' ? '/oerschema-logo-white.png' : '/oerschema-logo-black.png';
 
 	return (
 		<>
@@ -75,7 +79,7 @@ export function Sidebar() {
 
 				<div className="flex h-20 items-center justify-center px-4 sticky top-0 bg-background z-10">
 					<Link to="/" className="flex items-center">
-						<img src="/logo.png" alt="OER Schema" className="h-12" />
+						<img src={logoSrc} alt="OER Schema" className="h-12" />
 					</Link>
 				</div>
 				<nav className="flex-1 space-y-1 p-4">

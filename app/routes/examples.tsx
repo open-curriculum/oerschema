@@ -137,12 +137,12 @@ export default function ExamplesPage() {
       </p>
 
       <Tabs defaultValue="example1" className="space-y-4">
-        <div className="overflow-visible pb-2 border-b mb-4">
+        <div className="overflow-visible pb-2 mb-4">
           <TabsList className="w-full">
-            <TabsTrigger value="example1" className="flex-1 mb-1">Basic Resource</TabsTrigger>
-            <TabsTrigger value="example2" className="flex-1 mb-1">Course Example</TabsTrigger>
-            <TabsTrigger value="example3" className="flex-1 mb-1">Learning Objective</TabsTrigger>
-            <TabsTrigger value="example4" className="flex-1 mb-1">Assessment</TabsTrigger>
+            <TabsTrigger value="example1" className="flex-1 ">Basic Resource</TabsTrigger>
+            <TabsTrigger value="example2" className="flex-1 ">Course Example</TabsTrigger>
+            <TabsTrigger value="example3" className="flex-1 ">Learning Objective</TabsTrigger>
+            <TabsTrigger value="example4" className="flex-1 ">Assessment</TabsTrigger>
           </TabsList>
         </div>
 

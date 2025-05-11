@@ -43,7 +43,7 @@ export default function PropertyPage() {
         </header>
 
         <div className="grid gap-6 md:gap-8">
-          <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border shadow-lg pt-0">
+          <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border shadow-md pt-0">
             <div className="border-b bg-muted/50 px-4 md:px-6 rounded-t-xl pt-6 pb-6">
               <h2 className="font-semibold text-xl md:text-2xl">Property Details</h2>
             </div>
@@ -115,7 +115,7 @@ export default function PropertyPage() {
           </div>
 
           {classesWithProperty.length > 0 && (
-            <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border shadow-lg mt-4 md:mt-6 pt-0">
+            <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border shadow-md mt-4 md:mt-6 pt-0">
               <div className="border-b bg-muted/50 px-4 md:px-6 rounded-t-xl pt-6 pb-6">
                 <h2 className="font-semibold text-xl md:text-2xl">Classes Using This Property</h2>
               </div>
@@ -135,7 +135,7 @@ export default function PropertyPage() {
             </div>
           )}
 
-          <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border shadow-lg mt-4 md:mt-6 pt-0">
+          <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border shadow-md mt-4 md:mt-6 pt-0">
             <div className="border-b bg-muted/50 px-4 md:px-6 rounded-t-xl pt-6 pb-6">
               <h2 className="font-semibold text-xl md:text-2xl">API Access</h2>
               <div className="text-muted-foreground text-sm">Access this property through the API</div>
@@ -145,7 +145,7 @@ export default function PropertyPage() {
             </div>
           </div>
 
-          <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border shadow-lg mt-4 md:mt-6 pt-0">
+          <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border shadow-md mt-4 md:mt-6 pt-0">
             <div className="border-b bg-muted/50 px-4 md:px-6 rounded-t-xl pt-6 pb-6">
               <h2 className="font-semibold text-xl md:text-2xl">Examples</h2>
             </div>

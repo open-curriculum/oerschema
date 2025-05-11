@@ -38,7 +38,7 @@ export function SchemaExamples({
   const xmlRdfExample = generateXMLRDFExample(type, name, label, comment, properties, range, domain, baseUrl, exampleName);
 
   return (
-    <div className="mt-12 border-t pt-8">
+    <div className="">
       <h2 className="text-2xl font-semibold mb-6">Implementation Examples</h2>
       <p className="mb-6 text-muted-foreground">
         Below are examples of how to implement {isClass ? "the" : "properties related to"} {name} {isClass ? "class" : "property"} in different formats.
