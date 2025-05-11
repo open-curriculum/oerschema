@@ -44,29 +44,32 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
-      - name: Create custom 404.html
-        run: cp public/404.html build/client/404.html
-      
-      - name: Create deploy directory with all necessary files
+      - name: Create index.html in the client directory if it doesn't exist
         run: |
-          mkdir -p deploy
-          cp -r build/client/* deploy/
-          cp public/404.html deploy/
-          cp public/_redirects deploy/ || true
-          cp public/index.html deploy/ || true
-          
-          # Debug build outputs
+          if [ ! -f build/client/index.html ]; then
+            cp public/index.html build/client/
+          fi
+      
+      - name: Copy 404.html to client directory
+        run: cp public/404.html build/client/
+      
+      - name: Create static.json for client-side routing
+        run: |
+          echo '{"root": "build/client", "routes": {"/**": "index.html"}}' > static.json
+      
+      - name: Debug build outputs
+        run: |
           echo "=== Build directory structure ==="
           ls -la build/
           echo "=== Client directory structure ==="
           ls -la build/client/
-          echo "=== Deploy directory structure ==="
-          ls -la deploy/
+          echo "=== Client assets directory ==="
+          ls -la build/client/assets/
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./deploy
+          path: ./build/client
 
   # Deployment job
   deploy:

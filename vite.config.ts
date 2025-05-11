@@ -15,8 +15,17 @@ export default defineConfig({
         v3_fetcherPersist: true,
         v3_relativeSplatPath: true,
         v3_throwAbortReason: true,
-      }
+      },
+      // Set the base path for server-side as well
+      serverBuildPath: "build/server/index.js",
+      // Ensure assets are referenced with correct base path
+      assetsBuildDirectory: "build/client/assets",
+      publicPath: base,
     }),
     tsconfigPaths(),
   ],
+  build: {
+    // This ensures that the index.html is created in the right place
+    outDir: "build/client",
+  },
 });

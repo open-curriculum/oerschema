@@ -6,8 +6,20 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>OER Schema</title>
   <script>
-    // Handle GitHub Pages SPA redirect for Remix
+    // This script handles GitHub Pages SPA redirects
     (function() {
+      // Repository name for GitHub Pages
+      const repoName = 'oerschema-v7';
+      const isGitHubPages = window.location.hostname.includes('github.io');
+      
+      // Add base tag dynamically for GitHub Pages
+      if (isGitHubPages) {
+        const baseTag = document.createElement('base');
+        baseTag.href = '/' + repoName + '/';
+        document.head.appendChild(baseTag);
+      }
+      
+      // Handle redirect from 404.html
       const redirect = sessionStorage.getItem('remix-redirect');
       if (redirect) {
         sessionStorage.removeItem('remix-redirect');
@@ -17,21 +29,15 @@
           window.history.replaceState(null, null, path);
         }
       }
-      
-      // Add base tag dynamically based on environment
-      const repoName = 'oerschema-v7';
-      const isProduction = window.location.hostname !== 'localhost';
-      if (isProduction) {
-        const baseTag = document.createElement('base');
-        baseTag.href = '/' + repoName + '/';
-        document.head.appendChild(baseTag);
-      }
     })();
   </script>
-  <!-- This will be replaced by Remix's entry point script -->
 </head>
 <body>
-  <!-- This is a placeholder for the Remix app -->
-  <div id="root"></div>
+  <div id="root">
+    <!-- This content will be replaced by Remix -->
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+      <p>Loading OER Schema...</p>
+    </div>
+  </div>
 </body>
 </html>

@@ -3,37 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Not Found</title>
+  <title>Redirecting...</title>
   <script>
-    // GitHub Pages SPA redirect for Remix
+    // Single Page App GitHub Pages redirect script
     (function() {
-      const repo = 'oerschema-v7'; // Your repo name
+      // Repository name for GitHub Pages
+      const repo = 'oerschema-v7';
       const l = window.location;
       
-      // Get the path relative to the repo
+      // Extract the path after the repository name
       let path = l.pathname;
-      if (path.indexOf('/' + repo) === 0) {
-        path = path.slice(('/' + repo).length);
+      const repoNameIndex = path.indexOf('/' + repo + '/');
+      
+      if (repoNameIndex !== -1) {
+        // Save the path for the index.html to restore
+        path = path.substr(repoNameIndex + repo.length + 1) || '/';
+        
+        // Store the full path to redirect to
+        sessionStorage.setItem('remix-redirect', 'true');
+        
+        // Redirect to the index page with the path as a query parameter
+        window.location.href = 
+          l.origin + 
+          l.pathname.split('/').slice(0, repoNameIndex + 2).join('/') + 
+          '?path=' + encodeURIComponent(path) +
+          (l.search ? '&' + l.search.substr(1) : '') + 
+          l.hash;
+      } else {
+        // If we can't identify the repo in the path, just go to the root
+        window.location.href = l.origin;
       }
-      if (!path.startsWith('/')) {
-        path = '/' + path;
-      }
-      
-      // Store the redirect information
-      sessionStorage.setItem('remix-redirect', 'true');
-      
-      // Redirect to the root while preserving the path in the query param
-      const redirectPath = l.origin + l.pathname.split('/').slice(0, -1).join('/') + 
-        '/?path=' + encodeURIComponent(path) +
-        (l.search ? '&' + l.search.slice(1) : '') +
-        l.hash;
-      
-      l.replace(redirectPath);
     })();
   </script>
 </head>
 <body>
-  <h1>Page Not Found</h1>
-  <p>Redirecting...</p>
+  <h1>Redirecting...</h1>
+  <p>If you are not redirected automatically, <a href="/">click here</a>.</p>
 </body>
 </html>
