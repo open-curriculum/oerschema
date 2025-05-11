@@ -24,6 +24,21 @@ export default function handleRequest(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   loadContext: AppLoadContext
 ) {
+  // Check if this is an API request by looking at the URL path
+  const url = new URL(request.url);
+  const isApiRequest = url.pathname.startsWith('/api/');
+
+  // Check if a specific content type is requested via Accept header
+  const acceptHeader = request.headers.get('Accept') || '';
+  const wantsJson = acceptHeader.includes('application/json');
+  
+  // Handle API requests separately from normal page requests
+  if (isApiRequest && wantsJson) {
+    // Let the API loader handle this and return the proper response
+    // This just passes through without SSR HTML rendering
+    return remixContext.loaderData[Object.keys(remixContext.loaderData)[0]];
+  }
+
   return isbot(request.headers.get("user-agent") || "")
     ? handleBotRequest(
         request,

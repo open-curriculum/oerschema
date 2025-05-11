@@ -4,18 +4,20 @@
   "type": "module",
   "scripts": {
     "build": "remix vite:build && node ./scripts/modify-index.js",
+    "build:vercel": "remix vite:build",
     "dev": "remix vite:dev",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "remix-serve ./build/server/index.js",
+    "start": "remix-serve build/index.js",
     "typecheck": "tsc",
     "deploy": "NODE_ENV=production npm run build && cp public/404.html build/client/"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tabs": "^1.1.11",
-    "@remix-run/node": "*",
-    "@remix-run/react": "*",
-    "@remix-run/serve": "*",
+    "@remix-run/node": "2.15.3",
+    "@remix-run/react": "2.15.3",
+    "@remix-run/serve": "2.15.3",
+    "@vercel/remix": "2.15.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "isbot": "^4.1.0",
@@ -27,7 +29,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@remix-run/dev": "*",
+    "@remix-run/dev": "2.15.3",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
