@@ -574,8 +574,8 @@ export const schema: Schema = {
       properties: []
     },
     Writing: {
-      label: "Writing is involved with the resource",
-      comment: "",
+      label: "Writing",
+      comment: "The act of producing text or other written content.",
       subClassOf: [
         "ActionType"
       ],
@@ -583,7 +583,7 @@ export const schema: Schema = {
     },
     Reading: {
       label: "Reading",
-      comment: "Reading is involved with the resource",
+      comment: "The act of interpreting written text.",
       subClassOf: [
         "ActionType"
       ],
@@ -591,15 +591,15 @@ export const schema: Schema = {
     },
     Making: {
       label: "Making",
-      comment: "Making is involved with the resource",
+      comment: "The act of creating or constructing something.",
       subClassOf: [
         "ActionType"
       ],
       properties: []
     },
     Researching: {
-      label: "ResearchingActivity",
-      comment: "Researching is involved with the resource",
+      label: "Researching",
+      comment: "The act of investigating systematically.",
       subClassOf: [
         "ActionType"
       ],
@@ -607,7 +607,7 @@ export const schema: Schema = {
     },
     Listening: {
       label: "Listening",
-      comment: "Listening is involved with the resource",
+      comment: "The act of paying attention to sound.",
       subClassOf: [
         "ActionType"
       ],
@@ -615,15 +615,15 @@ export const schema: Schema = {
     },
     Watching: {
       label: "Watching",
-      comment: "Watching is involved with the resource",
+      comment: "The act of observing something visually.",
       subClassOf: [
         "ActionType"
       ],
       properties: []
     },
     Reflecting: {
-      label: "Refecting",
-      comment: "Reflecting is involved with the resource",
+      label: "Reflecting",
+      comment: "The act of thinking deeply or carefully about something.",
       subClassOf: [
         "ActionType"
       ],
@@ -631,7 +631,7 @@ export const schema: Schema = {
     },
     Discussing: {
       label: "Discussing",
-      comment: "Discussing is involved with the resource",
+      comment: "The act of talking about something with another person or people.",
       subClassOf: [
         "ActionType"
       ],
@@ -639,7 +639,7 @@ export const schema: Schema = {
     },
     Observing: {
       label: "Observing",
-      comment: "Observing is involved with the resource",
+      comment: "The act of noticing or perceiving something.",
       subClassOf: [
         "ActionType"
       ],
@@ -647,7 +647,7 @@ export const schema: Schema = {
     },
     Presenting: {
       label: "Presenting",
-      comment: "Presenting is involved with the resource",
+      comment: "The act of showing or offering something for others to scrutinize or consider.",
       subClassOf: [
         "ActionType"
       ],
@@ -655,7 +655,7 @@ export const schema: Schema = {
     },
     Assess: {
       label: "Assess",
-      comment: "Assess is involved with the resource",
+      comment: "The act of evaluating or estimating the nature, ability, or quality of something.",
       subClassOf: [
         "ActionType"
       ],

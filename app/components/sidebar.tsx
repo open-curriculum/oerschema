@@ -7,8 +7,7 @@ import { useTheme } from "./ui/theme-provider";
 
 // Use the withBase utility for navigation paths
 const navItems = [
-	{ name: "Dashboard", href: "/" }, // The root path will be handled by Remix
-	{ name: "Schema", href: "/schema" },
+	{ name: "Schema", href: "/" }, // The root path will be handled by Remix
 	{ name: "Examples", href: "/examples" },
 	{ name: "About", href: "/about" }
 ];

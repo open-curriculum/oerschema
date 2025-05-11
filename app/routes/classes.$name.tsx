@@ -76,7 +76,7 @@ export default function ClassPage() {
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">{className}</h1>
             <Button variant="outline" size="sm" asChild className="shrink-0">
-              <Link to="/schema">← Back to Schema</Link>
+              <Link to="/">← Back to Schema</Link>
             </Button>
           </div>
           {classData.comment && (
