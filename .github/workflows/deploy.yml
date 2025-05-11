@@ -47,11 +47,17 @@ jobs:
       - name: Show build directory contents
         run: ls -la build/
       
+      - name: Create deployment directory
+        run: |
+          mkdir -p deploy
+          cp -r build/client/* deploy/
+          cp public/404.html deploy/
+          cp public/_redirects deploy/ || true
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Adjust this path if needed after inspecting the build output
-          path: ./build/client
+          path: ./deploy
 
   # Deployment job
   deploy:

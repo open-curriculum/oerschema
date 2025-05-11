@@ -7,24 +7,28 @@
   <script>
     // GitHub Pages SPA redirect for Remix
     (function() {
-      const repo = 'oerschema-v7'; // Update this to your repo name
+      const repo = 'oerschema-v7'; // Your repo name
       const l = window.location;
-      const segments = l.pathname.split('/');
-      const repoIndex = segments.findIndex(s => s === repo);
       
-      if (repoIndex !== -1) {
-        const pathSegments = segments.slice(repoIndex + 1);
-        const path = '/' + pathSegments.join('/');
-        const redirectPath = segments.slice(0, repoIndex + 1).join('/') + 
-          '/?path=' + encodeURIComponent(path) +
-          (l.search ? '&' + l.search.slice(1) : '') +
-          l.hash;
-
-        sessionStorage.setItem('remix-redirect', path + l.search + l.hash);
-        l.replace(redirectPath);
-      } else {
-        l.replace('/');
+      // Get the path relative to the repo
+      let path = l.pathname;
+      if (path.indexOf('/' + repo) === 0) {
+        path = path.slice(('/' + repo).length);
       }
+      if (!path.startsWith('/')) {
+        path = '/' + path;
+      }
+      
+      // Store the redirect information
+      sessionStorage.setItem('remix-redirect', 'true');
+      
+      // Redirect to the root while preserving the path in the query param
+      const redirectPath = l.origin + l.pathname.split('/').slice(0, -1).join('/') + 
+        '/?path=' + encodeURIComponent(path) +
+        (l.search ? '&' + l.search.slice(1) : '') +
+        l.hash;
+      
+      l.replace(redirectPath);
     })();
   </script>
 </head>
