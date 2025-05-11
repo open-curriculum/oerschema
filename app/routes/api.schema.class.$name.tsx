@@ -25,7 +25,7 @@ export const action = async ({ request }: { request: Request }) => {
   return json({ error: "Method not allowed" }, { status: 405 });
 };
 
-export async function loader({ params, request }: LoaderFunctionArgs) {
+export const loader = async ({ params, request }: LoaderFunctionArgs) => {
   const className = params.name;
   const classData = schema.classes[className as string];
 
@@ -36,70 +36,97 @@ export async function loader({ params, request }: LoaderFunctionArgs) {
   const acceptHeader = request.headers.get("Accept") || "";
   const baseUrl = new URL(request.url).origin + "/";
   
-  // Set default content type headers
-  const responseHeaders = {
+  // Common headers for all responses
+  const headers = {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type, Accept"
   };
 
-  // Basic JSON mode - return directly through Remix's json helper
-  if (acceptHeader.includes("application/json")) {
-    return json({ className, ...classData }, { headers: responseHeaders });
+  // Check if the request specifically wants JSON
+  const jsonRequested = 
+    acceptHeader.includes("application/json") || 
+    request.headers.get("X-Requested-With") === "XMLHttpRequest";
+  
+  // JSON format (default or explicitly requested)
+  if (jsonRequested || acceptHeader === "*/*" || !acceptHeader) {
+    return new Response(
+      JSON.stringify({ className, ...classData }, null, 2),
+      {
+        status: 200,
+        headers: {
+          ...headers,
+          "Content-Type": "application/json; charset=utf-8"
+        }
+      }
+    );
   }
   
-  // Content negotiation for other formats
+  // Handle other content types
   if (acceptHeader.includes("application/ld+json")) {
-    return new Response(classToJsonLd(className as string, classData, { baseUrl, pretty: true }), {
-      headers: {
-        ...responseHeaders,
-        "Content-Type": "application/ld+json"
+    return new Response(
+      classToJsonLd(className as string, classData, { baseUrl, pretty: true }),
+      {
+        status: 200,
+        headers: {
+          ...headers,
+          "Content-Type": "application/ld+json"
+        }
       }
-    });
+    );
   } else if (acceptHeader.includes("application/schema+json")) {
     return new Response(classToJsonSchema(className as string, classData, { baseUrl, pretty: true }), {
       headers: {
-        ...responseHeaders,
+        ...headers,
         "Content-Type": "application/schema+json"
       }
     });
   } else if (acceptHeader.includes("application/xml") || acceptHeader.includes("text/xml")) {
     return new Response(classToXml(className as string, classData, { baseUrl }), {
       headers: {
-        ...responseHeaders,
+        ...headers,
         "Content-Type": "application/xml; charset=utf-8"
       }
     });
   } else if (acceptHeader.includes("text/turtle")) {
     return new Response(classToTurtle(className as string, classData, { baseUrl }), {
       headers: {
-        ...responseHeaders,
+        ...headers,
         "Content-Type": "text/turtle"
       }
     });
   } else if (acceptHeader.includes("application/n-triples")) {
     return new Response(classToNTriples(className as string, classData, { baseUrl }), {
       headers: {
-        ...responseHeaders,
+        ...headers,
         "Content-Type": "application/n-triples"
       }
     });
   } else if (acceptHeader.includes("text/html+rdfa") || acceptHeader.includes("application/rdfa")) {
     return new Response(classToRDFa(className as string, classData, { baseUrl }), {
       headers: {
-        ...responseHeaders,
+        ...headers,
         "Content-Type": "text/html; charset=utf-8"
       }
     });
   } else if (acceptHeader.includes("text/html+microdata") || acceptHeader.includes("application/microdata")) {
     return new Response(classToMicrodata(className as string, classData, { baseUrl }), {
       headers: {
-        ...responseHeaders,
+        ...headers,
         "Content-Type": "text/html; charset=utf-8"
       }
     });
   }
 
-  // Default fallback - return JSON
-  return json({ className, ...classData }, { headers: responseHeaders });
-}
+  // Default to JSON if no specific format matched
+  return new Response(
+    JSON.stringify({ className, ...classData }, null, 2),
+    {
+      status: 200,
+      headers: {
+        ...headers,
+        "Content-Type": "application/json; charset=utf-8"
+      }
+    }
+  );
+};
