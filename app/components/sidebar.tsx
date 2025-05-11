@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "@remix-run/react";
 import { Menu, X } from "lucide-react";
-import { cn } from "~/lib/utils";
+import { cn, withBase } from "~/lib/utils";
 import { Button } from "./ui/button";
 import { useTheme } from "./ui/theme-provider";
 
+// Use the withBase utility for navigation paths
 const navItems = [
-	{ name: "Dashboard", href: "/" },
+	{ name: "Dashboard", href: "/" }, // The root path will be handled by Remix
 	{ name: "Schema", href: "/schema" },
 	{ name: "Examples", href: "/examples" },
 	{ name: "About", href: "/about" }
@@ -34,7 +35,9 @@ export function Sidebar() {
 		return () => window.removeEventListener('resize', handleResize);
 	}, []);
 
-	const logoSrc = theme === 'dark' ? '/oerschema-logo-white.png' : '/oerschema-logo-black.png';
+	const logoSrc = withBase(
+		theme === 'dark' ? 'oerschema-logo-white.png' : 'oerschema-logo-black.png'
+	);
 
 	return (
 		<>

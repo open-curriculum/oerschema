@@ -44,15 +44,24 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
-      - name: Show build directory contents
-        run: ls -la build/
+      - name: Create custom 404.html
+        run: cp public/404.html build/client/404.html
       
-      - name: Create deployment directory
+      - name: Create deploy directory with all necessary files
         run: |
           mkdir -p deploy
           cp -r build/client/* deploy/
           cp public/404.html deploy/
           cp public/_redirects deploy/ || true
+          cp public/index.html deploy/ || true
+          
+          # Debug build outputs
+          echo "=== Build directory structure ==="
+          ls -la build/
+          echo "=== Client directory structure ==="
+          ls -la build/client/
+          echo "=== Deploy directory structure ==="
+          ls -la deploy/
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

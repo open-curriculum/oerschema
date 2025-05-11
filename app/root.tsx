@@ -10,6 +10,7 @@ import { Sidebar } from "~/components/sidebar";
 import { Footer } from "~/components/footer";
 import { ThemeProvider } from "~/components/ui/theme-provider";
 import { useTheme } from "~/components/ui/theme-provider";
+import { withBase } from "~/lib/utils";
 
 import "./tailwind.css";
 
@@ -28,10 +29,11 @@ export const links: LinksFunction = () => [
 
 function ThemeAwareContent({ children }: { children: React.ReactNode }) {
   const { theme } = useTheme();
-  const logoSrc =
+  const logoSrc = withBase(
     theme === "dark"
-      ? "/oerschema-logo-white.png"
-      : "/oerschema-logo-black.png";
+      ? "oerschema-logo-white.png"
+      : "oerschema-logo-black.png"
+  );
 
   return (
     <div className="flex min-h-screen relative">

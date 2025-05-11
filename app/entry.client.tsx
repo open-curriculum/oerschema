@@ -9,8 +9,12 @@ import { startTransition, StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
 
 startTransition(() => {
+  // Hydrate the #root element instead of the document when available
+  // This helps with GitHub Pages deployment
+  const rootElement = document.getElementById('root') || document;
+  
   hydrateRoot(
-    document,
+    rootElement,
     <StrictMode>
       <RemixBrowser />
     </StrictMode>

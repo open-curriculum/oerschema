@@ -17,6 +17,15 @@
           window.history.replaceState(null, null, path);
         }
       }
+      
+      // Add base tag dynamically based on environment
+      const repoName = 'oerschema-v7';
+      const isProduction = window.location.hostname !== 'localhost';
+      if (isProduction) {
+        const baseTag = document.createElement('base');
+        baseTag.href = '/' + repoName + '/';
+        document.head.appendChild(baseTag);
+      }
     })();
   </script>
   <!-- This will be replaced by Remix's entry point script -->
