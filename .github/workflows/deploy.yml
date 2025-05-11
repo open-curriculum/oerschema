@@ -44,18 +44,8 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
-      - name: Create index.html in the client directory if it doesn't exist
-        run: |
-          if [ ! -f build/client/index.html ]; then
-            cp public/index.html build/client/
-          fi
-      
       - name: Copy 404.html to client directory
         run: cp public/404.html build/client/
-      
-      - name: Create static.json for client-side routing
-        run: |
-          echo '{"root": "build/client", "routes": {"/**": "index.html"}}' > static.json
       
       - name: Debug build outputs
         run: |
@@ -65,6 +55,8 @@ jobs:
           ls -la build/client/
           echo "=== Client assets directory ==="
           ls -la build/client/assets/
+          echo "=== Index.html contents ==="
+          cat build/client/index.html | head -n 20
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
