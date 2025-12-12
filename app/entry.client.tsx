@@ -11,10 +11,12 @@ import { hydrateRoot } from "react-dom/client";
 // GitHub Pages specific handling to fix base path issues
 const handleGitHubPages = () => {
   const repoName = 'oerschema-v7';
-  // Use a more reliable detection for production environment
+  // Use a more reliable detection for production environment and platform
   const isProd = typeof window !== 'undefined' && window.location.hostname !== 'localhost';
+  const isVercel = window.location.hostname.includes('vercel.app');
   
-  if (isProd) {
+  // Skip GitHub Pages specific handling if on Vercel
+  if (isProd && !isVercel) {
     // Handle any GitHub Pages specific path issues
     const pathname = window.location.pathname;
     // If we're on the root of the repo but missing the trailing slash

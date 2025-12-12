@@ -1,29 +1,41 @@
-import React from "react";
-import { json, type LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData, Link } from "@remix-run/react";
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "@remix-run/react";
 import { schema } from "~/lib/schema";
 import { Button } from "~/components/ui/button";
 import { SchemaExamples } from "~/components/schema-examples";
 import { ApiCard } from "~/components/api-card";
 
-export async function loader({ params }: LoaderFunctionArgs) {
-  const propertyName = params.name;
-  const propertyData = schema.properties[propertyName as string];
+export default function PropertyPage() {
+  const params = useParams();
+  const propertyName = params.name || '';
+  const [data, setData] = useState<{
+    propertyData: any;
+    classesWithProperty: { name: string; label: string }[];
+  } | null>(null);
 
-  if (!propertyData) {
-    throw new Response("Not Found", { status: 404 });
+  useEffect(() => {
+    // Client-side data loading logic (converted from the server-side loader)
+    if (!propertyName) return;
+    
+    const propertyData = schema.properties[propertyName];
+    if (!propertyData) return;
+
+    // Find all classes that have this property
+    const classesWithProperty = Object.entries(schema.classes)
+      .filter(([_, data]) => data.properties.includes(propertyName))
+      .map(([name, data]) => ({ name, label: data.label }));
+
+    setData({
+      propertyData,
+      classesWithProperty
+    });
+  }, [propertyName]);
+
+  if (!data || !data.propertyData) {
+    return <div className="p-6">Loading...</div>;
   }
 
-  // Find all classes that have this property
-  const classesWithProperty = Object.entries(schema.classes)
-    .filter(([_, data]) => data.properties.includes(propertyName as string))
-    .map(([name, data]) => ({ name, label: data.label }));
-
-  return json({ propertyData, propertyName, classesWithProperty });
-}
-
-export default function PropertyPage() {
-  const { propertyData, propertyName, classesWithProperty } = useLoaderData<typeof loader>();
+  const { propertyData, classesWithProperty } = data;
 
   return (
     <div className="py-6 md:py-8">
@@ -34,7 +46,7 @@ export default function PropertyPage() {
               Property: {propertyName}
             </h1>
             <Button variant="outline" size="sm" asChild className="shrink-0">
-              <Link to="/schema">← Back to Schema</Link>
+              <Link to="/">← Back to Schema</Link>
             </Button>
           </div>
           {propertyData.comment && (

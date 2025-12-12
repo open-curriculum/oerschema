@@ -1,0 +1,276 @@
+/* OER Schema Components Styles for VitePress */
+
+/* Base component styling */
+.oer-learning-objective,
+.oer-assessment,
+.oer-practice,
+.oer-learning-component,
+.oer-instructional-pattern,
+.oer-rubric,
+.oer-rubric-criterion,
+.oer-rubric-scale,
+.oer-rubric-level {
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid;
+}
+
+/* Learning Objective - Blue theme */
+.oer-learning-objective {
+  border-left: 4px solid #3b82f6;
+  border-color: #dbeafe;
+  background-color: #f0f9ff;
+}
+
+.dark .oer-learning-objective {
+  border-color: #1e3a8a;
+  background-color: rgba(30, 58, 138, 0.1);
+}
+
+/* Assessment - Amber theme */
+.oer-assessment {
+  border-color: #fde68a;
+  background-color: #fffbeb;
+}
+
+.dark .oer-assessment {
+  border-color: #92400e;
+  background-color: rgba(146, 64, 14, 0.1);
+}
+
+/* Practice - Green theme */
+.oer-practice {
+  border-color: #bbf7d0;
+  background-color: #f0fdf4;
+}
+
+.dark .oer-practice {
+  border-color: #166534;
+  background-color: rgba(22, 101, 52, 0.1);
+}
+
+/* Learning Component - Purple theme */
+.oer-learning-component {
+  border-color: #e9d5ff;
+  background-color: #faf5ff;
+}
+
+.dark .oer-learning-component {
+  border-color: #6b21a8;
+  background-color: rgba(107, 33, 168, 0.1);
+}
+
+/* Instructional Pattern - Indigo theme */
+.oer-instructional-pattern {
+  border-color: #c7d2fe;
+  background-color: #eef2ff;
+}
+
+.oer-rubric {
+  border-color: #f9a8d4;
+  background-color: #fff1f2;
+}
+
+.oer-rubric-criterion {
+  border-color: #fef3c7;
+  background-color: #fffbeb;
+}
+
+.oer-rubric-scale {
+  border-color: #bfdbfe;
+  background-color: #eff6ff;
+}
+
+.oer-rubric-level {
+  border-color: #d9f99d;
+  background-color: #f7fee7;
+}
+
+.dark .oer-instructional-pattern {
+  border-color: #3730a3;
+  background-color: rgba(55, 48, 163, 0.1);
+}
+
+.dark .oer-rubric {
+  border-color: #9d174d;
+  background-color: rgba(157, 23, 77, 0.1);
+}
+
+.dark .oer-rubric-criterion {
+  border-color: #92400e;
+  background-color: rgba(146, 64, 14, 0.08);
+}
+
+.dark .oer-rubric-scale {
+  border-color: #1e3a8a;
+  background-color: rgba(30, 58, 138, 0.08);
+}
+
+.dark .oer-rubric-level {
+  border-color: #4d7c0f;
+  background-color: rgba(77, 124, 15, 0.08);
+}
+
+/* Component headers */
+.oer-component-header {
+  padding: 1rem 1.5rem 0;
+}
+
+.oer-component-title {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Component content */
+.oer-component-content {
+  padding: 0 1.5rem 1rem;
+}
+
+.oer-component-content > *:first-child {
+  margin-top: 0;
+}
+
+.oer-component-content > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Component metadata tags */
+.oer-component-meta {
+  padding: 0 1.5rem 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.oer-tag {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: inherit;
+}
+
+/* Theme-specific tag colors */
+.oer-learning-objective .oer-tag {
+  background-color: #bfdbfe;
+  color: #1e40af;
+}
+
+.dark .oer-learning-objective .oer-tag {
+  background-color: #1e40af;
+  color: #bfdbfe;
+}
+
+.oer-assessment .oer-tag {
+  background-color: #fcd34d;
+  color: #92400e;
+}
+
+.dark .oer-assessment .oer-tag {
+  background-color: #92400e;
+  color: #fcd34d;
+}
+
+.oer-practice .oer-tag {
+  background-color: #86efac;
+  color: #166534;
+}
+
+.dark .oer-practice .oer-tag {
+  background-color: #166534;
+  color: #86efac;
+}
+
+.oer-learning-component .oer-tag {
+  background-color: #c4b5fd;
+  color: #6b21a8;
+}
+
+.dark .oer-learning-component .oer-tag {
+  background-color: #6b21a8;
+  color: #c4b5fd;
+}
+
+.oer-instructional-pattern .oer-tag {
+  background-color: #a5b4fc;
+  color: #3730a3;
+}
+
+.oer-rubric .oer-tag {
+  background-color: #f472b6;
+  color: #9d174d;
+}
+
+.oer-rubric-criterion .oer-tag {
+  background-color: #facc15;
+  color: #92400e;
+}
+
+.oer-rubric-scale .oer-tag {
+  background-color: #bfdbfe;
+  color: #1e40af;
+}
+
+.oer-rubric-level .oer-tag {
+  background-color: #bef264;
+  color: #3f6212;
+}
+
+.dark .oer-instructional-pattern .oer-tag {
+  background-color: #3730a3;
+  color: #a5b4fc;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .oer-learning-objective,
+  .oer-assessment,
+  .oer-practice,
+  .oer-learning-component,
+  .oer-instructional-pattern,
+  .oer-rubric,
+  .oer-rubric-criterion,
+  .oer-rubric-scale,
+  .oer-rubric-level {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    border-radius: 0;
+  }
+  
+  .oer-component-header,
+  .oer-component-content,
+  .oer-component-meta {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .oer-learning-objective,
+  .oer-assessment,
+  .oer-practice,
+  .oer-learning-component,
+  .oer-instructional-pattern,
+  .oer-rubric,
+  .oer-rubric-criterion,
+  .oer-rubric-scale,
+  .oer-rubric-level {
+    border: 1px solid #000;
+    background: none !important;
+    break-inside: avoid;
+  }
+  
+  .oer-tag {
+    border: 1px solid #000;
+    background: none !important;
+    color: #000 !important;
+  }
+}

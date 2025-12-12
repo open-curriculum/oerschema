@@ -7,9 +7,10 @@ import { useTheme } from "./ui/theme-provider";
 
 // Use the withBase utility for navigation paths
 const navItems = [
-	{ name: "Dashboard", href: "/" }, // The root path will be handled by Remix
-	{ name: "Schema", href: "/schema" },
+	{ name: "Schema", href: "/" }, // The root path will be handled by Remix
+	{ name: "Components", href: "/components" },
 	{ name: "Examples", href: "/examples" },
+	{ name: "Plugin", href: "/plugin" },
 	{ name: "About", href: "/about" }
 ];
 
@@ -64,8 +65,8 @@ export function Sidebar() {
 			{/* Sidebar */}
 			<div 
 				className={cn(
-					"fixed lg:sticky top-0 h-screen flex-col border-r bg-background overflow-y-auto z-40 transition-all duration-300",
-					isOpen ? "flex w-64 translate-x-0 shadow-lg" : "flex lg:flex -translate-x-full lg:translate-x-0 lg:w-64"
+					"fixed lg:sticky top-0 h-screen w-64 flex-col border-r bg-background overflow-y-auto z-40 transition-all duration-300",
+					isOpen ? "flex translate-x-0 shadow-lg" : "hidden lg:flex -translate-x-full lg:translate-x-0"
 				)}
 			>
 				{/* Close button on mobile */}

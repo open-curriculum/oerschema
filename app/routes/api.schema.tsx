@@ -1,44 +1,94 @@
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { schema } from "~/lib/schema";
 
+// Add action handler for CORS preflight
+export const action = async ({ request }: { request: Request }) => {
+  if (request.method.toLowerCase() === "options") {
+    return new Response(null, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Accept"
+      }
+    });
+  }
+  
+  return new Response(
+    JSON.stringify({ error: "Method not allowed" }), 
+    { 
+      status: 405,
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      }
+    }
+  );
+};
+
 export async function loader({ request }: LoaderFunctionArgs) {
-  const acceptHeader = request.headers.get("Accept") || "application/json";
+  const acceptHeader = request.headers.get("Accept") || "";
   const baseUrl = new URL(request.url).origin + "/";
   
-  // Content negotiation for the entire schema
-  if (acceptHeader.includes("application/ld+json")) {
-    return new Response(schemaToJsonLd(schema, { baseUrl, pretty: true }), {
-      headers: {
-        "Content-Type": "application/ld+json",
-        "Access-Control-Allow-Origin": "*"
-      }
-    });
-  } else if (acceptHeader.includes("application/xml") || acceptHeader.includes("text/xml")) {
-    return new Response(schemaToXml(schema, { baseUrl }), {
-      headers: {
-        "Content-Type": "application/xml; charset=utf-8",
-        "Access-Control-Allow-Origin": "*"
-      }
-    });
-  } else if (acceptHeader.includes("text/turtle")) {
-    return new Response(schemaToTurtle(schema, { baseUrl }), {
-      headers: {
-        "Content-Type": "text/turtle",
-        "Access-Control-Allow-Origin": "*"
-      }
-    });
-  } else {
-    // Default to JSON
+  // Common headers for all responses
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Accept"
+  };
+  
+  // Check if query parameters for specific formats are provided
+  const url = new URL(request.url);
+  const format = url.searchParams.get("format");
+  
+  // Handle format parameter first (overrides Accept header)
+  if (format) {
+    switch (format.toLowerCase()) {
+      case "json":
+      case "application/json":
+        return new Response(
+          JSON.stringify(schema, null, 2),
+          {
+            status: 200,
+            headers: {
+              ...headers,
+              "Content-Type": "application/json; charset=utf-8"
+            }
+          }
+        );
+      // Add other format handlers as needed
+    }
+  }
+  
+  // Check if the request specifically wants JSON via Accept header
+  const jsonRequested = 
+    acceptHeader.includes("application/json") || 
+    request.headers.get("X-Requested-With") === "XMLHttpRequest";
+  
+  // JSON format (default or explicitly requested)
+  if (jsonRequested || acceptHeader === "*/*" || !acceptHeader) {
     return new Response(
-      JSON.stringify(schema, null, 2), 
+      JSON.stringify(schema, null, 2),
       {
+        status: 200,
         headers: {
-          "Content-Type": "application/json; charset=utf-8",
-          "Access-Control-Allow-Origin": "*"
+          ...headers,
+          "Content-Type": "application/json; charset=utf-8"
         }
       }
     );
   }
+
+  // Default to JSON for unrecognized formats
+  return new Response(
+    JSON.stringify(schema, null, 2),
+    {
+      status: 200,
+      headers: {
+        ...headers,
+        "Content-Type": "application/json; charset=utf-8"
+      }
+    }
+  );
 }
 
 // Helper functions for format conversions

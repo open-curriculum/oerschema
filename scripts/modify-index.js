@@ -7,6 +7,12 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Skip modifications for Vercel deployment
+if (process.env.VERCEL === '1') {
+  console.log('Detected Vercel environment, skipping GitHub Pages modifications');
+  process.exit(0);
+}
+
 const indexPath = path.resolve('./build/client/index.html');
 
 try {
