@@ -56,4 +56,4 @@ export default {
 
 ## Legacy Site
 
-The previous static schema site is located on the `legacy-site` branch.
+The previous static schema site is located in the `open-curriculum/legacy-site` repo.
