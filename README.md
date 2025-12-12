@@ -1,40 +1,55 @@
-# Welcome to Remix!
+# OERSchema Remix Site
 
-- 📖 [Remix docs](https://remix.run/docs)
+Live site: https://oerschema.org
 
-## Development
+This Remix app hosts the OER Schema documentation, schema browser, outline builder UI, and the VitePress plugin docs.
 
-Run the dev server:
+## Quick Start
 
-```shellscript
+```sh
+npm install
 npm run dev
 ```
 
-## Deployment
+The dev server runs at http://localhost:5173/.
 
-First, build your app for production:
+## Common Scripts
 
+- `npm run dev` — Remix dev server (Vite)
+- `npm run build` — production build
+- `npm run start` — run the production server locally
+- `npm run lint` — lint sources
+- `npm run typecheck` — type checking
+- `npm run build:vercel` — Vercel build entry
+
+## Deployment (Vercel)
+
+- Framework: Remix
+- Output directory: `build/client`
+- Build command: `npm run build:vercel`
+- Middleware handles legacy redirects to class/property pages.
+
+## VitePress Plugin
+
+Published package: `vitepress-plugin-oer-schema` (npm).
+
+Install:
 ```sh
-npm run build
+npm install vitepress-plugin-oer-schema
 ```
 
-Then run the app in production mode:
+Use in `.vitepress/config`:
+```js
+import { oerSchemaPlugin } from "vitepress-plugin-oer-schema";
+import "vitepress-plugin-oer-schema/styles.css";
 
-```sh
-npm start
+export default {
+	markdown: {
+		config: (md) => md.use(oerSchemaPlugin),
+	},
+};
 ```
 
-Now you'll need to pick a host to deploy it to.
+## Legacy Site
 
-### DIY
-
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-- `build/server`
-- `build/client`
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+The previous static schema site is located on the `legacy-site` branch.
