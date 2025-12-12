@@ -1,0 +1,33 @@
+{
+  "name": "vitepress-plugin-oer-schema",
+  "version": "0.2.0",
+  "description": "VitePress plugin for OER Schema pedagogical components",
+  "main": "index.mjs",
+  "type": "module",
+  "keywords": [
+    "vitepress",
+    "plugin",
+    "oer",
+    "schema",
+    "education",
+    "pedagogy",
+    "markdown"
+  ],
+  "author": "OER Schema Project",
+  "license": "MIT",
+  "dependencies": {
+    "markdown-it-container": "^4.0.0"
+  },
+  "peerDependencies": {
+    "vitepress": "^1.0.0"
+  },
+  "files": [
+    "index.mjs",
+    "styles.css",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oerschema/vitepress-plugin-oer-schema"
+  }
+}

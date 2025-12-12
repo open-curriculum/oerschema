@@ -1,7 +1,7 @@
 import { Schema } from "./types";
 
 export const schema: Schema = {
-  version: "1.0.0",
+  version: "1.1.0",
   classes: {
     Resource: {
       label: "Resource",
@@ -210,7 +210,8 @@ export const schema: Schema = {
       properties: [
         "material",
         "assessing",
-        "gradingFormat"
+        "gradingFormat",
+        "rubric"
       ]
     },
     Quiz: {
@@ -228,6 +229,50 @@ export const schema: Schema = {
         "Assessment"
       ],
       properties: []
+    },
+    Rubric: {
+      label: "Rubric",
+      comment: "A scoring guide with criteria and performance levels used to evaluate work.",
+      subClassOf: [
+        "Intangible"
+      ],
+      properties: [
+        "hasCriterion",
+        "rubricScale",
+        "rubricType"
+      ]
+    },
+    RubricCriterion: {
+      label: "RubricCriterion",
+      comment: "A criterion inside a rubric with optional weighting.",
+      subClassOf: [
+        "Intangible"
+      ],
+      properties: [
+        "criterionWeight"
+      ]
+    },
+    RubricScale: {
+      label: "RubricScale",
+      comment: "A scale of performance levels used by a rubric.",
+      subClassOf: [
+        "Intangible"
+      ],
+      properties: [
+        "hasLevel",
+        "pointsRequired"
+      ]
+    },
+    RubricLevel: {
+      label: "RubricLevel",
+      comment: "A performance level on a rubric scale.",
+      subClassOf: [
+        "Intangible"
+      ],
+      properties: [
+        "levelOrdinal",
+        "levelPoints"
+      ]
     },
     Task: {
       label: "Task",
@@ -248,7 +293,8 @@ export const schema: Schema = {
       ],
       properties: [
         "assessedBy",
-        "gradingFormat"
+        "gradingFormat",
+        "rubric"
       ]
     },
     Project: {
@@ -895,6 +941,12 @@ export const schema: Schema = {
       range: ["Activity"],
       domain: ["Assessment"]
     },
+    rubric: {
+      label: "rubric",
+      comment: "The rubric used to evaluate this assessment.",
+      range: ["Rubric"],
+      domain: ["Assessment", "Activity"]
+    },
     assessedBy: {
       label: "assessedBy",
       comment: "The assessment for this activity.",
@@ -920,7 +972,7 @@ export const schema: Schema = {
       domain: ["LearningComponent"]
     },
     hasComponent: {
-      label: "forComponent",
+      label: "hasComponent",
       comment: "Which LearningComponent the InstructionalPattern contains or is supported by (inverse of forComponent)",
       range: ["LearningComponent"],
       domain: ["LearningComponent"]
@@ -948,6 +1000,54 @@ export const schema: Schema = {
       comment: "Refers to any media referenced by the content",
       range: ["http://schema.org/MediaObject"],
       domain: ["Resource"]
+    },
+    hasCriterion: {
+      label: "hasCriterion",
+      comment: "Criteria included in the rubric.",
+      range: ["RubricCriterion"],
+      domain: ["Rubric"]
+    },
+    rubricScale: {
+      label: "rubricScale",
+      comment: "The performance scale applied to the rubric.",
+      range: ["RubricScale"],
+      domain: ["Rubric"]
+    },
+    rubricType: {
+      label: "rubricType",
+      comment: "The rubric style (analytic, holistic, single point, checklist).",
+      range: ["Text"],
+      domain: ["Rubric"]
+    },
+    criterionWeight: {
+      label: "criterionWeight",
+      comment: "Relative weight applied to this criterion.",
+      range: ["Number"],
+      domain: ["RubricCriterion"]
+    },
+    hasLevel: {
+      label: "hasLevel",
+      comment: "Performance levels in this scale.",
+      range: ["RubricLevel"],
+      domain: ["RubricScale"]
+    },
+    levelOrdinal: {
+      label: "levelOrdinal",
+      comment: "Ordering value for the level (higher means higher performance).",
+      range: ["Integer"],
+      domain: ["RubricLevel"]
+    },
+    levelPoints: {
+      label: "levelPoints",
+      comment: "Points assigned to this level.",
+      range: ["Number"],
+      domain: ["RubricLevel"]
+    },
+    pointsRequired: {
+      label: "pointsRequired",
+      comment: "Whether points must be assigned for each level in this scale.",
+      range: ["Boolean"],
+      domain: ["RubricScale"]
     }
   }
 };

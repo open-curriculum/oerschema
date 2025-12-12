@@ -45,8 +45,8 @@ function ThemeAwareContent({ children }: { children: React.ReactNode }) {
           <img src={logoSrc} alt="OER Schema" className="h-8" />
           <div className="w-14"></div> {/* Keep symmetrical padding */}
         </div>
-        <main className="flex-1">
-          <div className="mx-auto w-full px-2 sm:px-4 lg:px-6 py-6 md:max-w-7xl">
+        <main className="flex-1 min-w-0">
+          <div className="mx-auto w-full px-2 sm:px-4 lg:px-6 py-6 md:max-w-7xl min-w-0">
             {children}
           </div>
           <ScrollRestoration />

@@ -21,7 +21,7 @@ export default function AboutPage() {
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4">What is OER Schema?</h2>
           <p className="mb-4">
-            OER Schema is a vocabulary for describing Open Educational Resources (OER) and their relationships.
+            OER Schema is a vocabulary for describing the pedagogical relationships in Open Educational Resources (OER), and is aimed at fostering the production of open knowledge. 
             It provides a standardized way to mark up educational content, making it more discoverable and interoperable.
           </p>
           <p className="mb-4">
@@ -53,7 +53,7 @@ export default function AboutPage() {
             <li className="mb-2">Creating tools that work with the schema</li>
           </ul>
           <p>
-            Visit the <a href="https://github.com/oerschema" className="text-blue-600 hover:underline">GitHub repository</a> to get involved.
+            Visit the <a href="https://github.com/open-curriculum/oerschema" className="text-blue-600 hover:underline">GitHub repository</a> to get involved.
           </p>
         </section>
         
@@ -61,8 +61,7 @@ export default function AboutPage() {
           <h2 className="text-2xl font-semibold mb-4">Contact</h2>
           <p>
             For questions, suggestions, or more information about OER Schema, please reach out through 
-            our <a href="https://github.com/oerschema" className="text-blue-600 hover:underline">GitHub page</a> 
-            or contact the maintainers directly.
+            our <a href="https://github.com/open-curriculum/oerschema" className="text-blue-600 hover:underline">GitHub page</a> or contact the maintainers directly.
           </p>
         </section>
       </div>
