@@ -1,4 +1,7 @@
-# OERSchema Remix Site
+
+<img width="1600" height="457" alt="oerschema-logo-horizontal-800x@2x" src="https://github.com/user-attachments/assets/81a557fc-04fb-417d-a37d-2afe1af42f4f" />
+
+# OERSchema
 
 Live site: https://oerschema.org
 
