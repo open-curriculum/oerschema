@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
+  <script>
+    // Single Page App redirect script for GitHub Pages
+    (function() {
+      // Repository name for GitHub Pages
+      const repo = 'oerschema-v7';
+      const l = window.location;
+      
+      // More reliable detection for paths
+      // Extract the path - we need to handle both root domain and subpath cases
+      let path = l.pathname;
+      
+      // Check if path includes the repo name
+      const repoPath = '/' + repo + '/';
+      const isRepoSubPath = path.indexOf(repoPath) === 0;
+      
+      if (isRepoSubPath) {
+        // Remove the repo part of the path
+        path = path.substr(repoPath.length - 1) || '/';
+      }
+      
+      // Store redirect flag in session storage
+      sessionStorage.setItem('remix-redirect', 'true');
+      
+      // Redirect to the index with the path as a query parameter
+      let redirectUrl;
+      if (isRepoSubPath) {
+        // If we're in a repo subpath, redirect to the repo root
+        redirectUrl = l.origin + repoPath;
+      } else {
+        // If we're on a custom domain, just redirect to root
+        redirectUrl = l.origin + '/';
+      }
+      
+      // Add the path as a query parameter
+      redirectUrl += '?path=' + encodeURIComponent(path);
+      
+      // Add any existing query parameters and hash
+      if (l.search && l.search !== '?') {
+        redirectUrl += '&' + l.search.substr(1);
+      }
+      if (l.hash) {
+        redirectUrl += l.hash;
+      }
+      
+      // Perform the redirect
+      l.replace(redirectUrl);
+    })();
+  </script>
+</head>
+<body>
+  <h1>Redirecting...</h1>
+  <p>If you are not redirected automatically, <a href="/">click here</a>.</p>
+</body>
+</html>

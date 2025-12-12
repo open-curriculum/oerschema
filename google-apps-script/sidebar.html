@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OER Schema Components</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 16px;
+      background: #f8fafc;
+    }
+    
+    .component-card {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border-left: 4px solid #3b82f6;
+    }
+    
+    .component-card h3 {
+      margin: 0 0 8px 0;
+      color: #1e40af;
+      font-size: 16px;
+    }
+    
+    .component-card p {
+      margin: 0 0 12px 0;
+      color: #6b7280;
+      font-size: 14px;
+    }
+    
+    .form-group {
+      margin-bottom: 12px;
+    }
+    
+    .form-group label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 4px;
+      font-size: 14px;
+      color: #374151;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    
+    .form-group textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+    
+    .btn {
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+    
+    .btn:hover {
+      background: #2563eb;
+    }
+    
+    .btn-secondary {
+      background: #6b7280;
+    }
+    
+    .btn-secondary:hover {
+      background: #4b5563;
+    }
+    
+    .export-section {
+      border-top: 1px solid #e5e7eb;
+      padding-top: 16px;
+      margin-top: 16px;
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    .form-section {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div id="main-view">
+    <h2 style="margin: 0 0 16px 0; color: #1f2937;">OER Schema Components</h2>
+    
+    <!-- Learning Objective -->
+    <div class="component-card">
+      <h3>🎯 Learning Objective</h3>
+      <p>Define expected learning outcomes with skill and course metadata</p>
+      <button class="btn" onclick="showForm('learning-objective')">Insert Learning Objective</button>
+    </div>
+    
+    <!-- Assessment -->
+    <div class="component-card">
+      <h3>📝 Assessment</h3>
+      <p>Create quizzes, exams, and evaluation components</p>
+      <button class="btn" onclick="showForm('assessment')">Insert Assessment</button>
+    </div>
+    
+    <!-- Practice Activity -->
+    <div class="component-card">
+      <h3>🔬 Practice Activity</h3>
+      <p>Add hands-on learning exercises with action types</p>
+      <button class="btn" onclick="showForm('practice')">Insert Practice Activity</button>
+    </div>
+    
+    <!-- Export Section -->
+    <div class="export-section">
+      <h3 style="color: #1f2937; margin-bottom: 12px;">Export Options</h3>
+      <button class="btn btn-secondary" onclick="exportDocument()">Export to HTML with OER Schema</button>
+    </div>
+  </div>
+  
+  <!-- Learning Objective Form -->
+  <div id="learning-objective-form" class="hidden">
+    <div class="form-section">
+      <h3 style="color: #1e40af; margin-bottom: 16px;">🎯 Learning Objective</h3>
+      
+      <div class="form-group">
+        <label for="lo-skill">Skill</label>
+        <input type="text" id="lo-skill" placeholder="e.g., analyze data, explain concepts">
+      </div>
+      
+      <div class="form-group">
+        <label for="lo-course">Course Code</label>
+        <input type="text" id="lo-course" placeholder="e.g., BIOL-101, CS-201">
+      </div>
+      
+      <div class="form-group">
+        <label for="lo-description">Learning Objective Description</label>
+        <textarea id="lo-description" placeholder="Students will be able to..."></textarea>
+      </div>
+      
+      <button class="btn" onclick="insertLearningObjectiveFromForm()">Insert Learning Objective</button>
+      <button class="btn btn-secondary" onclick="showMainView()">Cancel</button>
+    </div>
+  </div>
+  
+  <!-- Assessment Form -->
+  <div id="assessment-form" class="hidden">
+    <div class="form-section">
+      <h3 style="color: #f59e0b; margin-bottom: 16px;">📝 Assessment</h3>
+      
+      <div class="form-group">
+        <label for="assess-title">Assessment Title</label>
+        <input type="text" id="assess-title" placeholder="e.g., Quiz 1: Photosynthesis">
+      </div>
+      
+      <div class="form-group">
+        <label for="assess-type">Type</label>
+        <input type="text" id="assess-type" placeholder="e.g., Quiz, Exam, Project">
+      </div>
+      
+      <div class="form-group">
+        <label for="assess-points">Points</label>
+        <input type="number" id="assess-points" placeholder="e.g., 25">
+      </div>
+      
+      <div class="form-group">
+        <label for="assess-content">Assessment Content</label>
+        <textarea id="assess-content" placeholder="Assessment questions, instructions, or description..."></textarea>
+      </div>
+      
+      <button class="btn" onclick="insertAssessmentFromForm()">Insert Assessment</button>
+      <button class="btn btn-secondary" onclick="showMainView()">Cancel</button>
+    </div>
+  </div>
+  
+  <!-- Practice Form -->
+  <div id="practice-form" class="hidden">
+    <div class="form-section">
+      <h3 style="color: #10b981; margin-bottom: 16px;">🔬 Practice Activity</h3>
+      
+      <div class="form-group">
+        <label for="practice-title">Activity Title</label>
+        <input type="text" id="practice-title" placeholder="e.g., Lab: Observing Cells">
+      </div>
+      
+      <div class="form-group">
+        <label for="practice-actions">Action Types</label>
+        <input type="text" id="practice-actions" placeholder="e.g., Observing, Recording, Analyzing">
+      </div>
+      
+      <div class="form-group">
+        <label for="practice-materials">Materials Needed</label>
+        <input type="text" id="practice-materials" placeholder="e.g., microscope, slides, samples">
+      </div>
+      
+      <div class="form-group">
+        <label for="practice-instructions">Instructions</label>
+        <textarea id="practice-instructions" placeholder="Step-by-step instructions for the activity..."></textarea>
+      </div>
+      
+      <button class="btn" onclick="insertPracticeFromForm()">Insert Practice Activity</button>
+      <button class="btn btn-secondary" onclick="showMainView()">Cancel</button>
+    </div>
+  </div>
+
+  <script>
+    function showForm(formType) {
+      document.getElementById('main-view').classList.add('hidden');
+      document.getElementById(formType + '-form').classList.remove('hidden');
+    }
+    
+    function showMainView() {
+      document.querySelectorAll('.form-section').forEach(form => {
+        form.parentElement.classList.add('hidden');
+      });
+      document.getElementById('main-view').classList.remove('hidden');
+    }
+    
+    function insertLearningObjectiveFromForm() {
+      const skill = document.getElementById('lo-skill').value;
+      const course = document.getElementById('lo-course').value;
+      const description = document.getElementById('lo-description').value;
+      
+      if (!skill || !description) {
+        alert('Please fill in the skill and description fields.');
+        return;
+      }
+      
+      google.script.run
+        .withSuccessHandler(() => {
+          showMainView();
+          clearForm('learning-objective');
+        })
+        .withFailureHandler(error => alert('Error: ' + error))
+        .insertLearningObjective(skill, course, description);
+    }
+    
+    function insertAssessmentFromForm() {
+      const title = document.getElementById('assess-title').value;
+      const type = document.getElementById('assess-type').value;
+      const points = document.getElementById('assess-points').value;
+      const content = document.getElementById('assess-content').value;
+      
+      if (!title || !content) {
+        alert('Please fill in the title and content fields.');
+        return;
+      }
+      
+      google.script.run
+        .withSuccessHandler(() => {
+          showMainView();
+          clearForm('assessment');
+        })
+        .withFailureHandler(error => alert('Error: ' + error))
+        .insertAssessment(type, points, title, content);
+    }
+    
+    function insertPracticeFromForm() {
+      const title = document.getElementById('practice-title').value;
+      const actions = document.getElementById('practice-actions').value;
+      const materials = document.getElementById('practice-materials').value;
+      const instructions = document.getElementById('practice-instructions').value;
+      
+      if (!title || !instructions) {
+        alert('Please fill in the title and instructions fields.');
+        return;
+      }
+      
+      google.script.run
+        .withSuccessHandler(() => {
+          showMainView();
+          clearForm('practice');
+        })
+        .withFailureHandler(error => alert('Error: ' + error))
+        .insertPractice(actions, materials, title, instructions);
+    }
+    
+    function clearForm(formType) {
+      const form = document.getElementById(formType + '-form');
+      form.querySelectorAll('input, textarea').forEach(input => {
+        input.value = '';
+      });
+    }
+    
+    function exportDocument() {
+      google.script.run
+        .withSuccessHandler(html => {
+          alert('Document exported successfully! Check your Google Drive for the HTML file.');
+        })
+        .withFailureHandler(error => alert('Export error: ' + error))
+        .exportToHTML();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>OER Schema</title>
+  <script>
+    // This script handles GitHub Pages SPA redirects
+    (function() {
+      // Repository name for GitHub Pages
+      const repoName = 'oerschema-v7';
+      
+      // For GitHub Pages deployment with custom domain
+      // Add base tag dynamically
+      // We'll use the repo name as the base path by default for GitHub Pages
+      // Check the environment to determine if we need a base path
+      const isProd = window.location.hostname !== 'localhost';
+      if (isProd) {
+        // For production, add the base tag with the repo name
+        const baseTag = document.createElement('base');
+        baseTag.href = '/' + repoName + '/';
+        document.head.appendChild(baseTag);
+      }
+      
+      // Handle redirect from 404.html
+      const redirect = sessionStorage.getItem('remix-redirect');
+      if (redirect) {
+        sessionStorage.removeItem('remix-redirect');
+        const urlParams = new URLSearchParams(window.location.search);
+        const path = urlParams.get('path');
+        if (path) {
+          window.history.replaceState(null, null, path);
+        }
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div id="root">
+    <!-- This content will be replaced by Remix -->
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+      <p>Loading OER Schema...</p>
+    </div>
+  </div>
+</body>
+</html>
