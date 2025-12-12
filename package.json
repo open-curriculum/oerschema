@@ -14,10 +14,10 @@
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tabs": "^1.1.11",
-    "@remix-run/node": "2.15.3",
-    "@remix-run/react": "2.15.3",
-    "@remix-run/serve": "2.15.3",
-    "@vercel/remix": "2.15.3",
+    "@remix-run/node": "2.16.7",
+    "@remix-run/react": "2.16.7",
+    "@remix-run/serve": "2.16.7",
+    "@vercel/remix": "2.16.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "isbot": "^4.1.0",
@@ -30,7 +30,7 @@
     "vitepress-plugin-oer-schema": "^0.2.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "2.15.3",
+    "@remix-run/dev": "2.16.7",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
@@ -50,5 +50,8 @@
   },
   "engines": {
     "node": ">=20.0.0"
+  },
+  "overrides": {
+    "estree-util-value-to-estree": "^3.3.3"
   }
 }
