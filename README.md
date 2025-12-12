@@ -2,6 +2,7 @@
 <img width="1600" height="457" alt="oerschema-logo-horizontal-800x@2x" src="https://github.com/user-attachments/assets/81a557fc-04fb-417d-a37d-2afe1af42f4f" />
 
 # OERSchema
+[![DOI](https://zenodo.org/badge/56093253.svg)](https://doi.org/10.5281/zenodo.17908973)
 
 Live site: https://oerschema.org
 
