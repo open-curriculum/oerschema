@@ -22,7 +22,7 @@ export function Footer() {
             asChild
           >
             <Link
-              to="https://github.com/oerschema"
+              to="https://github.com/open-curriculum/oerschema"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1"
