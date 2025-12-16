@@ -34,7 +34,7 @@ export default function AboutPage() {
           <h2 className="text-2xl font-semibold mb-4">History and Development</h2>
           <p className="mb-4">
             Developed at Penn State University in 2018 by Michael Collins, Katrina Wehr, and Alex Boyce, OER Schema was created to address the need for additional pedigogical vocabulary, expanding the "semantic web." 
-            It builds on standards like schema.org and Dublin Core while adding specific terms relevant to educational contexts.
+            It builds on standards like schema.org and Dublin Core while adding additional flexibility relevant to educational contexts.
           </p>
           <p className="mb-4">
             The schema is maintained through a collaborative process and continues to evolve to meet the changing needs of the OER ecosystem.
