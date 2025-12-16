@@ -23,7 +23,7 @@ export default function AboutPage() {
           <p className="mb-4">
             OER Schema is a vocabulary for describing the pedagogical relationships in Open Educational Resources (OER), and is aimed at fostering the production of open knowledge. 
             It provides a standardized way to mark up educational content, making it more discoverable and interoperable.
-          </p>
+           </p>
           <p className="mb-4">
             By using this schema, content creators, educators, and platform developers can create a more 
             connected and reusable ecosystem of educational resources.
@@ -33,8 +33,8 @@ export default function AboutPage() {
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4">History and Development</h2>
           <p className="mb-4">
-            OER Schema was developed to address the need for better metadata in the open education community. 
-            It builds on standards like schema.org while adding specific terms relevant to educational contexts.
+            Developed at Penn State University in 2018 by Michael Collins, Katrina Wehr, and Alex Boyce, OER Schema was developed to address the need for better metadata in the open education community. 
+            It builds on standards like schema.org and Dublin Core while adding specific terms relevant to educational contexts.
           </p>
           <p className="mb-4">
             The schema is maintained through a collaborative process and continues to evolve to meet the changing needs of the OER ecosystem.
