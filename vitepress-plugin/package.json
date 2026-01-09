@@ -1,6 +1,6 @@
 {
   "name": "vitepress-plugin-oer-schema",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "VitePress plugin for OER Schema pedagogical components",
   "main": "index.js",
   "type": "module",

@@ -79,9 +79,3 @@ Reflection prompts here...
 This lesson combines multiple learning components...
 :::
 ```
-
-## Next Steps
-
-1. Test locally in your VitePress book
-2. Refine component definitions and styling
-3. Publish as npm package: `vitepress-plugin-oer-schema`
