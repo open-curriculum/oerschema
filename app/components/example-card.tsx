@@ -1,13 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+import { Button } from "~/components/ui/button";
 
 interface ExampleCardProps {
   title: string;
   description?: string;
-  implementation: string;
+  htmlImplementation: string;
+  vitepressImplementation: string;
   visual: React.ReactNode;
 }
 
-export function ExampleCard({ title, description, implementation, visual }: ExampleCardProps) {
+export function ExampleCard({ title, description, htmlImplementation, vitepressImplementation, visual }: ExampleCardProps) {
+  const [copiedHtml, setCopiedHtml] = useState(false);
+  const [copiedVitepress, setCopiedVitepress] = useState(false);
+
+  const copyToClipboard = async (text: string, type: 'html' | 'vitepress') => {
+    try {
+      await navigator.clipboard.writeText(text);
+      if (type === 'html') {
+        setCopiedHtml(true);
+        setTimeout(() => setCopiedHtml(false), 2000);
+      } else {
+        setCopiedVitepress(true);
+        setTimeout(() => setCopiedVitepress(false), 2000);
+      }
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
+
   return (
     <div className="mt-6">
       <div className="bg-card border shadow-md rounded-lg">
@@ -25,14 +46,51 @@ export function ExampleCard({ title, description, implementation, visual }: Exam
             </div>
           </div>
           
-          {/* Implementation code */}
+          {/* Implementation code with tabs */}
           <div className="space-y-4">
             <h3 className="text-lg font-medium">Implementation</h3>
-            <div className="bg-muted rounded-lg overflow-hidden">
-              <div className="p-4 overflow-auto max-h-[400px]">
-                <pre className="text-sm whitespace-pre-wrap break-all md:break-normal">{implementation}</pre>
-              </div>
-            </div>
+            <Tabs defaultValue="html" className="w-full">
+              <TabsList>
+                <TabsTrigger value="html">HTML</TabsTrigger>
+                <TabsTrigger value="vitepress">VitePress</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="html" className="mt-4">
+                <div className="bg-muted rounded-lg overflow-hidden relative">
+                  <div className="absolute top-2 right-2 z-10">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => copyToClipboard(htmlImplementation, 'html')}
+                      className="bg-background"
+                    >
+                      {copiedHtml ? 'Copied!' : 'Copy'}
+                    </Button>
+                  </div>
+                  <div className="p-4 overflow-auto max-h-[400px]">
+                    <pre className="text-sm whitespace-pre-wrap break-all md:break-normal">{htmlImplementation}</pre>
+                  </div>
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="vitepress" className="mt-4">
+                <div className="bg-muted rounded-lg overflow-hidden relative">
+                  <div className="absolute top-2 right-2 z-10">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => copyToClipboard(vitepressImplementation, 'vitepress')}
+                      className="bg-background"
+                    >
+                      {copiedVitepress ? 'Copied!' : 'Copy'}
+                    </Button>
+                  </div>
+                  <div className="p-4 overflow-auto max-h-[400px]">
+                    <pre className="text-sm whitespace-pre-wrap break-all md:break-normal">{vitepressImplementation}</pre>
+                  </div>
+                </div>
+              </TabsContent>
+            </Tabs>
           </div>
         </div>
       </div>

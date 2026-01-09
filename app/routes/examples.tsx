@@ -7,7 +7,7 @@ export const loader = async () => {
 };
 
 export default function ExamplesPage() {
-  const basicResourceImplementation = `<div itemscope itemtype="http://oerschema.org/Resource">
+  const basicResourceHtml = `<div itemscope itemtype="http://oerschema.org/Resource">
   <h2 itemprop="name">Introduction to Algebra</h2>
   <meta itemprop="additionalType" content="textbook" />
   <p itemprop="description">
@@ -21,7 +21,15 @@ export default function ExamplesPage() {
   </div>
 </div>`;
 
-  const courseExampleImplementation = `<div itemscope itemtype="http://oerschema.org/Course">
+  const basicResourceVitepress = `::: resource name="Introduction to Algebra" type="textbook"
+A foundational textbook covering basic algebraic concepts.
+
+[View Resource](https://example.com/intro-to-algebra)
+
+**Author:** Jane Doe
+:::`;
+
+  const courseExampleHtml = `<div itemscope itemtype="http://oerschema.org/Course">
   <h2 itemprop="name">Data Science Fundamentals</h2>
   <p itemprop="description">
     Learn the basics of data science including data analysis, 
@@ -55,7 +63,19 @@ export default function ExamplesPage() {
   </div>
 </div>`;
 
-  const learningObjectiveImplementation = `<div itemscope itemtype="http://oerschema.org/LearningObjective">
+  const courseExampleVitepress = `::: course name="Data Science Fundamentals"
+Learn the basics of data science including data analysis, visualization, and machine learning.
+
+### Course Sections:
+- Introduction to Data Analysis
+- Data Visualization Techniques
+- Machine Learning Basics
+
+### Course Materials:
+**Python for Data Science Handbook** (Supplemental Material)
+:::`;
+
+  const learningObjectiveHtml = `<div itemscope itemtype="http://oerschema.org/LearningObjective">
   <h3>Learning Objective:</h3>
   <p itemprop="description">
     Students will be able to analyze and interpret statistical 
@@ -93,7 +113,14 @@ export default function ExamplesPage() {
   </div>
 </div>`;
 
-  const assessmentImplementation = `<div itemscope itemtype="http://oerschema.org/Assessment">
+  const learningObjectiveVitepress = `::: learning-objective topic="Data Analysis,Statistics,Python"
+Students will be able to analyze and interpret statistical data using Python.
+
+**Assessment Method:** Portfolio Project  
+**Required Actions:** Researching, Making
+:::`;
+
+  const assessmentHtml = `<div itemscope itemtype="http://oerschema.org/Assessment">
   <h2 itemprop="name">Final Project: Data Analysis Report</h2>
   <meta itemprop="type" content="project" />
   <p itemprop="description">
@@ -129,6 +156,25 @@ export default function ExamplesPage() {
     href="http://oerschema.org/Researching" />
 </div>`;
 
+  const assessmentVitepress = `::: assessment type="Project" points="100" passingScore="70"
+**Final Project: Data Analysis Report**
+
+Create a comprehensive data analysis report on a dataset of your choice.
+
+### Grading Information
+Graded on a 100-point scale  
+Required passing score: 70
+
+### Instructions:
+1. Choose a dataset from the provided sources
+2. Clean and preprocess the data
+3. Perform exploratory data analysis
+4. Create visualizations of key findings
+5. Write a 1000-word report summarizing insights
+
+**Learning Actions:** Making, Researching
+:::`;
+
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-3xl font-bold mb-6">OER Schema Examples</h1>
@@ -150,7 +196,8 @@ export default function ExamplesPage() {
           <ExampleCard
             title="Example 1: Basic Resource (Textbook)"
             description="A simple example of a Resource, such as a textbook. Uses properties inherited from schema.org where not directly specified in local schema."
-            implementation={basicResourceImplementation}
+            htmlImplementation={basicResourceHtml}
+            vitepressImplementation={basicResourceVitepress}
             visual={
               <div>
                 <h2 className="text-xl font-bold">Introduction to Algebra</h2>
@@ -171,7 +218,8 @@ export default function ExamplesPage() {
           <ExampleCard
             title="Example 2: Course Structure"
             description="An example of a Course with multiple CourseSections and associated materials."
-            implementation={courseExampleImplementation}
+            htmlImplementation={courseExampleHtml}
+            vitepressImplementation={courseExampleVitepress}
             visual={
               <div>
                 <h2 className="text-xl font-bold">Data Science Fundamentals</h2>
@@ -202,7 +250,8 @@ export default function ExamplesPage() {
           <ExampleCard
             title="Example 3: Learning Objective"
             description="An example of defining learning objectives that can be associated with educational resources."
-            implementation={learningObjectiveImplementation}
+            htmlImplementation={learningObjectiveHtml}
+            vitepressImplementation={learningObjectiveVitepress}
             visual={
               <div>
                 <div className="mb-4 pb-4 border-b">
@@ -223,7 +272,8 @@ export default function ExamplesPage() {
           <ExampleCard
             title="Example 4: Assessment Component"
             description="An example of an Assessment that demonstrates using more complex nested schema structures."
-            implementation={assessmentImplementation}
+            htmlImplementation={assessmentHtml}
+            vitepressImplementation={assessmentVitepress}
             visual={
               <div>
                 <h2 className="text-xl font-bold">Final Project: Data Analysis Report</h2>

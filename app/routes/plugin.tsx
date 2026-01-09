@@ -72,7 +72,7 @@ export default {
           </div>
         </div>
 
-        <div className="space-y-4">
+        {/* <div className="space-y-4">
           <h2 className="text-2xl font-semibold">Features</h2>
           <ul className="space-y-2">
             <li className="flex items-start gap-2">
@@ -100,10 +100,10 @@ export default {
               <span className="text-sm">Accessible markup and styling</span>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
 
-      <div>
+      {/* <div>
         <h2 className="text-2xl font-semibold mb-4">Alternative: Download Files</h2>
         <p className="text-muted-foreground mb-4">
           Prefer to download the files directly? Access the plugin source files below:
@@ -124,7 +124,7 @@ export default {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       <div className="bg-muted/50 p-6 rounded-lg">
         <h2 className="text-xl font-semibold mb-3">Example Usage</h2>
@@ -168,7 +168,7 @@ Basic analysis
       </div>
 
       <div className="text-center space-y-4">
-        <div>
+        {/* <div>
           <Button asChild className="mr-4">
             <a href="/components">View Live Examples</a>
           </Button>
@@ -177,13 +177,13 @@ Basic analysis
               Full Documentation
             </a>
           </Button>
-        </div>
+        </div> */}
         <div className="text-sm text-muted-foreground">
           <a href="https://www.npmjs.com/package/vitepress-plugin-oer-schema" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">
             View on npm
           </a>
           {" • "}
-          Version 0.2.0
+          Version 0.2.1
         </div>
       </div>
     </div>

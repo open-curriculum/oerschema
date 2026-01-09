@@ -264,7 +264,7 @@ export default function Components() {
   return (
     <div className="space-y-8 min-w-0">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Pedagogical Components</h1>
+        <h1 className="text-3xl font-bold tracking-tight">OER Schema Components</h1>
         <p className="text-muted-foreground mt-2">
           Explore reusable components designed with OER Schema vocabulary to support pedagogically sound learning experiences.
         </p>
@@ -319,7 +319,7 @@ export default function Components() {
         ))}
       </div>
 
-      <div className="mt-12 p-6 bg-muted/50 rounded-lg">
+      {/* <div className="mt-12 p-6 bg-muted/50 rounded-lg">
         <h2 className="text-xl font-semibold mb-3">Integration with Course Outline Builder</h2>
         <p className="text-muted-foreground mb-4">
           These components can be imported into your Course Outline Builder for visual editing, configuration, and export to multiple formats including Canvas LMS modules.
@@ -332,7 +332,7 @@ export default function Components() {
             Try Course Outline Builder
           </Button>
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }

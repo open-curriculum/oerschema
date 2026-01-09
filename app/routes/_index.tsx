@@ -32,7 +32,7 @@ export default function Index() {
           </div>
         </section>
 
-        <section>
+        {/* <section>
           <h2 className="text-2xl font-semibold mb-4">Properties</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {properties.map(([name, data]) => (
@@ -48,7 +48,7 @@ export default function Index() {
               </Link>
             ))}
           </div>
-        </section>
+        </section> */}
       </div>
     </div>
   );
