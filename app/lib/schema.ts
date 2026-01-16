@@ -1,7 +1,7 @@
 import { Schema } from "./types";
 
 export const schema: Schema = {
-  version: "1.1.0",
+  version: "1.2.0",
   classes: {
     Resource: {
       label: "Resource",
@@ -282,7 +282,8 @@ export const schema: Schema = {
         "http://schema.org/Action"
       ],
       properties: [
-        "material"
+        "material",
+        "aiUsageConstraint"
       ]
     },
     Activity: {
@@ -987,6 +988,12 @@ export const schema: Schema = {
       label: "typeOfAction",
       comment: "The type of action to be taken",
       range: ["ActionType"],
+      domain: ["Task"]
+    },
+    aiUsageConstraint: {
+      label: "aiUsageConstraint",
+      comment: "Specifies or references an external project that indicates restrictive or permissive language clarifying the level of generative technology usage that will enable the completion of a task, but without undermining the pedagogical intent of the task. Can be a URL to a formal framework definition (e.g., https://dmd-program.github.io/aiul/combinations/na-im.html), a short code reference (e.g., AIUL-NA-IM), or plain text description (e.g., 'No AI tools permitted'). Following the pattern of schema.org's license property, URLs are preferred for machine-readable interoperability.",
+      range: ["Text", "URL"],
       domain: ["Task"]
     },
     forTopic: {

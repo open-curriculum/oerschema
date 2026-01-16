@@ -52,6 +52,9 @@ export interface OutlineNodeProperties {
   gradingFormat?: string;
   points?: number;
 
+  // Task-specific
+  aiUsageConstraint?: string | string[];
+
   // Rubric-specific
   rubricType?: string;
   criterionWeight?: number;

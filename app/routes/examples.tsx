@@ -123,6 +123,7 @@ Students will be able to analyze and interpret statistical data using Python.
   const assessmentHtml = `<div itemscope itemtype="http://oerschema.org/Assessment">
   <h2 itemprop="name">Final Project: Data Analysis Report</h2>
   <meta itemprop="type" content="project" />
+  <link itemprop="aiUsageConstraint" href="https://dmd-program.github.io/aiul/licenses/cd/1.0.0/" />
   <p itemprop="description">
     Create a comprehensive data analysis report on a dataset 
     of your choice.
@@ -156,10 +157,12 @@ Students will be able to analyze and interpret statistical data using Python.
     href="http://oerschema.org/Researching" />
 </div>`;
 
-  const assessmentVitepress = `::: assessment type="Project" points="100" passingScore="70"
+  const assessmentVitepress = `::: assessment type="Project" points="100" passingScore="70" aiUsageConstraint="https://dmd-program.github.io/aiul/licenses/cd/1.0.0/"
 **Final Project: Data Analysis Report**
 
 Create a comprehensive data analysis report on a dataset of your choice.
+
+**AI Usage:** Conceptual Development (AIUL-CD) - AI tools may be used for research and ideation, but final work must be student-generated.
 
 ### Grading Information
 Graded on a 100-point scale  

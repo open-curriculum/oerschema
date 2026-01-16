@@ -92,7 +92,7 @@ Students will be able to explain the process of photosynthesis and identify its 
     name: "Practice Task", 
     description: "Task subclass for hands-on learning activities",
     schema: "@type: 'Practice' (subclass of Task → InstructionalPattern)",
-    vitepressCode: `::: practice action="Observing,Making" material="microscope-slides"
+    vitepressCode: `::: practice action="Observing,Making" material="microscope-slides" aiUsageConstraint="https://dmd-program.github.io/aiul/combinations/na-im.html"
 **Lab Exercise: Observing Chloroplasts**
 
 ### Materials Needed:
@@ -109,8 +109,11 @@ Students will be able to explain the process of photosynthesis and identify its 
 ### Questions:
 - What color are the chloroplasts?
 - How are they distributed in the cell?
+
+**AI Usage:** No AI-generated images permitted (AIUL-NA-IM)
 :::`,
     htmlOutput: `<div itemscope itemtype="http://oerschema.org/Practice">
+  <link itemprop="aiUsageConstraint" href="https://dmd-program.github.io/aiul/combinations/na-im.html" />
   <link itemprop="typeOfAction" href="http://oerschema.org/Observing" />
   <link itemprop="typeOfAction" href="http://oerschema.org/Making" />
   <div itemprop="material" itemscope itemtype="http://oerschema.org/SupportingMaterial">
@@ -143,9 +146,10 @@ Students will be able to explain the process of photosynthesis and identify its 
               <li>Identify and sketch chloroplasts</li>
             </ol>
           </div>
-          <div className="flex gap-2 text-sm">
+          <div className="flex gap-2 text-sm flex-wrap">
             <span className="bg-green-200 dark:bg-green-800 px-2 py-1 rounded">Observing</span>
             <span className="bg-green-200 dark:bg-green-800 px-2 py-1 rounded">Making</span>
+            <span className="bg-red-200 dark:bg-red-800 px-2 py-1 rounded">AIUL-NA-IM (No AI Images)</span>
           </div>
         </div>
       </div>
@@ -156,7 +160,7 @@ Students will be able to explain the process of photosynthesis and identify its 
     name: "Learning Component with Reflection",
     description: "Generic LearningComponent with Reflecting ActionType",
     schema: "@type: 'LearningComponent' with Reflecting ActionType",
-    vitepressCode: `::: learning-component action="Reflecting" objective="connect-concepts"
+    vitepressCode: `::: learning-component action="Reflecting" objective="connect-concepts" aiUsageConstraint="AIUL-CD-WR,AIUL-NA-IM"
 **Reflection: Connecting Photosynthesis to Daily Life**
 
 Take a few minutes to think about what you've learned about photosynthesis today.
@@ -166,13 +170,15 @@ Take a few minutes to think about what you've learned about photosynthesis today
 - What connections can you make between photosynthesis and environmental issues?  
 - What questions do you still have about this process?
 
-Write at least 150 words reflecting on these questions.
+Write at least 150 words reflecting on these questions. You may use AI for research but your writing must be your own. Any diagrams must be hand-drawn.
 :::`,
     htmlOutput: `<div itemscope itemtype="http://oerschema.org/LearningComponent">
   <link itemprop="doTask" href="#reflection-task" />
   <link itemprop="hasLearningObjective" href="#connect-concepts" />
   
   <div itemscope itemtype="http://oerschema.org/Task" id="reflection-task">
+    <meta itemprop="aiUsageConstraint" content="AIUL-CD-WR" />
+    <meta itemprop="aiUsageConstraint" content="AIUL-NA-IM" />
     <link itemprop="typeOfAction" href="http://oerschema.org/Reflecting" />
     <h3>💭 Reflection: Connecting Photosynthesis to Daily Life</h3>
     <div class="reflection-content">
@@ -195,9 +201,10 @@ Write at least 150 words reflecting on these questions.
             <li>What questions do you still have about this process?</li>
           </ul>
         </div>
-        <div className="flex gap-2 text-sm">
+        <div className="flex gap-2 text-sm flex-wrap">
           <span className="bg-purple-200 dark:bg-purple-800 px-2 py-1 rounded">Reflecting ActionType</span>
-          <span className="bg-purple-200 dark:bg-purple-800 px-2 py-1 rounded">LearningComponent</span>
+          <span className="bg-red-200 dark:bg-red-800 px-2 py-1 rounded">AIUL-CD-WR (AI Research)</span>
+          <span className="bg-red-200 dark:bg-red-800 px-2 py-1 rounded">AIUL-NA-IM (No AI Images)</span>
         </div>
       </div>
     )

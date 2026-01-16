@@ -47,19 +47,30 @@ export function oerSchemaPlugin(md) {
       if (tokens[idx].nesting === 1) {
         const attrs = parseAttributes(m && m.length > 1 ? m[1] : '');
         
+        // Handle aiUsageConstraint - support single value or comma-separated list
+        const constraints = attrs.aiUsageConstraint ? attrs.aiUsageConstraint.split(',').map(c => c.trim()) : [];
+        const aiConstraintHtml = constraints.map(constraint => {
+          return (constraint.startsWith('http://') || constraint.startsWith('https://'))
+            ? `<link itemprop="aiUsageConstraint" href="${escapeHtml(constraint)}" />`
+            : `<meta itemprop="aiUsageConstraint" content="${escapeHtml(constraint)}" />`;
+        }).join('\n  ');
+        
         return `<div class="oer-assessment" itemscope itemtype="http://oerschema.org/Assessment">
   ${attrs.type ? `<meta itemprop="additionalType" content="${escapeHtml(attrs.type)}" />` : ''}
   ${attrs.points ? `<meta itemprop="gradingFormat" content="${escapeHtml(attrs.points)} points" />` : ''}
+  ${aiConstraintHtml}
   ${attrs.assessing ? `<link itemprop="assessing" href="#${escapeHtml(attrs.assessing)}" />` : ''}
   <div class="oer-component-header">
     <h3 class="oer-component-title">📝 Assessment</h3>
   </div>
   <div class="oer-component-content">`;
       } else {
+        const constraints = attrs.aiUsageConstraint ? attrs.aiUsageConstraint.split(',').map(c => c.trim()) : [];
         return `  </div>
   <div class="oer-component-meta">
     ${attrs.type ? `<span class="oer-tag">${escapeHtml(attrs.type)}</span>` : ''}
     ${attrs.points ? `<span class="oer-tag">${escapeHtml(attrs.points)} points</span>` : ''}
+    ${constraints.map(c => `<span class="oer-tag oer-ai-constraint">${escapeHtml(c)}</span>`).join('')}
   </div>
 </div>\n`;
       }
@@ -78,7 +89,16 @@ export function oerSchemaPlugin(md) {
         const attrs = parseAttributes(m && m.length > 1 ? m[1] : '');
         const actions = attrs.action ? attrs.action.split(',').map(a => a.trim()) : [];
         
+        // Handle aiUsageConstraint - support single value or comma-separated list
+        const constraints = attrs.aiUsageConstraint ? attrs.aiUsageConstraint.split(',').map(c => c.trim()) : [];
+        const aiConstraintHtml = constraints.map(constraint => {
+          return (constraint.startsWith('http://') || constraint.startsWith('https://'))
+            ? `<link itemprop="aiUsageConstraint" href="${escapeHtml(constraint)}" />`
+            : `<meta itemprop="aiUsageConstraint" content="${escapeHtml(constraint)}" />`;
+        }).join('\n  ');
+        
         return `<div class="oer-practice" itemscope itemtype="http://oerschema.org/Practice">
+  ${aiConstraintHtml}
   ${actions.map(action => `<link itemprop="typeOfAction" href="http://oerschema.org/${escapeHtml(action)}" />`).join('\n  ')}
   ${attrs.material ? `<div itemprop="material" itemscope itemtype="http://oerschema.org/SupportingMaterial">
     <meta itemprop="name" content="${escapeHtml(attrs.material)}" />
@@ -88,9 +108,11 @@ export function oerSchemaPlugin(md) {
   </div>
   <div class="oer-component-content">`;
       } else {
+        const constraints = attrs.aiUsageConstraint ? attrs.aiUsageConstraint.split(',').map(c => c.trim()) : [];
         return `  </div>
   <div class="oer-component-meta">
     ${actions.map(action => `<span class="oer-tag">${escapeHtml(action)}</span>`).join('')}
+    ${constraints.map(c => `<span class="oer-tag oer-ai-constraint">${escapeHtml(c)}</span>`).join('')}
   </div>
 </div>\n`;
       }

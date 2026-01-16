@@ -198,6 +198,20 @@
   color: #c4b5fd;
 }
 
+/* AI Usage Constraint tag styling */
+.oer-ai-constraint {
+  background-color: #fecaca !important;
+  color: #991b1b !important;
+  font-weight: 600;
+  border: 1px solid #dc2626;
+}
+
+.dark .oer-ai-constraint {
+  background-color: #991b1b !important;
+  color: #fecaca !important;
+  border-color: #dc2626;
+}
+
 .oer-instructional-pattern .oer-tag {
   background-color: #a5b4fc;
   color: #3730a3;
