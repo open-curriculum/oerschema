@@ -29,6 +29,7 @@ export function canAddChildBySchema(parentType: OutlineNodeType, childType: Outl
   // Check for specific relationship properties
   const relationshipProperties = [
     'hasLearningObjective',
+    'hasActivity',
     'doTask',
     'material',
     'section',
@@ -95,7 +96,7 @@ export function getValidChildTypes(parentType: OutlineNodeType): OutlineNodeType
     if (!prop) continue;
     
     // Skip non-relationship properties
-    const relationshipProps = ['hasComponent', 'hasLearningObjective', 'doTask', 'material', 'section', 'parentOf'];
+    const relationshipProps = ['hasComponent', 'hasLearningObjective', 'hasActivity', 'doTask', 'material', 'section', 'parentOf'];
     if (!relationshipProps.includes(propName)) continue;
     
     // Check each range type
@@ -162,6 +163,7 @@ export function findBestRelationship(parentType: OutlineNodeType, childType: Out
     { prop: 'rubricScale', priority: 1 },
     { prop: 'hasLevel', priority: 2 },
     { prop: 'hasLearningObjective', priority: 1 },
+    { prop: 'hasActivity', priority: 1 },
     { prop: 'doTask', priority: 2 },
     { prop: 'material', priority: 3 },
     { prop: 'section', priority: 4 },

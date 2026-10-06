@@ -192,6 +192,7 @@ export function suggestRelationship(
     'hasCriterion',
     'rubricScale',
     'hasLevel',
+    'hasActivity',
     'hasComponent',
     'hasLearningObjective',
     'doTask',

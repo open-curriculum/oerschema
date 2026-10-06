@@ -33,10 +33,14 @@ Students will be able to explain the process of photosynthesis...
 
 ### Assessment
 ```markdown
-::: assessment type="Quiz" points="25" assessing="photosynthesis-lab"
+::: assessment type="Quiz" points="25" purpose="formative" assessing="photosynthesis-lab"
 **Quick Check: Photosynthesis**
 1. What are the main reactants?
 :::
+```
+
+`purpose` sets `assessmentPurpose`: `diagnostic`, `formative` or `summative`.
+
 ### Rubric
 ```markdown
 ::: rubric type="analytic" scale="default-scale"

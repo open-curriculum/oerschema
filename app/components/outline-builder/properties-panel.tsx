@@ -162,6 +162,51 @@ export function PropertiesPanel({ node, root, onUpdateProperties, onUpdateRelati
           </>
         )}
 
+        {(node.type === 'Assessment' || node.type === 'Quiz' || node.type === 'Submission') && (
+          <div>
+            <label htmlFor="assessmentPurpose" className="block text-sm font-medium mb-1">Assessment Purpose</label>
+            <select
+              id="assessmentPurpose"
+              className="w-full px-3 py-2 border rounded-md bg-background"
+              value={localProperties.assessmentPurpose || ''}
+              onChange={(e) => handleChange('assessmentPurpose', e.target.value || undefined)}
+            >
+              <option value="">Not specified</option>
+              <option value="diagnostic">Diagnostic (before learning)</option>
+              <option value="formative">Formative (feedback during learning)</option>
+              <option value="summative">Summative (evaluates finished work)</option>
+            </select>
+          </div>
+        )}
+
+        {node.type === 'Activity' && (
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="activityStep" className="block text-sm font-medium mb-1">Step</label>
+              <input
+                id="activityStep"
+                type="number"
+                min="1"
+                className="w-full px-3 py-2 border rounded-md bg-background"
+                value={localProperties.step ?? ''}
+                onChange={(e) => handleChange('step', e.target.value === '' ? undefined : parseInt(e.target.value, 10))}
+                placeholder="e.g., 3"
+              />
+            </div>
+            <div>
+              <label htmlFor="activityStage" className="block text-sm font-medium mb-1">Stage</label>
+              <input
+                id="activityStage"
+                type="text"
+                className="w-full px-3 py-2 border rounded-md bg-background"
+                value={localProperties.stage || ''}
+                onChange={(e) => handleChange('stage', e.target.value || undefined)}
+                placeholder="e.g., Research"
+              />
+            </div>
+          </div>
+        )}
+
         {node.type === 'Rubric' && (
           <>
             <div>
@@ -372,15 +417,15 @@ export function PropertiesPanel({ node, root, onUpdateProperties, onUpdateRelati
                 }
                 
                 // Also count direct children for hasComponent relationship
-                if (rel.property === 'hasComponent' && node.children) {
+                if ((rel.property === 'hasComponent' || rel.property === 'hasActivity') && node.children) {
                   count = node.children.length;
                 }
                 
                 // Determine if this is a hierarchical relationship
-                const isHierarchical = ['hasComponent', 'forComponent', 'childOf', 'parentOf'].includes(rel.property);
+                const isHierarchical = ['hasComponent', 'forComponent', 'hasActivity', 'activityOf', 'childOf', 'parentOf'].includes(rel.property);
                 
                 // Only show if it has a value OR is a commonly used property for this type
-                const commonProperties = ['hasComponent', 'forComponent', 'hasLearningObjective', 'doTask', 'forCourse'];
+                const commonProperties = ['hasComponent', 'forComponent', 'hasLearningObjective', 'hasActivity', 'activityOf', 'doTask', 'forCourse'];
                 const shouldShow = count > 0 || commonProperties.includes(rel.property);
                 
                 if (!shouldShow) return null;

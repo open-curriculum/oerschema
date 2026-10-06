@@ -1,7 +1,7 @@
 import { Schema } from "./types";
 
 export const schema: Schema = {
-  version: "1.2.0",
+  version: "1.3.0",
   classes: {
     Resource: {
       label: "Resource",
@@ -16,7 +16,8 @@ export const schema: Schema = {
         "childOf",
         "forCourse",
         "mainContent",
-        "forTopic"
+        "forTopic",
+        "prerequisite"
       ]
     },
     TableOfContents: {
@@ -211,7 +212,8 @@ export const schema: Schema = {
         "material",
         "assessing",
         "gradingFormat",
-        "rubric"
+        "rubric",
+        "assessmentPurpose"
       ]
     },
     Quiz: {
@@ -295,7 +297,10 @@ export const schema: Schema = {
       properties: [
         "assessedBy",
         "gradingFormat",
-        "rubric"
+        "rubric",
+        "activityOf",
+        "step",
+        "stage"
       ]
     },
     Project: {
@@ -304,7 +309,9 @@ export const schema: Schema = {
       subClassOf: [
         "Activity"
       ],
-      properties: []
+      properties: [
+        "hasActivity"
+      ]
     },
     Practice: {
       label: "Practice",
@@ -1055,6 +1062,44 @@ export const schema: Schema = {
       comment: "Whether points must be assigned for each level in this scale.",
       range: ["Boolean"],
       domain: ["RubricScale"]
+    },
+    hasActivity: {
+      label: "hasActivity",
+      comment: "An Activity that is part of this Project, such as a deliverable or milestone students complete on the way to the finished project (inverse of activityOf). Order activities with step and group them with stage.",
+      range: ["Activity"],
+      domain: ["Project"],
+      inverseOf: "activityOf"
+    },
+    activityOf: {
+      label: "activityOf",
+      comment: "The Project this Activity is part of (inverse of hasActivity).",
+      range: ["Project"],
+      domain: ["Activity"],
+      inverseOf: "hasActivity"
+    },
+    step: {
+      label: "step",
+      comment: "The position of this Activity in the sequence of its Project's activities, starting at 1.",
+      range: ["Integer"],
+      domain: ["Activity"]
+    },
+    stage: {
+      label: "stage",
+      comment: "The named stage of its Project this Activity belongs to, such as \"Research\", \"Concept\" or the Double Diamond's \"Discover\", \"Define\", \"Develop\" and \"Deliver\". Activities sharing a stage name are grouped together.",
+      range: ["Text"],
+      domain: ["Activity"]
+    },
+    prerequisite: {
+      label: "prerequisite",
+      comment: "A resource to complete or understand before this one, such as an earlier activity this one builds on or a reading it assumes. For whole-course requirements use coursePrerequisites.",
+      range: ["Resource", "http://schema.org/CreativeWork"],
+      domain: ["Resource"]
+    },
+    assessmentPurpose: {
+      label: "assessmentPurpose",
+      comment: "How the results of this Assessment are used: \"diagnostic\" (before learning, to find what students already know), \"formative\" (during learning, as feedback students act on before the work is final) or \"summative\" (at the end, to evaluate the finished work). Describes the assessment's use, not the activity, so the same activity can be assessed for different purposes.",
+      range: ["Text"],
+      domain: ["Assessment"]
     }
   }
 };
