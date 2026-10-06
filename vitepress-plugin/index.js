@@ -58,6 +58,7 @@ export function oerSchemaPlugin(md) {
         return `<div class="oer-assessment" itemscope itemtype="http://oerschema.org/Assessment">
   ${attrs.type ? `<meta itemprop="additionalType" content="${escapeHtml(attrs.type)}" />` : ''}
   ${attrs.points ? `<meta itemprop="gradingFormat" content="${escapeHtml(attrs.points)} points" />` : ''}
+  ${attrs.purpose ? `<meta itemprop="assessmentPurpose" content="${escapeHtml(attrs.purpose)}" />` : ''}
   ${aiConstraintHtml}
   ${attrs.assessing ? `<link itemprop="assessing" href="#${escapeHtml(attrs.assessing)}" />` : ''}
   <div class="oer-component-header">

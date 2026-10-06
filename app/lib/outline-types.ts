@@ -51,9 +51,14 @@ export interface OutlineNodeProperties {
   // Assessment-specific
   gradingFormat?: string;
   points?: number;
+  assessmentPurpose?: 'diagnostic' | 'formative' | 'summative' | string;
 
   // Task-specific
   aiUsageConstraint?: string | string[];
+
+  // Project activity-specific
+  step?: number;
+  stage?: string;
 
   // Rubric-specific
   rubricType?: string;
@@ -89,6 +94,11 @@ export interface OutlineNodeRelationships {
   
   // Tasks
   doTask?: string[];
+
+  // Project activities
+  hasActivity?: string[];
+  activityOf?: string;
+  prerequisite?: string[];
   
   // Topics and materials
   forTopic?: string;
@@ -511,6 +521,7 @@ export function insertNode(
         ...(relationshipProperty === 'hasComponent' && { forComponent: parentId }),
         ...(relationshipProperty === 'hasLearningObjective' && { forComponent: parentId }),
         ...(relationshipProperty === 'doTask' && { forComponent: parentId }),
+        ...(relationshipProperty === 'hasActivity' && { activityOf: parentId }),
         ...(relationshipProperty === 'parentOf' && { childOf: [parentId] }),
       },
     };
