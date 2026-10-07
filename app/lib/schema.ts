@@ -1,7 +1,7 @@
 import { Schema } from "./types";
 
 export const schema: Schema = {
-  version: "1.3.0",
+  version: "1.3.1",
   classes: {
     Resource: {
       label: "Resource",
@@ -122,7 +122,8 @@ export const schema: Schema = {
         "hasComponent",
         "doTask",
         "hasLearningObjective",
-        "deliveryFormat"
+        "deliveryFormat",
+        "aiUsageConstraint"
       ]
     },
     LearningObjective: {
@@ -284,8 +285,7 @@ export const schema: Schema = {
         "http://schema.org/Action"
       ],
       properties: [
-        "material",
-        "aiUsageConstraint"
+        "material"
       ]
     },
     Activity: {
@@ -999,9 +999,9 @@ export const schema: Schema = {
     },
     aiUsageConstraint: {
       label: "aiUsageConstraint",
-      comment: "Specifies or references an external project that indicates restrictive or permissive language clarifying the level of generative technology usage that will enable the completion of a task, but without undermining the pedagogical intent of the task. Can be a URL to a formal framework definition (e.g., https://dmd-program.github.io/aiul/combinations/na-im.html), a short code reference (e.g., AIUL-NA-IM), or plain text description (e.g., 'No AI tools permitted'). Following the pattern of schema.org's license property, URLs are preferred for machine-readable interoperability.",
+      comment: "Specifies or references an external project that indicates restrictive or permissive language clarifying the level of generative technology usage that will enable the completion of the work a learning component sets (a task, an assessment, or a reading or lesson that asks for a response), but without undermining its pedagogical intent. Applies to any LearningComponent, so a constraint set on a unit or lesson covers the work within it unless a part states its own. Can be a URL to a formal framework definition (e.g., https://dmd-program.github.io/aiul/combinations/na-im.html), a short code reference (e.g., AIUL-NA-IM), or plain text description (e.g., 'No AI tools permitted'). Following the pattern of schema.org's license property, URLs are preferred for machine-readable interoperability.",
       range: ["Text", "URL"],
-      domain: ["Task"]
+      domain: ["LearningComponent"]
     },
     forTopic: {
       label: "forTopic",
