@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.1 - 2026-10-07
+- `aiUsageConstraint` now applies to any `LearningComponent` (its domain was `Task`). AI usage rules govern assessments, quizzes and submissions, and readings or lessons that ask for a response, as well as tasks; the schema's own examples already used it on `Assessment` and `LearningComponent`. A constraint on a unit or lesson covers the work within it unless a part states its own. Its single domain stays valid RDFS (several `rdfs:domain` values would mean all of them at once).
+- Outline builder: the AI Usage Constraints field shows for every learning component node (all but Course, Topic, Learning Objective and rubric parts), not only Task, Practice and Activity.
+- Bumped schema version to 1.3.1.
+
 ## 1.3.0 - 2026-10-05
 - Added project structure: `hasActivity` (Project → Activity) and its inverse `activityOf`, so a Project can state the activities it is made of, as its definition describes.
 - Added `step` (an Activity's position in its Project's sequence) and `stage` (the named stage it belongs to, e.g. "Research", "Concept", or the Double Diamond's Discover/Define/Develop/Deliver).

@@ -3,6 +3,15 @@ import { Button } from "~/components/ui/button";
 import { useState, useEffect } from "react";
 import { getRelationshipProperties, getPropertyLabel, getPropertyDescription } from "~/lib/schema-utils";
 
+// aiUsageConstraint applies to any LearningComponent: every node type but
+// Course, Topic, LearningObjective and the rubric parts
+const AI_USAGE_NODE_TYPES = new Set<string>([
+  'Module', 'Unit', 'Lesson', 'LearningComponent',
+  'AssociatedMaterial', 'SupportingMaterial', 'SupplementalMaterial', 'ReferencedMaterial',
+  'Task', 'Practice', 'Activity', 'Project',
+  'Assessment', 'Quiz', 'Submission',
+]);
+
 interface PropertiesPanelProps {
   node: OutlineNode | null;
   root: OutlineNode | null;
@@ -299,54 +308,56 @@ export function PropertiesPanel({ node, root, onUpdateProperties, onUpdateRelati
                 ))}
               </div>
             </div>
-
-            <div>
-              <label className="block text-sm font-medium mb-1">AI Usage Constraints</label>
-              <div className="space-y-2">
-                {[
-                  { value: 'AIUL-NA', label: 'AIUL-NA (Not Allowed)' },
-                  { value: 'AIUL-WA', label: 'AIUL-WA (With Approval)' },
-                  { value: 'AIUL-CD', label: 'AIUL-CD (Conceptual Development)' },
-                  { value: 'AIUL-TC', label: 'AIUL-TC (Transformative Collaboration)' },
-                  { value: 'AIUL-DP', label: 'AIUL-DP (Directed Production)' },
-                  { value: 'AIUL-IU', label: 'AIUL-IU (Integrated Usage)' },
-                  { value: 'AIUL-NA-IM', label: 'AIUL-NA-IM (No AI Images)' },
-                  { value: 'AIUL-NA-WR', label: 'AIUL-NA-WR (No AI Writing)' },
-                  { value: 'AIUL-CD-WR', label: 'AIUL-CD-WR (AI Research Only - Writing)' }
-                ].map(constraint => {
-                  const constraints = Array.isArray(localProperties.aiUsageConstraint)
-                    ? localProperties.aiUsageConstraint
-                    : localProperties.aiUsageConstraint
-                    ? [localProperties.aiUsageConstraint]
-                    : [];
-                  
-                  return (
-                    <label key={constraint.value} className="flex items-center gap-2">
-                      <input
-                        type="checkbox"
-                        checked={constraints.includes(constraint.value)}
-                        onChange={(e) => {
-                          const current = Array.isArray(localProperties.aiUsageConstraint)
-                            ? localProperties.aiUsageConstraint
-                            : localProperties.aiUsageConstraint
-                            ? [localProperties.aiUsageConstraint]
-                            : [];
-                          const updated = e.target.checked
-                            ? [...current, constraint.value]
-                            : current.filter(c => c !== constraint.value);
-                          handleChange('aiUsageConstraint', updated.length > 0 ? updated : undefined);
-                        }}
-                      />
-                      <span className="text-sm">{constraint.label}</span>
-                    </label>
-                  );
-                })}
-              </div>
-              <p className="text-xs text-muted-foreground mt-1">
-                Select one or more AI usage constraints (e.g., different rules for images vs. text)
-              </p>
-            </div>
           </>
+        )}
+
+        {AI_USAGE_NODE_TYPES.has(node.type) && (
+          <div>
+            <label className="block text-sm font-medium mb-1">AI Usage Constraints</label>
+            <div className="space-y-2">
+              {[
+                { value: 'AIUL-NA', label: 'AIUL-NA (Not Allowed)' },
+                { value: 'AIUL-WA', label: 'AIUL-WA (With Approval)' },
+                { value: 'AIUL-CD', label: 'AIUL-CD (Conceptual Development)' },
+                { value: 'AIUL-TC', label: 'AIUL-TC (Transformative Collaboration)' },
+                { value: 'AIUL-DP', label: 'AIUL-DP (Directed Production)' },
+                { value: 'AIUL-IU', label: 'AIUL-IU (Integrated Usage)' },
+                { value: 'AIUL-NA-IM', label: 'AIUL-NA-IM (No AI Images)' },
+                { value: 'AIUL-NA-WR', label: 'AIUL-NA-WR (No AI Writing)' },
+                { value: 'AIUL-CD-WR', label: 'AIUL-CD-WR (AI Research Only - Writing)' }
+              ].map(constraint => {
+                const constraints = Array.isArray(localProperties.aiUsageConstraint)
+                  ? localProperties.aiUsageConstraint
+                  : localProperties.aiUsageConstraint
+                  ? [localProperties.aiUsageConstraint]
+                  : [];
+                
+                return (
+                  <label key={constraint.value} className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={constraints.includes(constraint.value)}
+                      onChange={(e) => {
+                        const current = Array.isArray(localProperties.aiUsageConstraint)
+                          ? localProperties.aiUsageConstraint
+                          : localProperties.aiUsageConstraint
+                          ? [localProperties.aiUsageConstraint]
+                          : [];
+                        const updated = e.target.checked
+                          ? [...current, constraint.value]
+                          : current.filter(c => c !== constraint.value);
+                        handleChange('aiUsageConstraint', updated.length > 0 ? updated : undefined);
+                      }}
+                    />
+                    <span className="text-sm">{constraint.label}</span>
+                  </label>
+                );
+              })}
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              Select one or more AI usage constraints (e.g., different rules for images vs. text)
+            </p>
+          </div>
         )}
       </div>
 
